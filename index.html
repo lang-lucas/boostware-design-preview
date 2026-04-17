@@ -149,9 +149,9 @@
   .rp-cal-month{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;}
   .rp-cal-dow{text-align:center;font-size:10px;font-weight:600;color:var(--slate-400);text-transform:uppercase;letter-spacing:.04em;padding:4px 0 6px;}
   .rp-cal-blank{}
-  .rp-cal-day{height:30px;font-size:12.5px;font-weight:500;color:var(--slate-700);border-radius:5px;transition:background-color .12s ease,color .12s ease,transform .08s ease;font-variant-numeric:tabular-nums;position:relative;}
+  .rp-cal-day{height:32px;font-size:12.5px;font-weight:500;color:var(--slate-700);border-radius:5px;transition:background-color .1s ease,color .1s ease;font-variant-numeric:tabular-nums;position:relative;}
   .rp-cal-day:hover:not(:disabled):not(.in-range):not(.selected){background:var(--slate-100);color:var(--slate-900);}
-  .rp-cal-day:active:not(:disabled){transform:scale(.9);}
+  .rp-cal-day:active:not(:disabled){filter:brightness(.92);}
   .rp-cal-day:disabled{color:var(--slate-300);cursor:not-allowed;}
   .rp-cal-day.today{font-weight:700;color:var(--ascent-600);}
   .rp-cal-day.in-range{background:var(--ascent-100);color:var(--ascent-700);border-radius:0;}
@@ -1431,15 +1431,47 @@
     renderCalendar();
   });
 
+  // Update only classes on existing day buttons — do NOT re-render the
+  // calendar innerHTML during hover. Rebuilding the DOM on every mouseover
+  // detaches the element under the cursor, causing mousedown/mouseup to
+  // land on different targets → click fires on the wrong cell or none.
+  function updateHoverPreview(hoverDate) {
+    let rStart = pending.start, rEnd = pending.end;
+    const isPreview = pending.pickStage === 'end' && pending.start && hoverDate;
+    if (isPreview) {
+      if (hoverDate < pending.start) { rStart = hoverDate; rEnd = pending.start; }
+      else { rStart = pending.start; rEnd = hoverDate; }
+    }
+    const cells = document.querySelectorAll('#rp-calendar .rp-cal-day');
+    cells.forEach(cell => {
+      cell.classList.remove('selected', 'start', 'end', 'in-range', 'in-range-preview');
+      if (cell.disabled) return;
+      const d = new Date(cell.dataset.date + 'T00:00:00');
+      const isStart = sameDay(d, rStart);
+      const isEnd = sameDay(d, rEnd);
+      if (isStart) cell.classList.add('selected', 'start');
+      if (isEnd) cell.classList.add('selected', 'end');
+      if (rStart && rEnd && d > rStart && d < rEnd && !isStart && !isEnd) {
+        cell.classList.add(isPreview ? 'in-range-preview' : 'in-range');
+      }
+    });
+  }
+
+  let hoverRaf = 0;
   document.getElementById('rp-calendar').addEventListener('mouseover', e => {
     if (pending.pickStage !== 'end') return;
     const day = e.target.closest('.rp-cal-day');
     if (!day || day.disabled) return;
-    const d = new Date(day.dataset.date + 'T00:00:00');
-    renderCalendar(d);
+    const iso = day.dataset.date;
+    // rAF-throttle so fast mouse motion doesn't stack work
+    if (hoverRaf) cancelAnimationFrame(hoverRaf);
+    hoverRaf = requestAnimationFrame(() => {
+      updateHoverPreview(new Date(iso + 'T00:00:00'));
+    });
   });
   document.getElementById('rp-calendar').addEventListener('mouseleave', () => {
-    if (pending.pickStage === 'end') renderCalendar();
+    if (hoverRaf) { cancelAnimationFrame(hoverRaf); hoverRaf = 0; }
+    if (pending.pickStage === 'end') updateHoverPreview(null);
   });
 
   document.getElementById('rp-cancel').addEventListener('click', closePicker);
