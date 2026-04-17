@@ -96,11 +96,12 @@
 
   /* ═══════ TAB NAV ═══════ */
   .tabnav{background:transparent;border-top:1px solid color-mix(in srgb,var(--slate-200) 60%,transparent);}
-  .tabnav-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:6px;overflow-x:auto;scrollbar-width:none;}
+  .tabnav-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:6px;overflow-x:auto;scrollbar-width:none;position:relative;}
   .tabnav-inner::-webkit-scrollbar{display:none;}
+  .tab-indicator{position:absolute;bottom:-1px;left:0;height:2px;background:var(--ascent-500);border-radius:2px 2px 0 0;width:0;transform:translateX(0);transition:transform .32s cubic-bezier(.4,0,.2,1),width .32s cubic-bezier(.4,0,.2,1);pointer-events:none;}
   .tab{position:relative;display:inline-flex;align-items:center;gap:8px;padding:16px 14px 15px;font-size:13.5px;font-weight:500;color:var(--slate-500);white-space:nowrap;transition:color .15s var(--ease-out);border-bottom:2px solid transparent;margin-bottom:-1px;}
   .tab:hover{color:var(--slate-800);}
-  .tab.active{color:var(--slate-900);font-weight:600;border-bottom-color:var(--ascent-500);}
+  .tab.active{color:var(--slate-900);font-weight:600;}
   .tab svg{opacity:.7;}
   .tab.active svg{opacity:1;color:var(--ascent-500);}
   .tab-badge{font-size:10px;font-weight:600;padding:2px 6px;border-radius:999px;background:var(--slate-100);color:var(--slate-600);line-height:1;margin-left:2px;}
@@ -121,7 +122,7 @@
   .live-pill{display:inline-flex;align-items:center;gap:6px;padding:2px 8px 2px 6px;border-radius:999px;background:color-mix(in srgb,var(--success-500) 12%,transparent);color:var(--success-700);font-size:11px;font-weight:600;}
   html[data-theme="dark"] .live-pill{color:#34D399;}
   .live-dot{width:6px;height:6px;border-radius:50%;background:var(--success-500);animation:pulse 2.4s ease-in-out infinite;}
-  @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(16,185,129,.5);}50%{box-shadow:0 0 0 5px rgba(16,185,129,0);}}
+  @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(16,185,129,.55);transform:scale(1);}50%{box-shadow:0 0 0 6px rgba(16,185,129,0);transform:scale(1.18);}}
 
   /* ═══════ RANGE PICKER ═══════ */
   .range-picker{position:relative;}
@@ -284,7 +285,25 @@
 
   /* ═══════ FUNNEL ═══════ */
   .funnel{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:4px;}
-  .funnel-step{position:relative;padding:16px 18px;background:var(--slate-0);border:1px solid var(--slate-200);border-right:0;}
+  .funnel-step{position:relative;padding:16px 18px;background:var(--slate-0);border:1px solid var(--slate-200);border-right:0;opacity:0;transform:translateX(-10px);animation:funnelIn .5s cubic-bezier(.16,1,.3,1) forwards;}
+  .funnel-step:nth-child(1){animation-delay:.15s;}
+  .funnel-step:nth-child(2){animation-delay:.26s;}
+  .funnel-step:nth-child(3){animation-delay:.37s;}
+  .funnel-step:nth-child(4){animation-delay:.48s;}
+  @keyframes funnelIn{to{opacity:1;transform:translateX(0);}}
+  .funnel-drop{opacity:0;animation:funnelDropIn .35s var(--ease-out) forwards;}
+  .funnel-drop:nth-of-type(1){animation-delay:.4s;}
+  .funnel-drop:nth-of-type(2){animation-delay:.51s;}
+  .funnel-drop:nth-of-type(3){animation-delay:.62s;}
+  @keyframes funnelDropIn{to{opacity:1;}}
+  .flows-table tbody tr{animation:rowIn .4s var(--ease-out) both;}
+  .flows-table tbody tr:nth-child(1){animation-delay:.02s;}
+  .flows-table tbody tr:nth-child(2){animation-delay:.08s;}
+  .flows-table tbody tr:nth-child(3){animation-delay:.14s;}
+  .flows-table tbody tr:nth-child(4){animation-delay:.2s;}
+  .flows-table tbody tr:nth-child(5){animation-delay:.26s;}
+  .flows-table tbody tr:nth-child(6){animation-delay:.32s;}
+  @keyframes rowIn{from{opacity:0;transform:translateY(-6px);}to{opacity:1;transform:translateY(0);}}
   .funnel-step:first-child{border-top-left-radius:var(--r-md);border-bottom-left-radius:var(--r-md);}
   .funnel-step:last-child{border-right:1px solid var(--slate-200);border-top-right-radius:var(--r-md);border-bottom-right-radius:var(--r-md);}
   .funnel-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--slate-500);margin-bottom:6px;}
@@ -457,6 +476,7 @@
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
       Klienti
     </a>
+    <div class="tab-indicator" id="tab-indicator"></div>
   </div>
 </nav>
 
@@ -1236,6 +1256,32 @@
 
   // ═══════ INIT ═══════
   window.addEventListener('load', () => applyRange('30', true));
+
+  // ═══════ TAB INDICATOR SLIDE ═══════
+  (function initTabIndicator() {
+    const indicator = document.getElementById('tab-indicator');
+    const tabs = document.querySelectorAll('.tab');
+    if (!indicator || !tabs.length) return;
+    function moveIndicator() {
+      const active = document.querySelector('.tab.active');
+      if (!active) return;
+      indicator.style.width = active.offsetWidth + 'px';
+      indicator.style.transform = `translateX(${active.offsetLeft}px)`;
+    }
+    // Position after first paint so offsetLeft/Width are reliable
+    requestAnimationFrame(() => requestAnimationFrame(moveIndicator));
+    window.addEventListener('load', moveIndicator);
+    window.addEventListener('resize', moveIndicator);
+    tabs.forEach(tab => {
+      tab.addEventListener('click', (e) => {
+        e.preventDefault();
+        tabs.forEach(t => { t.classList.remove('active'); t.removeAttribute('aria-current'); });
+        tab.classList.add('active');
+        tab.setAttribute('aria-current', 'page');
+        moveIndicator();
+      });
+    });
+  })();
 
   // ═══════ RANGE PICKER ═══════
   const MONTHS_CS_LONG = ['leden','únor','březen','duben','květen','červen','červenec','srpen','září','říjen','listopad','prosinec'];
