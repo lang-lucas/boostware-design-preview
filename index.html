@@ -3,488 +3,386 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jakub Novák – Boostware</title>
+<title>Přehled · Boostmail</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://api.fontshare.com">
-<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700,900&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700,800,900&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
-  /* ───────────── TOKENS ───────────── */
+  /* ═══════ TOKENS ═══════ */
   :root {
-    --ascent-100: #EAF2FF;
-    --ascent-300: #9CC3FF;
-    --ascent-500: #398FFF;
-    --ascent-600: #2B7AE6;
-    --ascent-700: #1E5EBF;
-
-    --slate-0:   #FFFFFF;
-    --slate-50:  #F8FAFC;
-    --slate-100: #F1F5F9;
-    --slate-200: #E2E8F0;
-    --slate-300: #CBD5E1;
-    --slate-400: #94A3B8;
-    --slate-500: #64748B;
-    --slate-600: #475569;
-    --slate-700: #334155;
-    --slate-800: #1E293B;
-    --slate-900: #0F172A;
-    --slate-950: #060B18;
-
-    --success-100: #D1FAE5; --success-500: #10B981; --success-700: #047857;
-    --warning-100: #FEF3C7; --warning-500: #F59E0B; --warning-700: #B45309;
-    --danger-100:  #FEE2E2; --danger-500:  #EF4444; --danger-700:  #B91C1C;
-
-    --r-sm: 6px; --r-md: 10px; --r-lg: 14px; --r-xl: 20px; --r-2xl: 28px;
-
-    --shadow-xs: 0 1px 2px rgba(15,23,42,0.04);
-    --shadow-sm: 0 2px 4px rgba(15,23,42,0.06);
-    --shadow-md: 0 4px 12px rgba(15,23,42,0.08), 0 1px 2px rgba(15,23,42,0.04);
-    --shadow-lg: 0 8px 24px rgba(15,23,42,0.10), 0 2px 4px rgba(15,23,42,0.06);
-    --shadow-glow: 0 0 0 1px rgba(57,143,255,0.15), 0 8px 24px rgba(57,143,255,0.20);
-
-    --ease-out: cubic-bezier(0.22, 0.8, 0.36, 1);
-    --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --ascent-100:#EAF2FF;--ascent-300:#9CC3FF;--ascent-500:#398FFF;--ascent-600:#2B7AE6;--ascent-700:#1E5EBF;
+    --slate-0:#FFFFFF;--slate-50:#F8FAFC;--slate-100:#F1F5F9;--slate-200:#E2E8F0;--slate-300:#CBD5E1;
+    --slate-400:#94A3B8;--slate-500:#64748B;--slate-600:#475569;--slate-700:#334155;--slate-800:#1E293B;
+    --slate-900:#0F172A;--slate-950:#060B18;
+    --success-100:#D1FAE5;--success-500:#10B981;--success-700:#047857;
+    --warning-100:#FEF3C7;--warning-500:#F59E0B;--warning-700:#B45309;
+    --danger-100:#FEE2E2;--danger-500:#EF4444;--danger-700:#B91C1C;
+    --r-sm:6px;--r-md:10px;--r-lg:14px;--r-xl:20px;
+    --shadow-xs:0 1px 2px rgba(15,23,42,.04);
+    --shadow-sm:0 2px 4px rgba(15,23,42,.06);
+    --shadow-md:0 4px 12px rgba(15,23,42,.08),0 1px 2px rgba(15,23,42,.04);
+    --shadow-lg:0 12px 32px rgba(15,23,42,.12),0 4px 8px rgba(15,23,42,.06);
+    --ease-out:cubic-bezier(.22,.8,.36,1);
   }
-
-  /* ───────────── DARK MODE ───────────── */
   html[data-theme="dark"] {
-    --slate-0:   #0F172A;
-    --slate-50:  #060B18;
-    --slate-100: #0F172A;
-    --slate-200: #1E293B;
-    --slate-300: #334155;
-    --slate-400: #475569;
-    --slate-500: #64748B;
-    --slate-600: #94A3B8;
-    --slate-700: #CBD5E1;
-    --slate-800: #E2E8F0;
-    --slate-900: #F1F5F9;
-    --slate-950: #F8FAFC;
-
-    --shadow-xs: 0 1px 2px rgba(0,0,0,0.35);
-    --shadow-sm: 0 2px 4px rgba(0,0,0,0.5);
-    --shadow-md: 0 4px 12px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.04);
-    --shadow-lg: 0 8px 24px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.05);
+    --slate-0:#0F172A;--slate-50:#060B18;--slate-100:#0F172A;--slate-200:#1E293B;--slate-300:#334155;
+    --slate-400:#475569;--slate-500:#64748B;--slate-600:#94A3B8;--slate-700:#CBD5E1;--slate-800:#E2E8F0;
+    --slate-900:#F1F5F9;--slate-950:#F8FAFC;
+    --shadow-xs:0 1px 2px rgba(0,0,0,.35);
+    --shadow-sm:0 2px 4px rgba(0,0,0,.5);
+    --shadow-md:0 4px 12px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.04);
+    --shadow-lg:0 12px 32px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.05);
   }
 
-  /* ───────────── RESET ───────────── */
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-  body {
-    font-family: 'Satoshi', system-ui, -apple-system, sans-serif;
-    background: var(--slate-50);
-    color: var(--slate-900);
-    min-height: 100vh;
-    transition: background .28s var(--ease-out), color .28s var(--ease-out);
-    font-feature-settings: "ss01", "cv11";
+  /* ═══════ RESET ═══════ */
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+  body{
+    font-family:'Satoshi',system-ui,-apple-system,sans-serif;
+    background:var(--slate-50);color:var(--slate-900);
+    min-height:100vh;
+    transition:background .28s var(--ease-out),color .28s var(--ease-out);
   }
-  button { font-family: inherit; cursor: pointer; border: 0; background: none; color: inherit; }
-  .serif-italic {
-    font-family: 'Instrument Serif', Georgia, serif;
-    font-style: italic;
-    font-weight: 400;
-    letter-spacing: -0.01em;
-  }
-  .mono { font-family: 'JetBrains Mono', SF Mono, Menlo, monospace; }
-  .tabular { font-variant-numeric: tabular-nums; }
+  button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit;}
+  .serif-italic{font-family:'Instrument Serif',Georgia,serif;font-style:italic;font-weight:400;letter-spacing:-.01em;}
+  .mono{font-family:'JetBrains Mono',monospace;}
+  .tabular{font-variant-numeric:tabular-nums;}
+  .num{font-variant-numeric:tabular-nums;letter-spacing:-.02em;}
 
-  /* ───────────── TOP BAR ───────────── */
-  .topbar {
-    position: sticky; top: 0; z-index: 50;
-    background: color-mix(in srgb, var(--slate-0) 85%, transparent);
-    backdrop-filter: saturate(180%) blur(20px);
-    -webkit-backdrop-filter: saturate(180%) blur(20px);
-    border-bottom: 1px solid var(--slate-200);
+  /* ═══════ TOP BAR ═══════ */
+  .topbar{
+    position:sticky;top:0;z-index:50;
+    background:color-mix(in srgb,var(--slate-0) 85%,transparent);
+    backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);
+    border-bottom:1px solid var(--slate-200);
   }
-  .topbar-inner {
-    max-width: 1200px; margin: 0 auto;
-    padding: 14px 24px;
-    display: flex; align-items: center; justify-content: space-between;
-    gap: 16px;
+  .topbar-inner{max-width:1200px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+  .wordmark{
+    font-family:'Satoshi',sans-serif;font-size:19px;font-weight:800;letter-spacing:-.03em;
+    color:var(--slate-900);user-select:none;
   }
-  .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; letter-spacing: -0.01em; }
-  .brand-mark {
-    width: 26px; height: 26px; border-radius: 8px;
-    background: linear-gradient(135deg, var(--ascent-500), var(--ascent-700));
-    display: inline-flex; align-items: center; justify-content: center;
-    color: white; font-weight: 900; font-size: 14px;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 2px 8px rgba(57,143,255,.3);
-  }
-  .brand-name { font-size: 15px; color: var(--slate-900); }
-  .brand-name em { color: var(--slate-400); font-style: normal; font-weight: 500; }
+  .wordmark-dot{color:var(--ascent-500);}
 
-  .topbar-right { display: flex; align-items: center; gap: 8px; }
-  .cmd-hint {
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 6px 12px 6px 10px;
-    background: var(--slate-100);
-    border: 1px solid var(--slate-200);
-    border-radius: var(--r-md);
-    font-size: 13px;
-    color: var(--slate-500);
-    transition: all .15s var(--ease-out);
-  }
-  .cmd-hint:hover { background: var(--slate-0); border-color: var(--slate-300); color: var(--slate-700); }
-  .cmd-hint kbd {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px; font-weight: 500;
-    background: var(--slate-0); border: 1px solid var(--slate-200);
-    padding: 1px 5px; border-radius: 4px;
-    color: var(--slate-600);
-  }
-  .icon-btn {
-    width: 36px; height: 36px; border-radius: var(--r-md);
-    display: inline-flex; align-items: center; justify-content: center;
-    color: var(--slate-500);
-    transition: all .15s var(--ease-out);
-  }
-  .icon-btn:hover { background: var(--slate-100); color: var(--slate-800); }
+  .topbar-right{display:flex;align-items:center;gap:8px;}
 
-  /* ───────────── HERO ───────────── */
-  .hero-wrap {
-    position: relative;
-    padding: 64px 24px 48px;
-    overflow: hidden;
+  .cmd-hint{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:7px 10px 7px 12px;background:var(--slate-100);border:1px solid var(--slate-200);
+    border-radius:var(--r-md);font-size:13px;color:var(--slate-500);
+    transition:all .15s var(--ease-out);min-width:180px;
   }
-  .hero-wrap::before {
-    /* dotted grid */
-    content: ''; position: absolute; inset: 0;
-    background-image: radial-gradient(circle, var(--slate-300) 1px, transparent 1px);
-    background-size: 24px 24px;
-    opacity: .35;
-    -webkit-mask-image: radial-gradient(ellipse at center top, black 0%, transparent 70%);
-    mask-image: radial-gradient(ellipse at center top, black 0%, transparent 70%);
-    pointer-events: none;
-  }
-  .hero-wrap::after {
-    /* ascent glow under main number */
-    content: ''; position: absolute;
-    width: 520px; height: 520px;
-    top: -180px; left: 50%; transform: translateX(-50%);
-    background: radial-gradient(circle, rgba(57,143,255,.18) 0%, transparent 65%);
-    pointer-events: none;
-    filter: blur(10px);
-  }
-  .hero {
-    position: relative; z-index: 1;
-    max-width: 900px; margin: 0 auto;
-    text-align: center;
-  }
-  .hero-badge {
-    display: inline-flex; align-items: center; gap: 10px;
-    padding: 6px 12px 6px 8px;
-    background: var(--slate-0);
-    border: 1px solid var(--slate-200);
-    border-radius: 999px;
-    font-size: 12px;
-    color: var(--slate-600);
-    box-shadow: var(--shadow-xs);
-    margin-bottom: 24px;
-  }
-  .hero-badge-num {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px; font-weight: 600;
-    background: var(--ascent-100);
-    color: var(--ascent-700);
-    padding: 2px 6px;
-    border-radius: 4px;
-    letter-spacing: 0.05em;
-  }
-  .live-dot {
-    width: 6px; height: 6px; border-radius: 50%;
-    background: var(--success-500);
-    box-shadow: 0 0 0 4px color-mix(in srgb, var(--success-500) 25%, transparent);
-    animation: livePulse 2.5s ease-in-out infinite;
-  }
-  @keyframes livePulse {
-    0%, 100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--success-500) 35%, transparent); }
-    50%      { box-shadow: 0 0 0 6px color-mix(in srgb, var(--success-500) 0%, transparent); }
+  .cmd-hint:hover{background:var(--slate-0);border-color:var(--slate-300);color:var(--slate-700);}
+  .cmd-hint kbd{
+    font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;
+    background:var(--slate-0);border:1px solid var(--slate-200);
+    padding:2px 5px;border-radius:4px;color:var(--slate-600);margin-left:auto;
   }
 
-  .hero-title {
-    font-size: clamp(36px, 6vw, 64px);
-    font-weight: 600;
-    line-height: 1.05;
-    letter-spacing: -0.025em;
-    color: var(--slate-900);
-    margin-bottom: 18px;
+  .icon-btn{
+    position:relative;
+    width:36px;height:36px;border-radius:var(--r-md);
+    display:inline-flex;align-items:center;justify-content:center;
+    color:var(--slate-500);transition:all .15s var(--ease-out);
   }
-  .hero-title .serif-italic {
-    font-size: 1.02em;
-    color: var(--slate-700);
-  }
-  .hero-sub {
-    font-size: 16px;
-    color: var(--slate-500);
-    max-width: 520px;
-    margin: 0 auto;
-    line-height: 1.6;
+  .icon-btn:hover{background:var(--slate-100);color:var(--slate-800);}
+  .notif-dot{
+    position:absolute;top:7px;right:8px;
+    width:7px;height:7px;border-radius:50%;
+    background:var(--danger-500);
+    border:2px solid var(--slate-0);
   }
 
-  .hero-bigstat {
-    display: inline-flex; align-items: baseline; gap: 8px;
-    margin: 32px 0 0;
+  /* ═══════ USER MENU ═══════ */
+  .user-btn{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:4px 10px 4px 4px;border-radius:999px;
+    background:var(--slate-0);border:1px solid var(--slate-200);
+    transition:all .15s var(--ease-out);
   }
-  .hero-bigstat-num {
-    font-size: clamp(72px, 11vw, 128px);
-    font-weight: 900;
-    line-height: 0.9;
-    letter-spacing: -0.04em;
-    color: var(--slate-900);
-    background: linear-gradient(180deg, var(--slate-900) 0%, var(--slate-700) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+  .user-btn:hover{border-color:var(--slate-300);box-shadow:var(--shadow-xs);}
+  .avatar{
+    width:28px;height:28px;border-radius:50%;
+    display:inline-flex;align-items:center;justify-content:center;
+    font-size:11px;font-weight:700;color:white;letter-spacing:.02em;
+    background:linear-gradient(135deg,#398FFF 0%,#1E5EBF 100%);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.2);
   }
-  html[data-theme="dark"] .hero-bigstat-num {
-    background: linear-gradient(180deg, #F8FAFC 0%, #94A3B8 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  .hero-bigstat-unit {
-    font-size: 22px;
-    color: var(--slate-400);
-    font-weight: 500;
-  }
-  .hero-bigstat-label {
-    margin-top: 4px;
-    font-size: 13px;
-    color: var(--slate-500);
-  }
-  .hero-bigstat-label .serif-italic { color: var(--ascent-600); }
+  .user-name{font-size:13px;font-weight:600;color:var(--slate-800);}
+  .user-chev{color:var(--slate-400);}
 
-  /* ───────────── CONTAINER ───────────── */
-  .container {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 0 24px 80px;
+  .menu{
+    position:absolute;top:calc(100% + 8px);right:0;
+    min-width:240px;
+    background:var(--slate-0);border:1px solid var(--slate-200);
+    border-radius:var(--r-lg);box-shadow:var(--shadow-lg);
+    padding:6px;opacity:0;visibility:hidden;transform:translateY(-4px);
+    transition:all .15s var(--ease-out);z-index:100;
   }
+  .menu.open{opacity:1;visibility:visible;transform:translateY(0);}
+  .menu-head{padding:10px 12px 8px;border-bottom:1px solid var(--slate-200);margin-bottom:4px;}
+  .menu-head-name{font-size:13px;font-weight:600;color:var(--slate-900);}
+  .menu-head-mail{font-size:12px;color:var(--slate-500);margin-top:2px;}
+  .menu a,.menu button{
+    width:100%;display:flex;align-items:center;gap:10px;
+    padding:8px 10px;border-radius:8px;text-decoration:none;
+    font-size:13px;color:var(--slate-700);
+    transition:background .12s var(--ease-out);
+  }
+  .menu a:hover,.menu button:hover{background:var(--slate-100);color:var(--slate-900);}
+  .menu svg{color:var(--slate-400);flex-shrink:0;}
+  .menu button:hover svg{color:var(--slate-700);}
+  .menu-sep{height:1px;background:var(--slate-200);margin:4px -6px;}
+  .menu-danger{color:var(--danger-500) !important;}
+  .menu-danger svg{color:var(--danger-500) !important;}
+  .menu-danger:hover{background:var(--danger-100) !important;}
+  html[data-theme="dark"] .menu-danger:hover{background:rgba(239,68,68,.12) !important;}
 
-  /* ───────────── SECTION HEAD ───────────── */
-  .section-head {
-    display: flex; align-items: center; justify-content: space-between;
-    margin: 40px 0 16px;
-  }
-  .section-title {
-    display: flex; align-items: center; gap: 12px;
-    font-size: 13px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--slate-500);
-  }
-  .section-title-num {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    font-weight: 500;
-    color: var(--slate-400);
-    padding: 2px 6px;
-    background: var(--slate-100);
-    border-radius: 4px;
-    letter-spacing: 0.05em;
-  }
-  .section-meta { font-size: 13px; color: var(--slate-400); }
+  .rel{position:relative;}
 
-  /* ───────────── KPI GRID ───────────── */
-  .kpi-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
+  /* ═══════ PAGE HEADER ═══════ */
+  .page-header{
+    max-width:1200px;margin:0 auto;
+    padding:28px 24px 20px;
+    display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;
   }
-  .kpi {
-    position: relative;
-    background: var(--slate-0);
-    border: 1px solid var(--slate-200);
-    border-radius: var(--r-lg);
-    padding: 22px;
-    transition: all .22s var(--ease-out);
+  .page-title{font-size:26px;font-weight:700;letter-spacing:-.02em;color:var(--slate-900);}
+  .page-title .serif-italic{color:var(--slate-500);font-weight:400;margin-left:2px;}
+  .page-meta{
+    font-size:13px;color:var(--slate-500);margin-top:6px;
+    display:flex;align-items:center;gap:10px;flex-wrap:wrap;
   }
-  .kpi:hover {
-    border-color: color-mix(in srgb, var(--ascent-500) 40%, var(--slate-200));
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
+  .page-meta .dot{color:var(--slate-300);}
+  .live-pill{
+    display:inline-flex;align-items:center;gap:6px;
+    padding:2px 8px 2px 6px;border-radius:999px;
+    background:color-mix(in srgb,var(--success-500) 12%,transparent);
+    color:var(--success-700);font-size:11px;font-weight:600;
   }
-  .kpi-head {
-    display: flex; align-items: center; justify-content: space-between;
-    margin-bottom: 14px;
+  html[data-theme="dark"] .live-pill{color:#34D399;}
+  .live-dot{
+    width:6px;height:6px;border-radius:50%;background:var(--success-500);
+    animation:pulse 2.4s ease-in-out infinite;
   }
-  .kpi-label {
-    font-size: 11px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--slate-500);
-  }
-  .kpi-icon {
-    width: 28px; height: 28px;
-    border-radius: 8px;
-    background: var(--slate-100);
-    color: var(--slate-600);
-    display: inline-flex; align-items: center; justify-content: center;
-  }
-  .kpi-value {
-    font-size: 40px;
-    font-weight: 800;
-    line-height: 1;
-    letter-spacing: -0.03em;
-    color: var(--slate-900);
-    font-variant-numeric: tabular-nums;
-    display: flex; align-items: baseline; gap: 4px;
-  }
-  .kpi-unit {
-    font-size: 18px;
-    font-weight: 600;
-    color: var(--slate-400);
-  }
-  .kpi-delta {
-    display: inline-flex; align-items: center; gap: 3px;
-    margin-top: 12px;
-    font-size: 12px;
-    font-weight: 600;
-    padding: 2px 8px;
-    border-radius: 999px;
-    font-variant-numeric: tabular-nums;
-  }
-  .kpi-delta.up {
-    background: var(--success-100);
-    color: var(--success-700);
-  }
-  .kpi-delta.down { background: var(--danger-100); color: var(--danger-700); }
-  html[data-theme="dark"] .kpi-delta.up { background: rgba(16,185,129,.15); color: #34D399; }
-  html[data-theme="dark"] .kpi-delta.down { background: rgba(239,68,68,.15); color: #F87171; }
+  @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(16,185,129,.5);}50%{box-shadow:0 0 0 5px rgba(16,185,129,0);}}
 
-  /* ───────────── CATEGORY BADGES ───────────── */
-  .cat-row {
-    display: flex; flex-wrap: wrap; gap: 10px;
-    background: var(--slate-0);
-    border: 1px solid var(--slate-200);
-    border-radius: var(--r-lg);
-    padding: 20px;
+  /* ═══════ RANGE SWITCH ═══════ */
+  .range-switch{
+    display:inline-flex;padding:3px;
+    background:var(--slate-100);border:1px solid var(--slate-200);
+    border-radius:var(--r-md);gap:2px;
   }
-  .cat {
-    display: inline-flex; align-items: center; gap: 10px;
-    padding: 8px 14px 8px 10px;
-    background: var(--slate-50);
-    border: 1px solid var(--slate-200);
-    border-radius: 999px;
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--slate-700);
-    transition: all .15s var(--ease-out);
+  .range-switch button{
+    padding:7px 14px;font-size:13px;font-weight:500;color:var(--slate-500);
+    border-radius:7px;transition:all .18s var(--ease-out);
+    font-variant-numeric:tabular-nums;
   }
-  .cat:hover {
-    background: var(--slate-100);
-    border-color: var(--slate-300);
-    transform: translateY(-1px);
+  .range-switch button:hover:not(.active){color:var(--slate-800);}
+  .range-switch button.active{
+    background:var(--slate-0);color:var(--slate-900);font-weight:600;
+    box-shadow:0 1px 2px rgba(15,23,42,.06),0 0 0 1px rgba(15,23,42,.04);
   }
-  .cat-dot {
-    width: 8px; height: 8px; border-radius: 50%;
-  }
-  .cat-dot.reactivation { background: #8B5CF6; }
-  .cat-dot.last-minute  { background: var(--warning-500); }
-  .cat-dot.accelerated  { background: var(--ascent-500); }
-  .cat-count { font-weight: 700; color: var(--slate-900); }
-
-  /* ───────────── EMAIL ACTIVITY ───────────── */
-  .email-card {
-    background: var(--slate-0);
-    border: 1px solid var(--slate-200);
-    border-radius: var(--r-lg);
-    padding: 24px;
-  }
-  .email-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 24px;
-    align-items: end;
-  }
-  .email-metric {
-    border-right: 1px solid var(--slate-200);
-    padding-right: 24px;
-  }
-  .email-metric:last-child { border-right: 0; padding-right: 0; }
-  .email-metric-label {
-    font-size: 11px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--slate-500);
-    margin-bottom: 10px;
-  }
-  .email-metric-value {
-    font-size: 28px;
-    font-weight: 800;
-    line-height: 1;
-    letter-spacing: -0.02em;
-    font-variant-numeric: tabular-nums;
-    color: var(--slate-900);
-  }
-  .email-metric-value.rate-high { color: var(--success-700); }
-  .email-metric-value.rate-mid  { color: var(--warning-700); }
-  .email-metric-value.rate-low  { color: var(--danger-700); }
-  html[data-theme="dark"] .email-metric-value.rate-high { color: #34D399; }
-  html[data-theme="dark"] .email-metric-value.rate-mid  { color: #FBBF24; }
-  html[data-theme="dark"] .email-metric-value.rate-low  { color: #F87171; }
-
-  .sparkline {
-    margin-top: 10px;
-    height: 30px;
-    width: 100%;
+  html[data-theme="dark"] .range-switch button.active{
+    background:var(--slate-200);
+    box-shadow:0 1px 2px rgba(0,0,0,.3);
   }
 
-  /* ───────────── ORGANIC ───────────── */
-  .organic {
-    margin-top: 24px;
-    padding: 14px 20px;
-    background: var(--slate-50);
-    border: 1px dashed var(--slate-300);
-    border-radius: var(--r-md);
-    display: flex; align-items: center; justify-content: space-between;
-    gap: 16px;
-    font-size: 13px;
-    color: var(--slate-500);
-  }
-  .organic-right {
-    color: var(--slate-700);
-    font-weight: 600;
-    white-space: nowrap;
-    font-variant-numeric: tabular-nums;
-  }
+  /* ═══════ CONTAINER ═══════ */
+  .container{max-width:1200px;margin:0 auto;padding:0 24px 60px;}
 
-  /* ───────────── FOOTER ───────────── */
-  .foot {
-    max-width: 1000px; margin: 0 auto;
-    padding: 32px 24px 48px;
-    text-align: center;
-    font-size: 12px;
-    color: var(--slate-400);
-    border-top: 1px solid var(--slate-200);
+  /* ═══════ HERO ═══════ */
+  .hero{
+    position:relative;
+    background:var(--slate-0);border:1px solid var(--slate-200);
+    border-radius:var(--r-xl);padding:36px 36px 28px;
+    overflow:hidden;
+    margin-bottom:16px;
   }
-  .foot strong { color: var(--slate-600); font-weight: 600; }
+  .hero::before{
+    content:'';position:absolute;inset:0;pointer-events:none;
+    background-image:radial-gradient(circle,var(--slate-300) 1px,transparent 1px);
+    background-size:22px 22px;opacity:.22;
+    -webkit-mask-image:radial-gradient(ellipse at right top,black 10%,transparent 70%);
+    mask-image:radial-gradient(ellipse at right top,black 10%,transparent 70%);
+  }
+  .hero::after{
+    content:'';position:absolute;
+    width:420px;height:420px;right:-80px;top:-120px;
+    background:radial-gradient(circle,rgba(57,143,255,.14) 0%,transparent 65%);
+    pointer-events:none;filter:blur(10px);
+  }
+  .hero-inner{position:relative;z-index:1;}
+  .hero-label{
+    font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.09em;
+    color:var(--slate-500);margin-bottom:12px;display:flex;align-items:center;gap:10px;
+  }
+  .hero-row{
+    display:flex;align-items:flex-end;justify-content:space-between;gap:40px;flex-wrap:wrap;
+  }
+  .hero-main{flex:1;min-width:280px;}
+  .hero-value{
+    font-size:clamp(56px,9vw,96px);font-weight:900;line-height:.95;letter-spacing:-.045em;
+    color:var(--slate-900);font-variant-numeric:tabular-nums;
+    display:flex;align-items:baseline;gap:10px;
+  }
+  .hero-unit{
+    font-size:.32em;font-weight:600;color:var(--slate-400);
+    letter-spacing:-.01em;align-self:baseline;
+  }
+  .hero-sub{
+    margin-top:14px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+    font-size:15px;color:var(--slate-600);
+  }
+  .hero-sub strong{color:var(--slate-900);font-weight:600;font-variant-numeric:tabular-nums;}
+  .hero-sub .serif-italic{color:var(--slate-500);}
 
-  /* ───────────── FADE UP ───────────── */
-  .fade-up { opacity: 0; transform: translateY(12px); animation: fadeUp .6s var(--ease-out) forwards; }
-  .d-1 { animation-delay: .05s; }
-  .d-2 { animation-delay: .15s; }
-  .d-3 { animation-delay: .25s; }
-  .d-4 { animation-delay: .35s; }
-  .d-5 { animation-delay: .45s; }
-  @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+  .delta-pill{
+    display:inline-flex;align-items:center;gap:5px;
+    padding:4px 10px;border-radius:999px;
+    font-size:13px;font-weight:600;font-variant-numeric:tabular-nums;
+  }
+  .delta-pill.up{background:var(--success-100);color:var(--success-700);}
+  .delta-pill.down{background:var(--danger-100);color:var(--danger-700);}
+  .delta-pill.neutral{background:var(--slate-100);color:var(--slate-600);}
+  html[data-theme="dark"] .delta-pill.up{background:rgba(16,185,129,.15);color:#34D399;}
+  html[data-theme="dark"] .delta-pill.down{background:rgba(239,68,68,.15);color:#F87171;}
+  html[data-theme="dark"] .delta-pill.neutral{background:var(--slate-200);color:var(--slate-700);}
 
-  /* ───────────── RESPONSIVE ───────────── */
-  @media (max-width: 720px) {
-    .kpi-grid { grid-template-columns: 1fr; }
-    .email-grid { grid-template-columns: 1fr; gap: 18px; }
-    .email-metric { border-right: 0; border-bottom: 1px solid var(--slate-200); padding: 0 0 14px; }
-    .email-metric:last-child { border-bottom: 0; padding-bottom: 0; }
-    .cmd-hint { display: none; }
-    .topbar-inner { padding: 12px 16px; }
-    .container { padding: 0 16px 60px; }
-    .hero-wrap { padding: 48px 16px 32px; }
+  .hero-spark{margin-top:24px;height:56px;width:100%;}
+
+  /* ═══════ KPI GRID ═══════ */
+  .kpi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:32px;}
+  .kpi{
+    position:relative;background:var(--slate-0);border:1px solid var(--slate-200);
+    border-radius:var(--r-lg);padding:20px 22px;transition:all .22s var(--ease-out);
+    cursor:pointer;
+  }
+  .kpi:hover{
+    border-color:color-mix(in srgb,var(--ascent-500) 35%,var(--slate-200));
+    transform:translateY(-2px);box-shadow:var(--shadow-md);
+  }
+  .kpi-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+  .kpi-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--slate-500);}
+  .kpi-icon{
+    width:26px;height:26px;border-radius:7px;
+    background:var(--slate-100);color:var(--slate-600);
+    display:inline-flex;align-items:center;justify-content:center;
+  }
+  .kpi-row{display:flex;align-items:baseline;justify-content:space-between;gap:12px;}
+  .kpi-value{
+    font-size:32px;font-weight:800;line-height:1;letter-spacing:-.03em;
+    color:var(--slate-900);font-variant-numeric:tabular-nums;
+    display:flex;align-items:baseline;gap:3px;
+  }
+  .kpi-unit{font-size:15px;font-weight:600;color:var(--slate-400);}
+  .kpi-spark{height:26px;width:68px;}
+  .kpi-foot{margin-top:12px;display:flex;align-items:center;gap:8px;font-size:12px;color:var(--slate-500);}
+  .kpi-foot strong{color:var(--slate-700);font-weight:600;}
+
+  /* ═══════ SECTION HEAD ═══════ */
+  .section-head{display:flex;align-items:center;justify-content:space-between;margin:28px 0 12px;gap:12px;}
+  .section-title{
+    display:flex;align-items:center;gap:10px;
+    font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--slate-500);
+  }
+  .section-title-num{
+    font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;
+    color:var(--slate-400);padding:2px 6px;background:var(--slate-100);border-radius:4px;letter-spacing:.05em;
+  }
+  .section-meta{font-size:12px;color:var(--slate-400);font-variant-numeric:tabular-nums;}
+
+  /* ═══════ BREAKDOWN ═══════ */
+  .card{background:var(--slate-0);border:1px solid var(--slate-200);border-radius:var(--r-lg);padding:22px 24px;}
+  .break-list{display:flex;flex-direction:column;gap:14px;}
+  .break-row{display:grid;grid-template-columns:180px 1fr 100px;gap:16px;align-items:center;}
+  .break-label{font-size:14px;font-weight:500;color:var(--slate-800);}
+  .break-bar-wrap{position:relative;height:10px;border-radius:999px;background:var(--slate-100);overflow:hidden;}
+  .break-bar{
+    position:absolute;left:0;top:0;bottom:0;border-radius:999px;
+    transition:width .6s var(--ease-out);
+  }
+  .break-bar.v1{background:linear-gradient(90deg,#A78BFA,#8B5CF6);}
+  .break-bar.v2{background:linear-gradient(90deg,#FBBF24,#F59E0B);}
+  .break-bar.v3{background:linear-gradient(90deg,#60A5FA,#398FFF);}
+  .break-val{
+    display:flex;align-items:baseline;justify-content:flex-end;gap:8px;
+    font-variant-numeric:tabular-nums;
+  }
+  .break-count{font-size:18px;font-weight:700;color:var(--slate-900);}
+  .break-pct{font-size:12px;color:var(--slate-500);font-weight:500;}
+
+  /* ═══════ FUNNEL ═══════ */
+  .funnel{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:0;
+    margin-top:4px;
+  }
+  .funnel-step{
+    position:relative;padding:16px 18px;
+    background:var(--slate-0);
+    border:1px solid var(--slate-200);
+    border-right:0;
+  }
+  .funnel-step:first-child{border-top-left-radius:var(--r-md);border-bottom-left-radius:var(--r-md);}
+  .funnel-step:last-child{border-right:1px solid var(--slate-200);border-top-right-radius:var(--r-md);border-bottom-right-radius:var(--r-md);}
+  .funnel-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--slate-500);margin-bottom:6px;}
+  .funnel-val{font-size:22px;font-weight:800;color:var(--slate-900);font-variant-numeric:tabular-nums;letter-spacing:-.02em;}
+  .funnel-pct{font-size:11px;color:var(--slate-400);margin-top:3px;font-variant-numeric:tabular-nums;}
+
+  .funnel-drops{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:0;
+    margin-top:4px;margin-left:calc(25% * 0.5);margin-right:calc(25% * 0.5);
+  }
+  .funnel-drop{
+    padding:8px 0;text-align:center;
+    font-size:11px;color:var(--slate-500);
+    display:flex;align-items:center;justify-content:center;gap:6px;
+    font-variant-numeric:tabular-nums;
+  }
+  .funnel-drop-arrow{color:var(--slate-300);}
+  .funnel-drop-pct{font-weight:600;color:var(--slate-700);}
+  .funnel-drop-pct.warn{color:var(--warning-700);}
+  .funnel-drop-pct.bad{color:var(--danger-500);}
+  html[data-theme="dark"] .funnel-drop-pct.warn{color:#FBBF24;}
+  html[data-theme="dark"] .funnel-drop-pct.bad{color:#F87171;}
+
+  /* ═══════ ORGANIC ═══════ */
+  .organic{
+    margin-top:20px;padding:14px 20px;
+    background:transparent;border:1px dashed var(--slate-300);
+    border-radius:var(--r-md);
+    display:flex;align-items:center;justify-content:space-between;gap:20px;
+    font-size:13px;color:var(--slate-500);
+  }
+  .organic-right{color:var(--slate-700);font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap;}
+
+  /* ═══════ FOOTER ═══════ */
+  .foot{max-width:1200px;margin:0 auto;padding:28px 24px 36px;text-align:center;font-size:12px;color:var(--slate-400);border-top:1px solid var(--slate-200);}
+  .foot strong{color:var(--slate-600);font-weight:600;}
+
+  /* ═══════ ANIM ═══════ */
+  .fade-up{opacity:0;transform:translateY(10px);animation:fadeUp .5s var(--ease-out) forwards;}
+  .d-1{animation-delay:.05s;}.d-2{animation-delay:.12s;}.d-3{animation-delay:.2s;}.d-4{animation-delay:.28s;}.d-5{animation-delay:.36s;}
+  @keyframes fadeUp{to{opacity:1;transform:translateY(0);}}
+
+  /* ═══════ RESPONSIVE ═══════ */
+  @media (max-width:860px){
+    .kpi-grid{grid-template-columns:1fr;}
+    .funnel{grid-template-columns:1fr 1fr;}
+    .funnel-step:nth-child(2){border-right:1px solid var(--slate-200);border-top-right-radius:var(--r-md);}
+    .funnel-step:nth-child(3){border-left:1px solid var(--slate-200);border-top-left-radius:var(--r-md);border-bottom-left-radius:0;border-top:0;}
+    .funnel-step:last-child{border-top-right-radius:0;}
+    .funnel-drops{display:none;}
+    .break-row{grid-template-columns:120px 1fr 78px;gap:12px;}
+    .hero{padding:28px 22px 22px;}
+    .hero-row{flex-direction:column;align-items:flex-start;}
+    .cmd-hint{display:none;}
+    .user-name{display:none;}
+    .page-header{padding:20px 16px 16px;flex-direction:column;align-items:stretch;}
+    .container{padding:0 16px 40px;}
+    .topbar-inner{padding:12px 16px;}
   }
 </style>
 </head>
@@ -494,238 +392,462 @@
 <!-- ═══════ TOP BAR ═══════ -->
 <header class="topbar">
   <div class="topbar-inner">
-    <div class="brand">
-      <span class="brand-mark">B</span>
-      <span class="brand-name">Boostware <em>· Studio Florenc</em></span>
-    </div>
+    <div class="wordmark">Boost<span class="wordmark-dot">mail</span></div>
+
     <div class="topbar-right">
-      <button class="cmd-hint" title="Rychlé akce">
+      <button class="cmd-hint" title="Rychlé akce" id="cmdk-btn">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
         Hledat
         <kbd>⌘K</kbd>
       </button>
-      <button class="icon-btn" title="Notifikace">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
-      </button>
-      <button class="icon-btn" id="theme-toggle" title="Přepnout režim">
+
+      <button class="icon-btn" title="Přepnout režim" id="theme-toggle">
         <svg id="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
         <svg id="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="display:none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
       </button>
+
+      <button class="icon-btn" title="Notifikace">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+        <span class="notif-dot"></span>
+      </button>
+
+      <div class="rel">
+        <button class="user-btn" id="user-btn">
+          <span class="avatar">JN</span>
+          <span class="user-name">Jakub Novák</span>
+          <svg class="user-chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+
+        <div class="menu" id="user-menu">
+          <div class="menu-head">
+            <div class="menu-head-name">Jakub Novák</div>
+            <div class="menu-head-mail">jakub@studioflorenc.cz</div>
+          </div>
+          <a href="#">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            Profil
+          </a>
+          <a href="#">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+            Nastavení studia
+          </a>
+          <a href="#">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+            Notifikace
+          </a>
+          <a href="#">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            Nápověda
+          </a>
+          <div class="menu-sep"></div>
+          <button class="menu-danger">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+            Odhlásit se
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </header>
 
-<!-- ═══════ HERO ═══════ -->
-<section class="hero-wrap">
-  <div class="hero">
-    <div class="hero-badge fade-up">
-      <span class="hero-badge-num">17·04</span>
-      <span class="live-dot"></span>
-      Čtvrtek · Jakub Novák
+<!-- ═══════ PAGE HEADER ═══════ -->
+<section class="page-header fade-up">
+  <div>
+    <h1 class="page-title">Přehled <span class="serif-italic">·&nbsp;duben 2026</span></h1>
+    <div class="page-meta">
+      <span>Studio Florenc</span>
+      <span class="dot">·</span>
+      <span>Jakub Novák</span>
+      <span class="dot">·</span>
+      <span class="live-pill"><span class="live-dot"></span>aktualizováno před 4 min</span>
     </div>
+  </div>
 
-    <h1 class="hero-title fade-up d-1">
-      Tento měsíc se ti <span class="serif-italic">vrátilo</span><br>
-      42 klientů.
-    </h1>
-
-    <p class="hero-sub fade-up d-2">
-      Za 30 dní odeslal Boostware 1 247 emailů. Z nich se 723 otevřelo a 42 lidí přišlo na novou rezervaci.
-    </p>
-
-    <div class="hero-bigstat fade-up d-3">
-      <div style="text-align:left">
-        <div class="hero-bigstat-num"><span data-counter="68420">0</span><span class="hero-bigstat-unit"> Kč</span></div>
-        <div class="hero-bigstat-label">tržby přičtené Boostware <span class="serif-italic">za duben</span></div>
-      </div>
-    </div>
+  <div class="range-switch" role="tablist" id="range-switch">
+    <button data-range="7">7 dní</button>
+    <button data-range="30" class="active">30 dní</button>
+    <button data-range="90">90 dní</button>
+    <button data-range="365">letos</button>
   </div>
 </section>
 
-<!-- ═══════ CONTENT ═══════ -->
 <main class="container">
 
-  <!-- PRIMARY KPIs -->
-  <div class="section-head fade-up d-3">
-    <div class="section-title">
-      <span class="section-title-num">01</span>
-      Přehled měsíce
+  <!-- ═══════ HERO METRIC ═══════ -->
+  <div class="hero fade-up d-1">
+    <div class="hero-inner">
+      <div class="hero-label">
+        <span class="section-title-num">01</span>
+        Díky Boostmailu
+      </div>
+
+      <div class="hero-row">
+        <div class="hero-main">
+          <div class="hero-value">
+            <span data-counter id="hero-revenue">0</span><span class="hero-unit" id="hero-unit">Kč</span>
+          </div>
+          <div class="hero-sub">
+            <span><strong data-counter id="hero-visits">0</strong> návštěv navíc</span>
+            <span class="delta-pill up" id="hero-delta">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+              <span id="hero-delta-pct">+18 %</span>
+            </span>
+            <span><span class="serif-italic">vs. březen</span> &nbsp;<strong id="hero-delta-abs">+10 400 Kč</strong></span>
+          </div>
+        </div>
+
+        <svg class="hero-spark" id="hero-spark" viewBox="0 0 600 56" preserveAspectRatio="none"></svg>
+      </div>
     </div>
-    <div class="section-meta">Aktualizováno před 4 min</div>
   </div>
 
+  <!-- ═══════ 3 KPI ═══════ -->
   <div class="kpi-grid">
-    <div class="kpi fade-up d-3">
-      <div class="kpi-head">
-        <span class="kpi-label">Tržby</span>
-        <span class="kpi-icon">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-        </span>
-      </div>
-      <div class="kpi-value"><span data-counter="68420">0</span><span class="kpi-unit">Kč</span></div>
-      <span class="kpi-delta up">
-        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
-        +18 % vs. březen
-      </span>
-    </div>
-
-    <div class="kpi fade-up d-4">
+    <div class="kpi fade-up d-2">
       <div class="kpi-head">
         <span class="kpi-label">Konverze</span>
         <span class="kpi-icon">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
         </span>
       </div>
-      <div class="kpi-value tabular"><span data-counter="42">0</span></div>
-      <span class="kpi-delta up">
-        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
-        +6 proti minulému měsíci
-      </span>
+      <div class="kpi-row">
+        <div class="kpi-value"><span data-counter id="kpi-conv">0</span></div>
+        <svg class="kpi-spark" viewBox="0 0 100 26" preserveAspectRatio="none" fill="none">
+          <polyline id="spark-conv" points="" stroke="var(--ascent-500)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+        </svg>
+      </div>
+      <div class="kpi-foot">
+        <span class="delta-pill up"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>+6</span>
+        <span>proti minulému období</span>
+      </div>
     </div>
 
-    <div class="kpi fade-up d-5">
+    <div class="kpi fade-up d-3">
       <div class="kpi-head">
         <span class="kpi-label">Open rate</span>
         <span class="kpi-icon">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
         </span>
       </div>
-      <div class="kpi-value tabular">58<span class="kpi-unit">%</span></div>
-      <span class="kpi-delta up">
-        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
-        nad průměrem oboru (34 %)
-      </span>
-    </div>
-  </div>
-
-  <!-- CATEGORIES -->
-  <div class="section-head fade-up">
-    <div class="section-title">
-      <span class="section-title-num">02</span>
-      Rozložení konverzí
-    </div>
-    <div class="section-meta">42 klientů celkem</div>
-  </div>
-
-  <div class="cat-row fade-up">
-    <span class="cat">
-      <span class="cat-dot reactivation"></span>
-      <span class="cat-count">18</span>
-      Reaktivace spících klientů
-    </span>
-    <span class="cat">
-      <span class="cat-dot last-minute"></span>
-      <span class="cat-count">14</span>
-      Last-minute volná místa
-    </span>
-    <span class="cat">
-      <span class="cat-dot accelerated"></span>
-      <span class="cat-count">10</span>
-      Zrychlená návštěva
-    </span>
-  </div>
-
-  <!-- EMAIL -->
-  <div class="section-head fade-up">
-    <div class="section-title">
-      <span class="section-title-num">03</span>
-      Emailová aktivita
-    </div>
-    <div class="section-meta">Posledních 30 dní</div>
-  </div>
-
-  <div class="email-card fade-up">
-    <div class="email-grid">
-      <div class="email-metric">
-        <div class="email-metric-label">Odesláno</div>
-        <div class="email-metric-value tabular"><span data-counter="1247">0</span></div>
-        <svg class="sparkline" viewBox="0 0 200 30" preserveAspectRatio="none" fill="none">
-          <polyline points="0,22 18,20 36,18 54,21 72,16 90,14 108,17 126,11 144,9 162,12 180,7 200,5"
-                    stroke="var(--slate-400)" stroke-width="1.5" stroke-linecap="round"/>
+      <div class="kpi-row">
+        <div class="kpi-value"><span id="kpi-open">58</span><span class="kpi-unit">%</span></div>
+        <svg class="kpi-spark" viewBox="0 0 100 26" preserveAspectRatio="none" fill="none">
+          <polyline id="spark-open" points="" stroke="var(--success-500)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
         </svg>
       </div>
-      <div class="email-metric">
-        <div class="email-metric-label">Open rate</div>
-        <div class="email-metric-value rate-high tabular">58<span style="font-size:16px;font-weight:600;color:var(--slate-400)">%</span></div>
-        <svg class="sparkline" viewBox="0 0 200 30" preserveAspectRatio="none" fill="none">
-          <polyline points="0,19 18,17 36,20 54,15 72,18 90,12 108,14 126,10 144,8 162,11 180,6 200,4"
-                    stroke="var(--success-500)" stroke-width="1.5" stroke-linecap="round"/>
+      <div class="kpi-foot">
+        <span class="delta-pill up"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>+24 b.</span>
+        <span>nad průměr oboru (34 %)</span>
+      </div>
+    </div>
+
+    <div class="kpi fade-up d-4">
+      <div class="kpi-head">
+        <span class="kpi-label">Click rate</span>
+        <span class="kpi-icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 11-6 6v3h3l6-6"/><path d="m22 12-4.6 4.6a2 2 0 0 1-2.8 0l-5.2-5.2a2 2 0 0 1 0-2.8L14 4"/></svg>
+        </span>
+      </div>
+      <div class="kpi-row">
+        <div class="kpi-value"><span id="kpi-click">24</span><span class="kpi-unit">%</span></div>
+        <svg class="kpi-spark" viewBox="0 0 100 26" preserveAspectRatio="none" fill="none">
+          <polyline id="spark-click" points="" stroke="var(--warning-500)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
         </svg>
       </div>
-      <div class="email-metric">
-        <div class="email-metric-label">Click rate</div>
-        <div class="email-metric-value rate-mid tabular">24<span style="font-size:16px;font-weight:600;color:var(--slate-400)">%</span></div>
-        <svg class="sparkline" viewBox="0 0 200 30" preserveAspectRatio="none" fill="none">
-          <polyline points="0,24 18,22 36,25 54,20 72,17 90,18 108,15 126,12 144,14 162,9 180,8 200,10"
-                    stroke="var(--warning-500)" stroke-width="1.5" stroke-linecap="round"/>
-        </svg>
+      <div class="kpi-foot">
+        <span class="delta-pill neutral">—</span>
+        <span>srovnatelné s minulým obdobím</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════ BREAKDOWN ═══════ -->
+  <div class="section-head fade-up">
+    <div class="section-title"><span class="section-title-num">02</span>Rozložení konverzí</div>
+    <div class="section-meta"><span id="break-total">42</span> klientů celkem</div>
+  </div>
+
+  <div class="card fade-up">
+    <div class="break-list">
+      <div class="break-row">
+        <div class="break-label">Reaktivace spících</div>
+        <div class="break-bar-wrap"><div class="break-bar v1" style="width:43%"></div></div>
+        <div class="break-val"><span class="break-count" id="b-reac">18</span><span class="break-pct">43 %</span></div>
+      </div>
+      <div class="break-row">
+        <div class="break-label">Last-minute volné</div>
+        <div class="break-bar-wrap"><div class="break-bar v2" style="width:33%"></div></div>
+        <div class="break-val"><span class="break-count" id="b-last">14</span><span class="break-pct">33 %</span></div>
+      </div>
+      <div class="break-row">
+        <div class="break-label">Zrychlená návštěva</div>
+        <div class="break-bar-wrap"><div class="break-bar v3" style="width:24%"></div></div>
+        <div class="break-val"><span class="break-count" id="b-acc">10</span><span class="break-pct">24 %</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════ FUNNEL ═══════ -->
+  <div class="section-head fade-up">
+    <div class="section-title"><span class="section-title-num">03</span>Email flow</div>
+    <div class="section-meta">Jak daleko se dostanou tvoje emaily</div>
+  </div>
+
+  <div class="fade-up">
+    <div class="funnel">
+      <div class="funnel-step">
+        <div class="funnel-label">Odesláno</div>
+        <div class="funnel-val" id="f-sent">1 247</div>
+        <div class="funnel-pct">100 %</div>
+      </div>
+      <div class="funnel-step">
+        <div class="funnel-label">Otevřeno</div>
+        <div class="funnel-val" id="f-open">723</div>
+        <div class="funnel-pct">58 % z odeslaných</div>
+      </div>
+      <div class="funnel-step">
+        <div class="funnel-label">Prokliknuto</div>
+        <div class="funnel-val" id="f-click">299</div>
+        <div class="funnel-pct">24 % z odeslaných</div>
+      </div>
+      <div class="funnel-step">
+        <div class="funnel-label">Přišli</div>
+        <div class="funnel-val" id="f-visit">42</div>
+        <div class="funnel-pct">3,4 % z odeslaných</div>
+      </div>
+    </div>
+    <div class="funnel-drops">
+      <div class="funnel-drop">
+        <svg class="funnel-drop-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        <span class="funnel-drop-pct">−42 %</span> neotevřeli
+      </div>
+      <div class="funnel-drop">
+        <svg class="funnel-drop-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        <span class="funnel-drop-pct">−59 %</span> neklikli
+      </div>
+      <div class="funnel-drop">
+        <svg class="funnel-drop-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        <span class="funnel-drop-pct bad">−86 %</span> nerezervovali po kliku
       </div>
     </div>
 
     <div class="organic">
       <div>
-        <strong style="color:var(--slate-700);font-weight:600">Organické návštěvy:</strong>
-        klient přišel, email dostal, ale interval mezi návštěvami se nezkrátil.
-        Boostware si je <em class="serif-italic">nepřičítá</em>.
+        <strong style="color:var(--slate-700);font-weight:600">Mimo výpočet:</strong>
+        6 organických návštěv za duben (4 200 Kč). Klient přišel, email dostal, ale chodil by i bez nás — Boostmail si je <span class="serif-italic">nepřičítá</span>.
       </div>
-      <div class="organic-right">6 návštěv · 4 200 Kč</div>
+      <div class="organic-right">6 · 4 200 Kč</div>
     </div>
   </div>
-
 </main>
 
 <footer class="foot">
-  Powered by <strong>Boostware</strong> · retention OS for recurring businesses
+  Powered by <strong>Boostmail</strong> · retention OS for recurring businesses
 </footer>
 
 <script>
-  // ───── Count-up animation for [data-counter] ─────
-  function countUp(el) {
-    const target = parseFloat(el.dataset.counter);
-    if (target === 0) { el.textContent = '0'; return; }
-    const duration = 1100;
+  // ═══════ DATA PER RANGE ═══════
+  const DATA = {
+    '7':   { revenue: 14200,  visits: 11,  delta: 9,   deltaAbs: 1200,
+             conv: 11, open: 61, click: 26,
+             sent: 298,  emailOpen: 182,  emailClick: 77,  visitRate: 3.7,
+             reac: 5, last: 4, acc: 2,
+             heroSpark: [ .4, .5, .42, .6, .55, .7, .8 ],
+             sparkConv: [2, 3, 1, 4, 2, 5, 4],
+             sparkOpen: [55, 58, 54, 60, 62, 59, 61],
+             sparkClick:[22, 24, 25, 23, 27, 26, 26],
+             organic: '3 · 2 100 Kč', breakTotal: 11, ref: 'vs. minulý týden' },
+    '30':  { revenue: 68420,  visits: 42,  delta: 18,  deltaAbs: 10400,
+             conv: 42, open: 58, click: 24,
+             sent: 1247, emailOpen: 723, emailClick: 299, visitRate: 3.4,
+             reac: 18, last: 14, acc: 10,
+             heroSpark: [ .3, .35, .4, .38, .5, .55, .6, .58, .72, .8, .85, .92 ],
+             sparkConv: [3,4,2,5,4,6,5,7,6,8],
+             sparkOpen: [52,55,54,58,60,57,58,60,61,58],
+             sparkClick:[22,21,23,24,22,24,25,23,24,24],
+             organic: '6 · 4 200 Kč', breakTotal: 42, ref: 'vs. březen' },
+    '90':  { revenue: 178600, visits: 118, delta: 32,  deltaAbs: 43200,
+             conv: 118, open: 56, click: 23,
+             sent: 3580, emailOpen: 2005, emailClick: 823, visitRate: 3.3,
+             reac: 52, last: 38, acc: 28,
+             heroSpark: [ .2, .25, .3, .4, .45, .5, .55, .6, .65, .7, .8, .88 ],
+             sparkConv: [5,7,9,11,13,10,14,15,17,18],
+             sparkOpen: [50,52,54,55,57,56,58,56,58,56],
+             sparkClick:[20,21,22,23,22,24,23,23,24,23],
+             organic: '17 · 11 900 Kč', breakTotal: 118, ref: 'vs. Q4 2025' },
+    '365': { revenue: 256800, visits: 172, delta: null, deltaAbs: null,
+             conv: 172, open: 55, click: 22,
+             sent: 5420, emailOpen: 2981, emailClick: 1193, visitRate: 3.2,
+             reac: 76, last: 56, acc: 40,
+             heroSpark: [ .1, .15, .2, .3, .4, .5, .55, .65, .78, .88, .95, 1 ],
+             sparkConv: [4,6,8,10,12,14,16,17,18,20],
+             sparkOpen: [48,50,52,54,55,53,55,56,54,55],
+             sparkClick:[18,19,20,21,22,21,22,23,22,22],
+             organic: '23 · 16 800 Kč', breakTotal: 172, ref: 'v roce 2026' }
+  };
+
+  const fmt = n => n.toLocaleString('cs-CZ').replace(/,/g, '\u00a0');
+
+  function polylinePoints(values, w, h, pad = 2) {
+    const n = values.length;
+    const max = Math.max(...values);
+    const min = Math.min(...values);
+    const range = max - min || 1;
+    return values.map((v, i) => {
+      const x = (i / (n - 1)) * (w - pad * 2) + pad;
+      const y = h - pad - ((v - min) / range) * (h - pad * 2);
+      return `${x.toFixed(1)},${y.toFixed(1)}`;
+    }).join(' ');
+  }
+
+  function renderSparkline(el, values, color, w, h, filled = false) {
+    const pts = polylinePoints(values, w, h, 3);
+    el.innerHTML = '';
+    if (filled) {
+      const area = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+      const n = values.length - 1;
+      area.setAttribute('points', `3,${h-3} ${pts} ${w-3},${h-3}`);
+      area.setAttribute('fill', color);
+      area.setAttribute('opacity', '0.12');
+      el.appendChild(area);
+    }
+    const line = document.createElementNS('http://www.w3.org/2000/svg', 'polyline');
+    line.setAttribute('points', pts);
+    line.setAttribute('stroke', color);
+    line.setAttribute('stroke-width', '1.5');
+    line.setAttribute('stroke-linecap', 'round');
+    line.setAttribute('stroke-linejoin', 'round');
+    line.setAttribute('fill', 'none');
+    el.appendChild(line);
+  }
+
+  function countTo(el, target, duration = 900) {
     const start = performance.now();
+    const startVal = parseFloat(el.textContent.replace(/\s|\u00a0/g, '')) || 0;
     const ease = t => 1 - Math.pow(1 - t, 4);
     function tick(now) {
       const p = Math.min((now - start) / duration, 1);
-      const val = Math.round(target * ease(p));
-      el.textContent = val.toLocaleString('cs-CZ');
+      const val = Math.round(startVal + (target - startVal) * ease(p));
+      el.textContent = fmt(val);
       if (p < 1) requestAnimationFrame(tick);
     }
     requestAnimationFrame(tick);
   }
-  // Fire after a tiny delay to sync with fade-up
-  setTimeout(() => {
-    document.querySelectorAll('[data-counter]').forEach(countUp);
-  }, 300);
 
-  // ───── Theme toggle ─────
+  function setSimple(el, val) { el.textContent = val; }
+
+  function applyRange(r, animated = true) {
+    const d = DATA[r];
+
+    // hero
+    if (animated) {
+      countTo(document.getElementById('hero-revenue'), d.revenue, 1100);
+      countTo(document.getElementById('hero-visits'), d.visits, 900);
+    } else {
+      document.getElementById('hero-revenue').textContent = fmt(d.revenue);
+      document.getElementById('hero-visits').textContent = fmt(d.visits);
+    }
+
+    // hero delta
+    const deltaEl = document.getElementById('hero-delta');
+    if (d.delta === null) {
+      deltaEl.style.display = 'none';
+      document.getElementById('hero-delta-abs').parentElement.innerHTML =
+        '<span class="serif-italic">' + d.ref + '</span>';
+    } else {
+      deltaEl.style.display = '';
+      document.getElementById('hero-delta-pct').textContent =
+        (d.delta >= 0 ? '+' : '') + d.delta + ' %';
+      document.getElementById('hero-delta-abs').parentElement.innerHTML =
+        '<span class="serif-italic">' + d.ref + '</span>&nbsp;<strong id="hero-delta-abs">+' + fmt(d.deltaAbs) + ' Kč</strong>';
+    }
+
+    // KPI
+    if (animated) {
+      countTo(document.getElementById('kpi-conv'), d.conv, 900);
+    } else {
+      document.getElementById('kpi-conv').textContent = fmt(d.conv);
+    }
+    document.getElementById('kpi-open').textContent = d.open;
+    document.getElementById('kpi-click').textContent = d.click;
+
+    // funnel
+    document.getElementById('f-sent').textContent = fmt(d.sent);
+    document.getElementById('f-open').textContent = fmt(d.emailOpen);
+    document.getElementById('f-click').textContent = fmt(d.emailClick);
+    document.getElementById('f-visit').textContent = fmt(d.visits);
+
+    // breakdown
+    document.getElementById('b-reac').textContent = d.reac;
+    document.getElementById('b-last').textContent = d.last;
+    document.getElementById('b-acc').textContent = d.acc;
+    document.getElementById('break-total').textContent = d.breakTotal;
+
+    const total = d.reac + d.last + d.acc;
+    document.querySelectorAll('.break-bar')[0].style.width = (d.reac / total * 100) + '%';
+    document.querySelectorAll('.break-bar')[1].style.width = (d.last / total * 100) + '%';
+    document.querySelectorAll('.break-bar')[2].style.width = (d.acc / total * 100) + '%';
+
+    // sparklines
+    renderSparkline(document.getElementById('hero-spark'), d.heroSpark, 'var(--ascent-500)', 600, 56, true);
+    renderSparkline(document.getElementById('spark-conv').parentElement, d.sparkConv, 'var(--ascent-500)', 68, 26);
+    renderSparkline(document.getElementById('spark-open').parentElement, d.sparkOpen, 'var(--success-500)', 68, 26);
+    renderSparkline(document.getElementById('spark-click').parentElement, d.sparkClick, 'var(--warning-500)', 68, 26);
+  }
+
+  // ═══════ INIT ═══════
+  window.addEventListener('load', () => { applyRange('30', true); });
+
+  // ═══════ RANGE SWITCH ═══════
+  document.getElementById('range-switch').addEventListener('click', e => {
+    const btn = e.target.closest('button[data-range]');
+    if (!btn) return;
+    document.querySelectorAll('#range-switch button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    applyRange(btn.dataset.range, true);
+  });
+
+  // ═══════ THEME TOGGLE ═══════
   const root = document.documentElement;
-  const btn = document.getElementById('theme-toggle');
+  const themeBtn = document.getElementById('theme-toggle');
   const sun = document.getElementById('icon-sun');
   const moon = document.getElementById('icon-moon');
-  const stored = localStorage.getItem('bw-theme');
-  const initial = stored || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-  applyTheme(initial);
   function applyTheme(t) {
     root.dataset.theme = t;
     sun.style.display  = t === 'dark' ? 'none' : 'block';
     moon.style.display = t === 'dark' ? 'block' : 'none';
   }
-  btn.addEventListener('click', () => {
+  applyTheme(localStorage.getItem('bw-theme') ||
+    (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
+  themeBtn.addEventListener('click', () => {
     const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
     localStorage.setItem('bw-theme', next);
     applyTheme(next);
   });
 
-  // ───── Cmd+K (pattern teaser, no-op) ─────
+  // ═══════ USER MENU ═══════
+  const userBtn = document.getElementById('user-btn');
+  const userMenu = document.getElementById('user-menu');
+  userBtn.addEventListener('click', e => {
+    e.stopPropagation();
+    userMenu.classList.toggle('open');
+  });
+  document.addEventListener('click', e => {
+    if (!userMenu.contains(e.target)) userMenu.classList.remove('open');
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') userMenu.classList.remove('open');
+  });
+
+  // ═══════ ⌘K TEASER ═══════
   document.addEventListener('keydown', e => {
     if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
       e.preventDefault();
-      const btn = document.querySelector('.cmd-hint');
+      const btn = document.getElementById('cmdk-btn');
+      if (!btn) return;
       btn.style.boxShadow = '0 0 0 3px rgba(57,143,255,.25)';
       btn.style.borderColor = 'var(--ascent-500)';
-      setTimeout(() => { btn.style.boxShadow = ''; btn.style.borderColor = ''; }, 400);
+      setTimeout(() => { btn.style.boxShadow = ''; btn.style.borderColor = ''; }, 500);
     }
   });
 </script>
