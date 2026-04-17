@@ -166,6 +166,18 @@
   .chart-dot-today{fill:var(--ascent-500);stroke:var(--slate-0);stroke-width:3;}
   .chart-baseline{stroke:var(--slate-200);stroke-width:1;stroke-dasharray:3 3;}
   .chart-line{stroke:var(--ascent-500);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round;}
+  .chart-crosshair{stroke:var(--slate-400);stroke-dasharray:2 3;stroke-width:1;pointer-events:none;opacity:0;transition:opacity .12s var(--ease-out);}
+  .chart-crosshair.active{opacity:.65;}
+  .chart-hover-dot{fill:var(--ascent-500);stroke:var(--slate-0);stroke-width:2.5;pointer-events:none;opacity:0;transition:opacity .12s var(--ease-out);}
+  .chart-hover-dot.active{opacity:1;}
+  .chart-overlay{cursor:crosshair;}
+  .chart-tooltip{position:absolute;pointer-events:none;background:var(--slate-900);color:white;padding:8px 12px;border-radius:7px;font-size:12px;box-shadow:var(--shadow-lg);white-space:nowrap;opacity:0;transform:translate(-50%,calc(-100% - 18px)) scale(.96);transition:opacity .12s var(--ease-out),transform .12s var(--ease-out);z-index:20;left:0;top:0;}
+  .chart-tooltip.active{opacity:1;transform:translate(-50%,calc(-100% - 18px)) scale(1);}
+  .chart-tooltip::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:var(--slate-900);}
+  .chart-tooltip .tt-date{font-size:10px;font-weight:500;opacity:.6;text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px;font-variant-numeric:tabular-nums;}
+  .chart-tooltip .tt-val{font-size:14px;font-weight:700;font-variant-numeric:tabular-nums;}
+  html[data-theme="dark"] .chart-tooltip{background:var(--slate-200);color:var(--slate-950);}
+  html[data-theme="dark"] .chart-tooltip::after{border-top-color:var(--slate-200);}
 
   /* ═══════ KPI GRID ═══════ */
   .kpi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:32px;}
@@ -244,13 +256,23 @@
   /* Stacked bar v buňce Rezervace */
   .book-cell{display:inline-flex;align-items:center;gap:10px;justify-content:flex-end;}
   .book-count{font-weight:700;color:var(--slate-900);font-size:15px;font-variant-numeric:tabular-nums;min-width:22px;text-align:right;}
-  .book-bar{display:inline-flex;height:7px;width:80px;border-radius:4px;overflow:hidden;background:var(--slate-100);cursor:help;}
+  .book-bar{display:inline-flex;height:8px;width:88px;border-radius:4px;overflow:visible;background:var(--slate-100);position:relative;}
   html[data-theme="dark"] .book-bar{background:var(--slate-200);}
-  .book-bar-seg{height:100%;transition:opacity .15s var(--ease-out);}
+  .book-bar::before{content:'';position:absolute;inset:0;border-radius:4px;overflow:hidden;pointer-events:none;}
+  .book-bar-seg{height:100%;position:relative;transition:opacity .14s var(--ease-out);}
+  .book-bar-seg:first-child{border-top-left-radius:4px;border-bottom-left-radius:4px;}
+  .book-bar-seg:last-child{border-top-right-radius:4px;border-bottom-right-radius:4px;}
   .book-bar-seg.r{background:#A78BFA;}
   .book-bar-seg.l{background:#FB923C;}
   .book-bar-seg.a{background:#60A5FA;}
-  .book-bar:hover .book-bar-seg{opacity:.85;}
+  .book-bar:hover .book-bar-seg{opacity:.45;}
+  .book-bar-seg:hover{opacity:1 !important;}
+  .book-bar-seg::after{content:attr(data-label);position:absolute;bottom:calc(100% + 10px);left:50%;transform:translateX(-50%) translateY(3px);background:var(--slate-900);color:white;padding:6px 10px;border-radius:6px;font-size:11.5px;font-weight:600;white-space:nowrap;pointer-events:none;opacity:0;transition:opacity .14s var(--ease-out),transform .14s var(--ease-out);z-index:40;box-shadow:var(--shadow-md);}
+  .book-bar-seg::before{content:'';position:absolute;bottom:calc(100% + 4px);left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:var(--slate-900);opacity:0;transition:opacity .14s var(--ease-out);pointer-events:none;z-index:40;}
+  .book-bar-seg:hover::after{opacity:1;transform:translateX(-50%) translateY(0);}
+  .book-bar-seg:hover::before{opacity:1;}
+  html[data-theme="dark"] .book-bar-seg::after{background:var(--slate-200);color:var(--slate-950);}
+  html[data-theme="dark"] .book-bar-seg::before{border-top-color:var(--slate-200);}
 
   /* Legenda pod tabulkou */
   .barber-legend{padding:12px 18px;border-top:1px solid var(--slate-200);background:var(--slate-50);display:flex;align-items:center;gap:18px;flex-wrap:wrap;font-size:11.5px;color:var(--slate-600);}
@@ -416,8 +438,8 @@
 
       <div class="hero-organic">
         <div>
-          <strong>Přišli by i bez nás:</strong>
-          <span id="organic-text">6 klientů v dubnu (4 200 Kč)</span>. Email sice dostali, ale rezervaci by udělali tak jako tak — <span class="serif-italic">neúčtujeme si je.</span>
+          <strong>Nepočítáme si, co nám nepatří:</strong>
+          <span id="organic-text">6 klientů v dubnu (4 200 Kč)</span>. Email sice dostali, ale rezervaci by udělali tak jako tak — neúčtujeme si je.
         </div>
         <div class="hero-organic-right" id="organic-right">6 klientů · 4 200 Kč</div>
       </div>
@@ -685,10 +707,25 @@
   // ═══════ FORMAT HELPERS ═══════
   const fmt = n => n.toLocaleString('cs-CZ').replace(/,/g, '\u00a0');
   const MONTHS_CS = ['led','úno','bře','dub','kvě','čvn','čvc','srp','zář','říj','lis','pro'];
+  const WEEKDAYS_CS = ['ne','po','út','st','čt','pá','so'];
   function formatTickDate(dateStr, granularity) {
     const d = new Date(dateStr);
     if (granularity === 'monthly') return MONTHS_CS[d.getMonth()];
     return `${d.getDate()}. ${MONTHS_CS[d.getMonth()]}`;
+  }
+  function formatTooltipDate(dateStr, granularity) {
+    const d = new Date(dateStr);
+    if (granularity === 'monthly') {
+      return `${MONTHS_CS[d.getMonth()]} ${d.getFullYear()}`;
+    }
+    if (granularity === 'weekly') {
+      const end = new Date(d); end.setDate(d.getDate() + 6);
+      const sameMonth = d.getMonth() === end.getMonth();
+      return sameMonth
+        ? `${d.getDate()}.–${end.getDate()}. ${MONTHS_CS[end.getMonth()]}`
+        : `${d.getDate()}. ${MONTHS_CS[d.getMonth()]} – ${end.getDate()}. ${MONTHS_CS[end.getMonth()]}`;
+    }
+    return `${WEEKDAYS_CS[d.getDay()]} ${d.getDate()}. ${MONTHS_CS[d.getMonth()]}`;
   }
   function formatPillValue(value, isMonthly) {
     if (value >= 10000) return fmt(Math.round(value / 100) / 10) + ' tis';
@@ -712,18 +749,22 @@
     const peakIdx = data.daily.reduce((best, d, i) => d.value > data.daily[best].value ? i : best, 0);
 
     // Determine tick indices (x-axis date labels + annotation dots)
+    // Density rules (industry standard, ~5-8 ticks per chart):
+    //   7 dní   (daily)   → every day
+    //   30 dní  (daily)   → Mondays only (full weeks)
+    //   90 dní  (weekly)  → every 2nd week (14-day cadence)
+    //   letos   (monthly) → every month
     const tickIdx = new Set();
     data.daily.forEach((d, i) => {
       const dt = new Date(d.date);
-      const dow = dt.getDay(); // 0 Sun, 1 Mon
-      const dom = dt.getDate();
+      const dow = dt.getDay();
       if (data.granularity === 'daily') {
         if (data.daily.length <= 7) tickIdx.add(i);
-        else if (dow === 1 || dom === 1) tickIdx.add(i); // Mondays + 1st of month
+        else if (dow === 1) tickIdx.add(i); // Mondays only for 30-day view
       } else if (data.granularity === 'weekly') {
-        if (dom <= 7) tickIdx.add(i); // first Monday of each month
+        if (i % 2 === 0) tickIdx.add(i); // every 2nd week = 14-day cadence
       } else {
-        tickIdx.add(i); // all monthly points
+        tickIdx.add(i); // YTD: every month
       }
     });
     tickIdx.add(pts.length - 1);   // always last
@@ -815,8 +856,14 @@
       }
     });
 
+    // Crosshair line + hover dot (hidden until mousemove)
+    svg += `<line class="chart-crosshair" id="crosshair" x1="0" y1="${pad.top}" x2="0" y2="${H - pad.bottom}"/>`;
+    svg += `<circle class="chart-hover-dot" id="hover-dot" cx="0" cy="0" r="6"/>`;
+    // Transparent overlay captures mouse events across whole chart area
+    svg += `<rect class="chart-overlay" x="${pad.left}" y="${pad.top}" width="${iW}" height="${iH + pad.bottom}" fill="transparent"/>`;
+
     svg += `</svg>`;
-    return svg;
+    return { svg, pts, W, H };
   }
 
   // ═══════ SPARKLINE (small in KPI) ═══════
@@ -893,11 +940,10 @@
       const rP = total ? (b.r / total * 100) : 0;
       const lP = total ? (b.l / total * 100) : 0;
       const aP = total ? (b.a / total * 100) : 0;
-      const title = `Reaktivace: ${b.r}\nLast-minute: ${b.l}\nUrychlené: ${b.a}`;
       const segs = [];
-      if (rP) segs.push(`<span class="book-bar-seg r" style="width:${rP}%"></span>`);
-      if (lP) segs.push(`<span class="book-bar-seg l" style="width:${lP}%"></span>`);
-      if (aP) segs.push(`<span class="book-bar-seg a" style="width:${aP}%"></span>`);
+      if (rP) segs.push(`<span class="book-bar-seg r" style="width:${rP}%" data-label="Reaktivace — ${b.r}"></span>`);
+      if (lP) segs.push(`<span class="book-bar-seg l" style="width:${lP}%" data-label="Last-minute — ${b.l}"></span>`);
+      if (aP) segs.push(`<span class="book-bar-seg a" style="width:${aP}%" data-label="Urychlené — ${b.a}"></span>`);
       return `<tr>
         <td><div class="barber-name">
           <span class="barber-avatar" style="background:${b.color}">${b.initials}</span>
@@ -906,7 +952,7 @@
         <td>
           <div class="book-cell">
             <span class="book-count">${fmt(b.book)}</span>
-            <span class="book-bar" title="${title}">${segs.join('')}</span>
+            <span class="book-bar">${segs.join('')}</span>
           </div>
         </td>
         <td><span class="rev-cell">${fmt(b.revenue)} <small>Kč</small></span></td>
@@ -989,9 +1035,69 @@
     const chartWrap = document.getElementById('hero-chart-wrap');
     chartWrap.style.opacity = '0';
     setTimeout(() => {
-      chartWrap.innerHTML = buildChartSVG(d);
+      const { svg, pts, W, H } = buildChartSVG(d);
+      chartWrap.innerHTML = svg + '<div class="chart-tooltip" id="chart-tooltip"></div>';
       chartWrap.style.opacity = '1';
+      attachChartHover(d, pts, W, H);
     }, 140);
+  }
+
+  // ═══════ CHART HOVER ═══════
+  function attachChartHover(data, pts, W, H) {
+    const wrap = document.getElementById('hero-chart-wrap');
+    const svg = wrap.querySelector('svg');
+    const overlay = svg.querySelector('.chart-overlay');
+    const crosshair = svg.querySelector('#crosshair');
+    const dot = svg.querySelector('#hover-dot');
+    const tip = document.getElementById('chart-tooltip');
+    if (!overlay || !crosshair || !dot || !tip) return;
+
+    function nearestIdx(svgX) {
+      let lo = 0, hi = pts.length - 1;
+      while (hi - lo > 1) {
+        const mid = (lo + hi) >> 1;
+        if (pts[mid].x < svgX) lo = mid; else hi = mid;
+      }
+      return (svgX - pts[lo].x) < (pts[hi].x - svgX) ? lo : hi;
+    }
+
+    function moveTo(clientX, clientY) {
+      const rect = svg.getBoundingClientRect();
+      const svgX = ((clientX - rect.left) / rect.width) * W;
+      const i = nearestIdx(svgX);
+      const p = pts[i];
+      const d0 = data.daily[i];
+      crosshair.setAttribute('x1', p.x);
+      crosshair.setAttribute('x2', p.x);
+      crosshair.classList.add('active');
+      dot.setAttribute('cx', p.x);
+      dot.setAttribute('cy', p.y);
+      dot.classList.add('active');
+      const cssX = (p.x / W) * rect.width;
+      const cssY = (p.y / H) * rect.height;
+      tip.style.left = cssX + 'px';
+      tip.style.top = cssY + 'px';
+      tip.innerHTML =
+        `<div class="tt-date">${formatTooltipDate(d0.date, data.granularity)}</div>` +
+        `<div class="tt-val">${fmt(d0.value)} Kč</div>`;
+      tip.classList.add('active');
+    }
+
+    function hide() {
+      crosshair.classList.remove('active');
+      dot.classList.remove('active');
+      tip.classList.remove('active');
+    }
+
+    svg.addEventListener('mousemove', e => moveTo(e.clientX, e.clientY));
+    svg.addEventListener('mouseleave', hide);
+    svg.addEventListener('touchmove', e => {
+      if (e.touches && e.touches[0]) {
+        moveTo(e.touches[0].clientX, e.touches[0].clientY);
+        e.preventDefault();
+      }
+    }, { passive: false });
+    svg.addEventListener('touchend', hide);
   }
 
   // ═══════ INIT ═══════
