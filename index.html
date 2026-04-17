@@ -222,14 +222,27 @@
   .chart-dot-peak{fill:var(--slate-0);stroke:var(--success-500);stroke-width:2.5;}
   .chart-dot-today{fill:var(--ascent-500);stroke:var(--slate-0);stroke-width:3;}
   .chart-baseline{stroke:var(--slate-200);stroke-width:1;stroke-dasharray:3 3;}
-  .chart-line{stroke:var(--ascent-500);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round;}
+  .chart-line{stroke:var(--ascent-500);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:3000;stroke-dashoffset:3000;animation:chartLineDraw .9s cubic-bezier(.16,1,.3,1) forwards;}
+  @keyframes chartLineDraw{to{stroke-dashoffset:0;}}
+  .chart-area-fill{opacity:0;animation:chartAreaIn .5s cubic-bezier(.16,1,.3,1) .5s forwards;}
+  @keyframes chartAreaIn{to{opacity:1;}}
+  .chart-dot-anim{opacity:0;animation:chartDotIn .3s cubic-bezier(.5,1.5,.5,1) forwards;}
+  @keyframes chartDotIn{to{opacity:1;}}
+  .chart-tick-anim{opacity:0;animation:chartTickIn .35s var(--ease-out) forwards;}
+  @keyframes chartTickIn{to{opacity:1;}}
+  .chart-hover-group{transition:transform .1s cubic-bezier(.4,0,.2,1);}
+  .spark-line{stroke-dasharray:300;stroke-dashoffset:300;animation:sparkDraw .8s cubic-bezier(.16,1,.3,1) forwards;}
+  @keyframes sparkDraw{to{stroke-dashoffset:0;}}
+  #spark-conv .spark-line{animation-delay:.1s;}
+  #spark-open .spark-line{animation-delay:.2s;}
+  #spark-click .spark-line{animation-delay:.3s;}
   .chart-crosshair{stroke:var(--slate-400);stroke-dasharray:2 3;stroke-width:1;pointer-events:none;opacity:0;transition:opacity .12s var(--ease-out);}
   .chart-crosshair.active{opacity:.65;}
   .chart-hover-dot{fill:var(--ascent-500);stroke:var(--slate-0);stroke-width:2.5;pointer-events:none;opacity:0;transition:opacity .12s var(--ease-out);}
   .chart-hover-dot.active{opacity:1;}
   .chart-overlay{cursor:crosshair;}
   .chart-tooltip{position:absolute;pointer-events:none;background:var(--slate-900);color:white;padding:8px 12px;border-radius:7px;font-size:12px;box-shadow:var(--shadow-lg);white-space:nowrap;opacity:0;transform:translate(-50%,calc(-100% - 18px)) scale(.96);transition:opacity .12s var(--ease-out),transform .12s var(--ease-out);z-index:20;left:0;top:0;}
-  .chart-tooltip.active{opacity:1;transform:translate(-50%,calc(-100% - 18px)) scale(1);}
+  .chart-tooltip.active{opacity:1;transform:translate(-50%,calc(-100% - 18px)) scale(1);transition:opacity .12s var(--ease-out),transform .12s var(--ease-out),left .14s cubic-bezier(.4,0,.2,1),top .14s cubic-bezier(.4,0,.2,1);}
   .chart-tooltip::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:var(--slate-900);}
   .chart-tooltip .tt-date{font-size:10px;font-weight:500;opacity:.6;text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px;font-variant-numeric:tabular-nums;}
   .chart-tooltip .tt-val{font-size:14px;font-weight:700;font-variant-numeric:tabular-nums;}
@@ -884,33 +897,35 @@
 
     // Area (smooth via Catmull-Rom-ish but using simple line for speed)
     const areaPath = `M ${pts[0].x},${H - pad.bottom} ` + pts.map(p => `L ${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' ') + ` L ${pts[pts.length-1].x},${H - pad.bottom} Z`;
-    svg += `<path d="${areaPath}" fill="url(#heroArea)"/>`;
+    svg += `<path class="chart-area-fill" d="${areaPath}" fill="url(#heroArea)"/>`;
 
     // Line
     const linePath = pts.map((p, i) => (i === 0 ? 'M' : 'L') + ` ${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' ');
     svg += `<path class="chart-line" d="${linePath}"/>`;
 
-    // X-axis date ticks
-    keepTicks.forEach(i => {
+    // X-axis date ticks (staggered reveal after line draws)
+    keepTicks.forEach((i, idx) => {
       const p = pts[i];
       const isToday = i === pts.length - 1;
-      const cls = 'chart-axis-tick' + (isToday ? ' chart-axis-tick-today' : '');
+      const cls = 'chart-axis-tick chart-tick-anim' + (isToday ? ' chart-axis-tick-today' : '');
       const lbl = isToday && data.granularity === 'daily' ? 'dnes' : formatTickDate(p.date, data.granularity);
-      svg += `<text x="${p.x}" y="${H - 8}" text-anchor="middle" class="${cls}">${lbl}</text>`;
+      const delay = (0.7 + idx * 0.05).toFixed(2);
+      svg += `<text x="${p.x}" y="${H - 8}" text-anchor="middle" class="${cls}" style="animation-delay:${delay}s">${lbl}</text>`;
     });
 
     // Dots + value pills (same positions as keepTicks)
-    keepTicks.forEach(i => {
+    keepTicks.forEach((i, idx) => {
       const p = pts[i];
       const isToday = i === pts.length - 1;
       const isPeak = i === peakIdx && !isToday;
+      const delay = (0.75 + idx * 0.05).toFixed(2);
       // Dot
       if (isToday) {
-        svg += `<circle class="chart-dot-today" cx="${p.x}" cy="${p.y}" r="6"/>`;
+        svg += `<circle class="chart-dot-today chart-dot-anim" cx="${p.x}" cy="${p.y}" r="6" style="animation-delay:${delay}s"/>`;
       } else if (isPeak) {
-        svg += `<circle class="chart-dot-peak" cx="${p.x}" cy="${p.y}" r="5.5"/>`;
+        svg += `<circle class="chart-dot-peak chart-dot-anim" cx="${p.x}" cy="${p.y}" r="5.5" style="animation-delay:${delay}s"/>`;
       } else {
-        svg += `<circle class="chart-dot-outer" cx="${p.x}" cy="${p.y}" r="5"/>`;
+        svg += `<circle class="chart-dot-outer chart-dot-anim" cx="${p.x}" cy="${p.y}" r="5" style="animation-delay:${delay}s"/>`;
       }
 
       // Value pill above — peak gets a "peak" prefix
@@ -921,20 +936,25 @@
       if (pillX < pad.left) pillX = pad.left;
       if (pillX + pillW > W - pad.right) pillX = W - pad.right - pillW;
       const pillY = Math.max(p.y - 28, 6);
-      const bgCls = isPeak ? 'chart-pill-bg chart-pill-bg-peak' : 'chart-pill-bg';
-      const txtCls = isPeak ? 'chart-pill-text chart-pill-text-peak' : 'chart-pill-text';
-      svg += `<rect class="${bgCls}" x="${pillX.toFixed(1)}" y="${pillY.toFixed(1)}" width="${pillW.toFixed(1)}" height="20" rx="6"/>`;
-      svg += `<text class="${txtCls}" x="${(pillX + pillW/2).toFixed(1)}" y="${(pillY + 13.5).toFixed(1)}" text-anchor="middle">${label}</text>`;
+      const bgCls = isPeak ? 'chart-pill-bg chart-pill-bg-peak chart-tick-anim' : 'chart-pill-bg chart-tick-anim';
+      const txtCls = isPeak ? 'chart-pill-text chart-pill-text-peak chart-tick-anim' : 'chart-pill-text chart-tick-anim';
+      svg += `<rect class="${bgCls}" x="${pillX.toFixed(1)}" y="${pillY.toFixed(1)}" width="${pillW.toFixed(1)}" height="20" rx="6" style="animation-delay:${delay}s"/>`;
+      svg += `<text class="${txtCls}" x="${(pillX + pillW/2).toFixed(1)}" y="${(pillY + 13.5).toFixed(1)}" text-anchor="middle" style="animation-delay:${delay}s">${label}</text>`;
 
       // Connector line from dot to pill
       if (pillY + 20 < p.y - 4) {
-        svg += `<line x1="${p.x}" y1="${pillY + 20}" x2="${p.x}" y2="${p.y - 7}" stroke="var(--slate-300)" stroke-width="1" stroke-dasharray="2 2"/>`;
+        svg += `<line class="chart-tick-anim" x1="${p.x}" y1="${pillY + 20}" x2="${p.x}" y2="${p.y - 7}" stroke="var(--slate-300)" stroke-width="1" stroke-dasharray="2 2" style="animation-delay:${delay}s"/>`;
       }
     });
 
-    // Crosshair line + hover dot (hidden until mousemove)
+    // Crosshair + hover dot wrapped in groups so we can transition transform
+    // (smoother than animating x1/cx attributes directly)
+    svg += `<g id="crosshair-group" class="chart-hover-group" style="transform:translate(0px,0)">`;
     svg += `<line class="chart-crosshair" id="crosshair" x1="0" y1="${pad.top}" x2="0" y2="${H - pad.bottom}"/>`;
+    svg += `</g>`;
+    svg += `<g id="dot-group" class="chart-hover-group" style="transform:translate(0px,0)">`;
     svg += `<circle class="chart-hover-dot" id="hover-dot" cx="0" cy="0" r="6"/>`;
+    svg += `</g>`;
     // Transparent overlay captures mouse events across whole chart area
     svg += `<rect class="chart-overlay" x="${pad.left}" y="${pad.top}" width="${iW}" height="${iH + pad.bottom}" fill="transparent"/>`;
 
@@ -956,7 +976,7 @@
     }).join(' ');
     let s = '';
     if (filled) s += `<polygon points="${pad},${h-pad} ${pts} ${w-pad},${h-pad}" fill="${color}" opacity="0.12"/>`;
-    s += `<polyline points="${pts}" stroke="${color}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>`;
+    s += `<polyline class="spark-line" points="${pts}" stroke="${color}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>`;
     return s;
   }
 
@@ -1161,9 +1181,11 @@
     const svg = wrap.querySelector('svg');
     const overlay = svg.querySelector('.chart-overlay');
     const crosshair = svg.querySelector('#crosshair');
+    const crosshairGroup = svg.querySelector('#crosshair-group');
     const dot = svg.querySelector('#hover-dot');
+    const dotGroup = svg.querySelector('#dot-group');
     const tip = document.getElementById('chart-tooltip');
-    if (!overlay || !crosshair || !dot || !tip) return;
+    if (!overlay || !crosshair || !dot || !tip || !crosshairGroup || !dotGroup) return;
 
     function nearestIdx(svgX) {
       let lo = 0, hi = pts.length - 1;
@@ -1180,19 +1202,18 @@
       const i = nearestIdx(svgX);
       const p = pts[i];
       const d0 = data.daily[i];
-      crosshair.setAttribute('x1', p.x);
-      crosshair.setAttribute('x2', p.x);
+      // Translate the groups via CSS transform — smooth transition via CSS
+      crosshairGroup.style.transform = `translate(${p.x}px, 0)`;
+      dotGroup.style.transform = `translate(${p.x}px, ${p.y}px)`;
       crosshair.classList.add('active');
-      dot.setAttribute('cx', p.x);
-      dot.setAttribute('cy', p.y);
       dot.classList.add('active');
       const cssX = (p.x / W) * rect.width;
       const cssY = (p.y / H) * rect.height;
-      tip.style.left = cssX + 'px';
-      tip.style.top = cssY + 'px';
       tip.innerHTML =
         `<div class="tt-date">${formatTooltipDate(d0.date, data.granularity)}</div>` +
         `<div class="tt-val">${fmt(d0.value)} Kč</div>`;
+      tip.style.left = cssX + 'px';
+      tip.style.top = cssY + 'px';
       tip.classList.add('active');
     }
 
