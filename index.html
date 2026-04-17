@@ -85,6 +85,24 @@
   html[data-theme="dark"] .menu-danger:hover{background:rgba(239,68,68,.12) !important;}
   .rel{position:relative;}
 
+  /* ═══════ TAB NAV ═══════ */
+  .tabnav{position:sticky;top:57px;z-index:40;background:color-mix(in srgb,var(--slate-50) 92%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--slate-200);}
+  .tabnav-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:4px;overflow-x:auto;scrollbar-width:none;}
+  .tabnav-inner::-webkit-scrollbar{display:none;}
+  .tab{position:relative;display:inline-flex;align-items:center;gap:8px;padding:14px 14px 13px;font-size:13.5px;font-weight:500;color:var(--slate-500);white-space:nowrap;transition:color .15s var(--ease-out);border-bottom:2px solid transparent;margin-bottom:-1px;}
+  .tab:hover{color:var(--slate-800);}
+  .tab.active{color:var(--slate-900);font-weight:600;border-bottom-color:var(--ascent-500);}
+  .tab svg{opacity:.7;}
+  .tab.active svg{opacity:1;color:var(--ascent-500);}
+  .tab-badge{font-size:10px;font-weight:600;padding:2px 6px;border-radius:999px;background:var(--slate-100);color:var(--slate-600);line-height:1;margin-left:2px;}
+  .tab.active .tab-badge{background:var(--ascent-100);color:var(--ascent-700);}
+  html[data-theme="dark"] .tab.active .tab-badge{background:rgba(57,143,255,.2);color:#9CC3FF;}
+
+  /* ═══════ ORGANIC (inside hero) ═══════ */
+  .hero-organic{margin-top:22px;padding-top:18px;border-top:1px dashed var(--slate-200);display:flex;align-items:center;justify-content:space-between;gap:20px;font-size:13px;color:var(--slate-500);flex-wrap:wrap;}
+  .hero-organic strong{color:var(--slate-700);font-weight:600;}
+  .hero-organic-right{color:var(--slate-700);font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap;}
+
   /* ═══════ PAGE HEADER ═══════ */
   .page-header{max-width:1200px;margin:0 auto;padding:28px 24px 20px;display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;}
   .page-title{font-size:26px;font-weight:700;letter-spacing:-.02em;color:var(--slate-900);}
@@ -214,19 +232,24 @@
   .flows-table tfoot td{padding:14px 18px;font-size:13px;background:var(--slate-50);border-top:1px solid var(--slate-200);text-align:right;font-weight:700;color:var(--slate-900);}
   .flows-table tfoot td:first-child{text-align:left;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--slate-500);}
 
-  /* ═══════ ORGANIC ═══════ */
-  .organic{margin-top:20px;padding:14px 20px;background:transparent;border:1px dashed var(--slate-300);border-radius:var(--r-md);display:flex;align-items:center;justify-content:space-between;gap:20px;font-size:13px;color:var(--slate-500);}
-  .organic-right{color:var(--slate-700);font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap;}
+  /* ═══════ BARBERS TABLE EXTRA ═══════ */
+  .barber-name{display:flex;align-items:center;gap:10px;font-weight:600;color:var(--slate-900);}
+  .barber-avatar{width:26px;height:26px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:white;letter-spacing:.02em;flex-shrink:0;}
+  .barber-tags{display:inline-flex;gap:4px;margin-left:6px;}
+  .barber-tag{font-size:9.5px;font-weight:700;padding:2px 5px;border-radius:4px;letter-spacing:.02em;}
+  .barber-tag.r{background:rgba(167,139,250,.15);color:#7C3AED;}
+  .barber-tag.l{background:rgba(251,146,60,.15);color:#C2410C;}
+  .barber-tag.a{background:rgba(96,165,250,.15);color:#1D4ED8;}
+  html[data-theme="dark"] .barber-tag.r{background:rgba(167,139,250,.18);color:#C4B5FD;}
+  html[data-theme="dark"] .barber-tag.l{background:rgba(251,146,60,.18);color:#FDBA74;}
+  html[data-theme="dark"] .barber-tag.a{background:rgba(96,165,250,.18);color:#93C5FD;}
+  .rev-cell{font-weight:700;color:var(--slate-900);}
 
   /* ═══════ FOOTER ═══════ */
-  .foot{max-width:1200px;margin:16px auto 0;padding:20px 24px 28px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--slate-500);border-top:1px solid var(--slate-200);}
-  .foot-links{display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
-  .foot-links a{color:var(--slate-500);transition:color .15s var(--ease-out);}
-  .foot-links a:hover{color:var(--slate-800);}
-  .foot-links .dot{color:var(--slate-300);}
-  .foot-support{color:var(--slate-500);}
-  .foot-support a{color:var(--slate-700);font-weight:600;}
-  .foot-support a:hover{color:var(--ascent-600);}
+  .foot{max-width:1200px;margin:16px auto 0;padding:24px 24px 32px;display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--slate-500);border-top:1px solid var(--slate-200);}
+  .foot-support{color:var(--slate-500);display:inline-flex;align-items:center;gap:4px;}
+  .foot-support a{color:#25D366;font-weight:600;display:inline-flex;align-items:center;transition:opacity .15s var(--ease-out);}
+  .foot-support a:hover{opacity:.8;}
 
   /* ═══════ ANIM ═══════ */
   .fade-up{opacity:0;transform:translateY(10px);animation:fadeUp .5s var(--ease-out) forwards;}
@@ -248,7 +271,10 @@
     .page-header{padding:20px 16px 16px;flex-direction:column;align-items:stretch;}
     .container{padding:0 16px 40px;}
     .topbar-inner{padding:12px 16px;}
+    .tabnav-inner{padding:0 16px;}
+    .tab{padding:12px 10px 11px;font-size:13px;}
     .foot{flex-direction:column;text-align:center;align-items:center;padding:20px 16px;}
+    .hero-organic{flex-direction:column;align-items:flex-start;gap:8px;}
   }
 </style>
 </head>
@@ -303,6 +329,29 @@
   </div>
 </header>
 
+<!-- ═══════ TAB NAV ═══════ -->
+<nav class="tabnav">
+  <div class="tabnav-inner" role="tablist">
+    <a href="#" class="tab active" role="tab" aria-current="page">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h7v9H3zM14 3h7v5h-7zM14 12h7v9h-7zM3 16h7v5H3z"/></svg>
+      Přehled
+    </a>
+    <a href="#" class="tab" role="tab">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      Automatizace
+      <span class="tab-badge">5</span>
+    </a>
+    <a href="#" class="tab" role="tab">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v4H4zM4 12h10v8H4zM16 12h4v4h-4z"/></svg>
+      Šablony
+    </a>
+    <a href="#" class="tab" role="tab">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      Klienti
+    </a>
+  </div>
+</nav>
+
 <!-- ═══════ PAGE HEADER ═══════ -->
 <section class="page-header fade-up">
   <div>
@@ -350,6 +399,14 @@
       </div>
 
       <div class="chart-wrap" id="hero-chart-wrap"></div>
+
+      <div class="hero-organic">
+        <div>
+          <strong>Mimo výpočet:</strong>
+          <span id="organic-text">6 organických návštěv za duben (4 200 Kč)</span>. Klient přišel, email dostal, ale chodil by i bez nás — Boostmail si je <span class="serif-italic">nepřičítá</span>.
+        </div>
+        <div class="hero-organic-right" id="organic-right">6 · 4 200 Kč</div>
+      </div>
     </div>
   </div>
 
@@ -447,26 +504,32 @@
     </div>
   </div>
 
-  <div class="organic fade-up">
-    <div>
-      <strong style="color:var(--slate-700);font-weight:600">Mimo výpočet:</strong>
-      <span id="organic-text">6 organických návštěv za duben (4 200 Kč)</span>. Klient přišel, email dostal, ale chodil by i bez nás — Boostmail si je <span class="serif-italic">nepřičítá</span>.
+  <!-- ═══════ 05 PER-BARBER ═══════ -->
+  <div class="section-head fade-up"><div class="section-title"><span class="section-title-num">05</span>Kdo přivádí klienty</div><div class="section-meta" id="barbers-meta">3 barbeři · podle konverzí</div></div>
+  <div class="flows-wrap fade-up">
+    <div class="flows-scroll">
+      <table class="flows-table barbers-table">
+        <thead>
+          <tr>
+            <th>Barber</th>
+            <th>Rezervace</th>
+            <th>Tržby</th>
+            <th>Odesláno</th>
+            <th>Open</th>
+            <th>Click</th>
+          </tr>
+        </thead>
+        <tbody id="barbers-body"></tbody>
+      </table>
     </div>
-    <div class="organic-right" id="organic-right">6 · 4 200 Kč</div>
   </div>
 
 </main>
 
 <footer class="foot">
   <div class="foot-support">
-    Něco nefunguje? <a href="mailto:podpora@boostmail.cz">podpora@boostmail.cz</a>
-  </div>
-  <div class="foot-links">
-    <a href="#">Ochrana osobních údajů</a>
-    <span class="dot">·</span>
-    <a href="#">Obchodní podmínky</a>
-    <span class="dot">·</span>
-    <a href="#">Novinky ve verzi</a>
+    Nefunguje něco? Napište nám na <a href="https://wa.me/420777123456" target="_blank" rel="noopener">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413"/></svg>WhatsApp</a>
   </div>
 </footer>
 
@@ -525,6 +588,11 @@
         { name: 'Zrychlená návštěva',  color: '#398FFF', sent: 75,  open: 40, click: 15, book: 2 },
         { name: 'Narozeniny',          color: '#EC4899', sent: 22,  open: 14, click: 6,  book: 0 },
         { name: 'Po návštěvě',         color: '#10B981', sent: 56,  open: 27, click: 4,  book: 0 }
+      ],
+      barbers: [
+        { name: 'Jakub Novák',   initials: 'JN', color: '#398FFF', book: 5, revenue: 8400,  sent: 120, open: 62, click: 46, r: 2, l: 2, a: 1 },
+        { name: 'Tomáš Polák',   initials: 'TP', color: '#10B981', book: 4, revenue: 6800,  sent: 95,  open: 55, click: 42, r: 1, l: 1, a: 2 },
+        { name: 'Denis Horák',   initials: 'DH', color: '#F59E0B', book: 2, revenue: 3500,  sent: 83,  open: 57, click: 48, r: 1, l: 1, a: 0 }
       ]
     },
     '30': {
@@ -542,6 +610,11 @@
         { name: 'Zrychlená návštěva',  color: '#398FFF', sent: 310, open: 170, click: 62,  book: 10 },
         { name: 'Narozeniny',          color: '#EC4899', sent: 95,  open: 62,  click: 28,  book: 0 },
         { name: 'Po návštěvě',         color: '#10B981', sent: 242, open: 116, click: 21,  book: 0 }
+      ],
+      barbers: [
+        { name: 'Jakub Novák',   initials: 'JN', color: '#398FFF', book: 19, revenue: 32600, sent: 486, open: 58, click: 25, r: 9,  l: 6, a: 4 },
+        { name: 'Tomáš Polák',   initials: 'TP', color: '#10B981', book: 14, revenue: 23400, sent: 412, open: 60, click: 24, r: 5,  l: 5, a: 4 },
+        { name: 'Denis Horák',   initials: 'DH', color: '#F59E0B', book: 9,  revenue: 12420, sent: 349, open: 55, click: 22, r: 4,  l: 3, a: 2 }
       ]
     },
     '90': {
@@ -559,6 +632,11 @@
         { name: 'Zrychlená návštěva',  color: '#398FFF', sent: 880,  open: 475, click: 175, book: 28 },
         { name: 'Narozeniny',          color: '#EC4899', sent: 280,  open: 180, click: 82,  book: 0 },
         { name: 'Po návštěvě',         color: '#10B981', sent: 700,  open: 300, click: 32,  book: 0 }
+      ],
+      barbers: [
+        { name: 'Jakub Novák',   initials: 'JN', color: '#398FFF', book: 54, revenue: 89200, sent: 1390, open: 57, click: 23, r: 24, l: 18, a: 12 },
+        { name: 'Tomáš Polák',   initials: 'TP', color: '#10B981', book: 38, revenue: 62100, sent: 1180, open: 58, click: 23, r: 16, l: 12, a: 10 },
+        { name: 'Denis Horák',   initials: 'DH', color: '#F59E0B', book: 26, revenue: 37300, sent: 1010, open: 54, click: 21, r: 12, l: 8,  a: 6 }
       ]
     },
     '365': {
@@ -576,6 +654,11 @@
         { name: 'Zrychlená návštěva',  color: '#398FFF', sent: 1280, open: 700,  click: 260, book: 40 },
         { name: 'Narozeniny',          color: '#EC4899', sent: 420,  open: 270,  click: 118, book: 0 },
         { name: 'Po návštěvě',         color: '#10B981', sent: 1170, open: 451,  click: 35,  book: 0 }
+      ],
+      barbers: [
+        { name: 'Jakub Novák',   initials: 'JN', color: '#398FFF', book: 78, revenue: 126400, sent: 2100, open: 56, click: 22, r: 34, l: 26, a: 18 },
+        { name: 'Tomáš Polák',   initials: 'TP', color: '#10B981', book: 56, revenue: 89700,  sent: 1790, open: 57, click: 22, r: 24, l: 18, a: 14 },
+        { name: 'Denis Horák',   initials: 'DH', color: '#F59E0B', book: 38, revenue: 55400,  sent: 1530, open: 53, click: 20, r: 18, l: 12, a: 8 }
       ]
     }
   };
@@ -781,6 +864,35 @@
     </tr>`;
   }
 
+  // ═══════ BARBERS TABLE ═══════
+  function renderBarbers(data) {
+    const body = document.getElementById('barbers-body');
+    if (!body || !data.barbers) return;
+    const sorted = [...data.barbers].sort((a, b) => b.book - a.book);
+    body.innerHTML = sorted.map(b => {
+      const openCls = b.open >= 50 ? 'cell-pct-good' : '';
+      const clickCls = b.click >= 20 ? 'cell-pct-good' : '';
+      const tags = [];
+      if (b.r) tags.push(`<span class="barber-tag r" title="Reaktivace">${b.r} R</span>`);
+      if (b.l) tags.push(`<span class="barber-tag l" title="Last-minute">${b.l} LM</span>`);
+      if (b.a) tags.push(`<span class="barber-tag a" title="Urychlené">${b.a} A</span>`);
+      return `<tr>
+        <td><div class="barber-name">
+          <span class="barber-avatar" style="background:${b.color}">${b.initials}</span>
+          ${b.name}
+          ${tags.length ? '<span class="barber-tags">' + tags.join('') + '</span>' : ''}
+        </div></td>
+        <td><span class="cell-val">${fmt(b.book)}</span></td>
+        <td><span class="rev-cell">${fmt(b.revenue)} <span style="color:var(--slate-500);font-weight:500;font-size:12px">Kč</span></span></td>
+        <td><span class="cell-val">${fmt(b.sent)}</span></td>
+        <td><span class="cell-val">${b.open} %</span></td>
+        <td><span class="cell-val ${clickCls ? '' : ''}">${b.click} %</span></td>
+      </tr>`;
+    }).join('');
+    const meta = document.getElementById('barbers-meta');
+    if (meta) meta.textContent = sorted.length + ' barbeři · podle konverzí · R = reaktivace, LM = last-minute, A = urychlené';
+  }
+
   // ═══════ APPLY RANGE ═══════
   function applyRange(r, animated = true) {
     const d = DATA[r];
@@ -843,6 +955,9 @@
     // Flows
     renderFlows(d);
     document.getElementById('flows-meta').textContent = d.flows.length + ' aktivních · % z odeslaných v rámci flow';
+
+    // Barbers
+    renderBarbers(d);
 
     // Hero chart
     const chartWrap = document.getElementById('hero-chart-wrap');
