@@ -807,302 +807,302 @@ const TEMPLATES = [
   // WELCOME
   { id: 'welcome_first_time', flow: 'welcome', order: 1,
     status: 'updated',
-    subject: 'Vítejte u nás, Tomáši',
-    opening: 'Dobrý den, Tomáši, chtěl jsem Vás jen krátce přivítat. Těším se na sobotu',
-    preheader: 'Jen pár vět k Vaší první návštěvě u nás.',
+    subject: 'Vítej u nás, {{customer_name_vocative}}!',
+    opening: 'Ahoj {{customer_name_vocative}}, jsme rádi, že sis vybral právě nás.',
+    preheader: 'Jsme rádi, že sis vybral právě nás. Těšíme se na tebe.',
     sender: 'Martin · MNB Barbershop',
-    tags: ['customer_name_vocative', 'booking_date', 'barber_name'],
-    body: `<h1>Vítejte u nás, Tomáši</h1>
-<p>chtěl jsem Vás jen krátce přivítat. Když si někdo zarezervuje termín poprvé, říkám si: super, další nový klient.</p>
-<p>Váš termín máme zapsaný na <strong>sobotu 20. 4. v 14:30</strong>, u mě (Martina). Pokud by se Vám cokoliv nehodilo nebo byste potřeboval posunout, stačí odpovědět na tenhle e-mail.</p>
-<p>A kdyby Vás zajímalo, na co se můžete těšit: klasika u nás je kafe, půl hodiny v klidu a hlavně poctivý střih.</p>
-<a href="#" class="email-preview-cta">Mám rezervaci v kalendáři</a>
-<div class="email-preview-sig">Těším se, <br><strong>Martin</strong> · MNB Barbershop</div>`
+    tags: ['customer_name_vocative', 'barber_name'],
+    body: `<h1>Vítej u nás, {{customer_name_vocative}}!</h1>
+<p>Ahoj {{customer_name_vocative}}, jsme rádi, že sis vybral právě nás.</p>
+<p>Ať už jdeš pro klasický střih, nebo chceš zkusit něco nového, {{barber_name}} se o tebe postará.</p>
+<p>Po návštěvě ti občas pošleme tip nebo připomínku, kdy by se hodilo přijít znovu. Žádný spam, jen užitečné věci.</p>
+<a href="#" class="email-preview-cta">Zarezervovat termín</a>
+<div class="email-preview-sig">MNB Barbershop</div>`
   },
   { id: 'welcome_returning', flow: 'welcome_returning', order: 1,
     status: 'updated',
-    subject: 'Rád Vás zase vidím, Pavle',
-    opening: 'Díky, že jste se ozval. Kdy jste u nás byl posledně? Už to',
-    preheader: 'Po delší pauze máme pár drobných změn.',
+    subject: 'Rád tě zase vidím, {{customer_name_vocative}}!',
+    opening: 'Ahoj {{customer_name_vocative}}, rád tě zase vidím! Už je to nějaký čas.',
+    preheader: 'Dlouho jsme se neviděli. Jsme rádi, že ses vrátil.',
     sender: 'Martin · MNB Barbershop',
-    tags: ['customer_name_vocative', 'last_visit_date', 'barber_name'],
-    body: `<h1>Rád Vás zase vidím, Pavle</h1>
-<p>díky, že jste se ozval. Kdy jste u nás byl posledně? Už to bylo přes půl roku, tak jsem rád, že Vás zase uvidím.</p>
-<p>Zarezervovaný máte <strong>termín na pátek 22. 4. ve 13:00</strong>. Mezitím se u nás pár věcí změnilo, máme nový pager na tužené vlasy a Jakub je teď na plný úvazek, kdybyste si ho chtěl zkusit.</p>
-<p>Pokud potřebujete cokoli posunout, stačí odpovědět na tenhle e-mail.</p>
-<a href="#" class="email-preview-cta">V pořádku, přijdu</a>
-<div class="email-preview-sig">Těším se, <br><strong>Martin</strong></div>`
+    tags: ['customer_name_vocative'],
+    body: `<h1>Rád tě zase vidím, {{customer_name_vocative}}!</h1>
+<p>Ahoj {{customer_name_vocative}}, rád tě zase vidím! Už je to nějaký čas, co jsi u nás byl naposledy, a o to víc nás těší, že ses rozhodl se vrátit.</p>
+<p>Mezitím se u nás mohlo leccos změnit. Nové styly, nové postupy. Jedno ale zůstává stejné: chceme, abys odcházel spokojený.</p>
+<a href="#" class="email-preview-cta">Zarezervovat termín</a>
+<div class="email-preview-sig">MNB Barbershop</div>`
   },
 
   // CANCEL / BOOKING
   { id: 'reschedule', flow: 'cancel', order: 1,
     status: 'updated',
-    subject: 'Máte nový termín potvrzený',
-    opening: 'Dobrý den, Karle, přesun máme zapsaný. Nový termín je',
-    preheader: 'Ve středu 17. 4. v 11:00, u Martina.',
+    subject: 'Tvůj termín byl zrušen',
+    opening: 'Ahoj {{customer_name_vocative}}, mrzí mě to, ale tvůj termín musel být zrušen.',
+    preheader: 'Mrzí mě to. Dej vědět, kdy se ti hodí nový termín.',
     sender: 'Martin · MNB Barbershop',
-    tags: ['customer_name_vocative', 'new_booking_date', 'old_booking_date'],
-    body: `<h1>Přesun je potvrzený</h1>
-<p>Dobrý den, Karle, přesun máme zapsaný.</p>
-<p>Nový termín: <strong>středa 17. 4. v 11:00</strong> (místo původního pondělí 15. 4.). U mě, Martina. Kafe budu mít připravené.</p>
-<p>Kdyby se Vám to znovu nehodilo, stačí odpovědět.</p>
-<a href="#" class="email-preview-cta">Jasné, uvidíme se</a>
-<div class="email-preview-sig">Díky, <br><strong>Martin</strong></div>`
+    tags: ['customer_name_vocative', 'cancelled_date', 'cancelled_time', 'cancelled_service'],
+    body: `<h1>Tvůj termín byl zrušen</h1>
+<p>Ahoj {{customer_name_vocative}}, mrzí mě to, ale tvůj termín <strong>{{cancelled_date}} v {{cancelled_time}}</strong> ({{cancelled_service}}) musel být zrušen.</p>
+<p>Dej vědět, kdy se ti hodí nový termín. Rád se na tebe podívám.</p>
+<a href="#" class="email-preview-cta">Najít nový termín</a>
+<div class="email-preview-sig">MNB Barbershop</div>`
   },
   { id: 'other_cancelled', flow: 'cancel', order: 2,
     status: 'updated',
-    subject: 'Rozumíme, kdyžtak se ozvěte',
-    opening: 'Dobrý den, pane Nováku, všiml jsem si, že jste zrušil termín na',
-    preheader: 'Bez tlaku, kdykoli budete potřebovat, jsme tu.',
+    subject: 'Uvolněné místo, {{free_slot_display}}',
+    opening: 'Ahoj {{customer_name_vocative}}, někdo zrušil svůj termín a uvolnilo se místo.',
+    preheader: 'Právě se uvolnil termín, kdyby ses chtěl stavit.',
     sender: 'Martin · MNB Barbershop',
-    tags: ['customer_name_vocative', 'cancelled_date'],
-    body: `<h1>Rozumíme</h1>
-<p>Dobrý den, pane Nováku, všiml jsem si, že jste zrušil termín na <strong>pátek 19. 4.</strong>. Žádný stres, stává se, život je takový.</p>
-<p>Kdybyste někdy v budoucnu chtěl nový termín, stačí odpovědět na tenhle e-mail nebo si vybrat online. Nebudeme Vás zbytečně bombardovat.</p>
-<p>Přeji Vám hezký zbytek týdne.</p>
-<div class="email-preview-sig"><strong>Martin</strong> · MNB Barbershop</div>`
+    tags: ['customer_name_vocative', 'free_slot_display', 'barber_name'],
+    body: `<h1>Uvolněné místo, {{free_slot_display}}</h1>
+<p>Ahoj {{customer_name_vocative}}, někdo zrušil svůj termín a uvolnilo se místo <strong>{{free_slot_display}}</strong> u {{barber_name}}.</p>
+<p>Kdyby ses chtěl stavit, dej vědět.</p>
+<a href="#" class="email-preview-cta">Zarezervovat volný termín</a>
+<div class="email-preview-sig">MNB Barbershop</div>`
   },
 
   // FREE SLOTS
   { id: 'free_slot_offer', flow: 'free_slots', order: 1,
     status: 'new',
-    subject: 'Máme pár volných termínů tento týden',
-    opening: 'Dobrý den, Pavle, mám pro Vás tři volné termíny do pátku',
-    preheader: 'Dá se to stihnout, než se Vám zase udělá nepořádek nahoře.',
+    subject: 'Volná okna v kalendáři, {{customer_name_vocative}}',
+    opening: 'Ahoj {{customer_name_vocative}}, tenhle týden máme pár volných oken, kdybys chtěl.',
+    preheader: 'Pár volných termínů, pokud by se hodilo.',
     sender: 'Martin · MNB Barbershop',
-    tags: ['customer_name_vocative', 'slot_1', 'slot_2', 'slot_3'],
-    body: `<h1>Tento týden máme volno</h1>
-<p>Dobrý den, Pavle, mám pro Vás tři volné termíny do pátku, vyberte si, co Vám sedí:</p>
-<p>
-• <strong>Středa 17. 4. · 14:30</strong><br>
-• <strong>Čtvrtek 18. 4. · 10:00</strong><br>
-• <strong>Pátek 19. 4. · 16:30</strong>
-</p>
-<p>Stačí kliknout nebo odpovědět, který termín by sedl. Dá se to stihnout dřív, než se Vám zase udělá nepořádek nahoře.</p>
+    tags: ['customer_name_vocative', 'free_slots'],
+    body: `<h1>Volná okna tenhle týden</h1>
+<p>Ahoj {{customer_name_vocative}}, tenhle týden máme pár volných termínů, a protože k nám chodíš docela pravidelně, říkám si, že ti je radši napřed nabídnu:</p>
+<p>{{free_slots}}</p>
+<p>Jestli by některý seděl, stačí kliknout. Nebudu nic dalšího připomínat, kdyby to nesedlo, nic se neděje.</p>
 <a href="#" class="email-preview-cta">Rezervovat termín</a>
-<div class="email-preview-sig"><strong>Martin</strong> · MNB Barbershop</div>`
+<div class="email-preview-sig">MNB Barbershop</div>`
   },
 
   // LAST MINUTE
   { id: 'last_minute', flow: 'last_minute_progressive', order: 1,
     status: 'updated',
-    subject: 'Dnes v 15:30 se uvolnil termín',
-    opening: 'Dobrý den, Petře, někdo právě zrušil, máte 20 minut reakční',
-    preheader: 'Jestli Vám to vyjde, je Váš.',
+    subject: 'Volný termín dnes',
+    opening: 'Ahoj {{customer_name_vocative}}, právě se mi uvolnilo místo {{free_slot_display}}.',
+    preheader: 'Dnes se uvolnilo místo. Máš zájem?',
     sender: 'Martin · MNB Barbershop',
-    tags: ['customer_name_vocative', 'slot_time', 'response_deadline'],
-    body: `<h1>Dnes v 15:30 se uvolnil termín</h1>
-<p>Dobrý den, Petře, někdo právě zrušil a mně se uvolnil termín na <strong>dnes v 15:30</strong>.</p>
-<p>Posílám to nejdřív Vám, kdybyste to chtěl vzít, stačí kliknout do <strong>15 minut</strong>. Pak to jde dál.</p>
-<a href="#" class="email-preview-cta">Beru termín</a>
-<div class="email-preview-sig"><strong>Martin</strong></div>`
+    tags: ['customer_name_vocative', 'free_slot_display', 'barber_name'],
+    body: `<h1>Volný termín dnes</h1>
+<p>Ahoj {{customer_name_vocative}}, právě se mi uvolnilo místo <strong>{{free_slot_display}}</strong> u {{barber_name}}.</p>
+<p>Ozvi se, pokud máš zájem.</p>
+<a href="#" class="email-preview-cta">Zarezervovat teď</a>
+<div class="email-preview-sig">MNB Barbershop</div>`
   },
   { id: 'last_minute_advance', flow: 'last_minute_progressive', order: 2,
-    status: 'new',
-    subject: 'Zítra mám volno v 11:00',
-    opening: 'Dobrý den, Honzo, zítra v jedenáct se uvolnil slot',
-    preheader: 'Kdyby se to hodilo, dejte vědět.',
+    status: 'updated',
+    subject: 'Uvolnil se mi termín a napadlo mě se ti ozvat',
+    opening: 'Ahoj {{customer_name_vocative}}, uvolnilo se mi místo {{free_slot_display}}.',
+    preheader: '{{free_slot_display}}. Jestli máš zájem, dej vědět.',
     sender: 'Martin · MNB Barbershop',
-    tags: ['customer_name_vocative', 'slot_time'],
-    body: `<h1>Zítra mám volno v 11:00</h1>
-<p>Dobrý den, Honzo, zítra v jedenáct se mi uvolnil slot. Posílám to vybraným klientům napřed, takže jestli to chcete brát, jste první v řadě.</p>
-<a href="#" class="email-preview-cta">Chci ten termín</a>
-<div class="email-preview-sig"><strong>Martin</strong></div>`
+    tags: ['customer_name_vocative', 'free_slot_display', 'barber_name'],
+    body: `<h1>Uvolnil se mi termín</h1>
+<p>Ahoj {{customer_name_vocative}}, uvolnilo se mi místo <strong>{{free_slot_display}}</strong> u {{barber_name}}.</p>
+<p>Vím, že v podobné časy rád chodíš. Jestli ti termín vyhovuje, můžeš si ho zarezervovat.</p>
+<a href="#" class="email-preview-cta">Zarezervovat termín</a>
+<div class="email-preview-sig">MNB Barbershop</div>`
   },
 
   // POST CARE (5 templates)
   { id: 'post_care_review_0', flow: 'post_care', order: 1,
     status: 'updated',
-    subject: 'Jak sedí střih, Honzo?',
-    opening: 'Dobrý den, Honzo, už je to den a jsem zvědavý, jak Vám',
-    preheader: 'Dva dny po návštěvě, krátký check.',
+    subject: 'Jak ses po střihu cítil, {{customer_name_vocative}}?',
+    opening: 'Ahoj {{customer_name_vocative}}, doufám, že jsi se střihem spokojený.',
+    preheader: 'Snad jsi byl spokojený. Budu rád za tvůj názor.',
     sender: 'Martin · MNB Barbershop',
     tags: ['customer_name_vocative'],
-    body: `<h1>Jak Vám to sedí?</h1>
-<p>Dobrý den, Honzo, už je to den a jsem zvědavý, jak Vám to sedí, když si s tím ráno hrajete?</p>
-<p>Kdyby něco nedrželo nebo Vám něco nesedí, <strong>napište mi</strong>, zkusíme to vychytat příště (nebo Vás vezmu na rychlou korekci).</p>
-<div class="email-preview-sig"><strong>Martin</strong></div>`
+    body: `<h1>Jak ses po střihu cítil?</h1>
+<p>Ahoj {{customer_name_vocative}}, doufám, že jsi se střihem spokojený a že vypadáš přesně tak, jak sis představoval.</p>
+<p>Záleží mi na tom, aby každý odcházel spokojený. Pokud by cokoliv nesedělo, klidně se ozvi.</p>
+<a href="#" class="email-preview-cta">Zarezervovat termín</a>
+<div class="email-preview-sig">MNB Barbershop</div>`
   },
   { id: 'post_care_review_1', flow: 'post_care', order: 2,
     status: 'updated',
-    subject: 'Dal byste nám Google hodnocení?',
-    opening: 'Dobrý den, Honzo, pokud jste byl spokojený, budeme rádi',
-    preheader: '30 vteřin práce a hrozně nám to pomůže.',
+    subject: 'Díky za návštěvu, {{customer_name_vocative}}',
+    opening: 'Ahoj {{customer_name_vocative}}, díky, že jsi u nás zase byl.',
+    preheader: '{{barber_name}} odvedl práci. Co na to říkáš?',
     sender: 'Martin · MNB Barbershop',
-    tags: ['customer_name_vocative', 'google_review_link'],
-    body: `<h1>Pokud se Vám to líbilo…</h1>
-<p>Dobrý den, Honzo, pokud jste byl spokojený, budeme rádi, když nám hodíte hvězdičky na Google. Jsme malé studio a každý review nám pomáhá.</p>
-<a href="#" class="email-preview-cta">Ohodnotit na Google</a>
-<p style="font-size:13px;color:#64748B;margin-top:10px">Zabere to minutu, maximálně. Díky!</p>
-<div class="email-preview-sig"><strong>Martin</strong></div>`
+    tags: ['customer_name_vocative', 'barber_name'],
+    body: `<h1>Díky za návštěvu</h1>
+<p>Ahoj {{customer_name_vocative}}, díky, že jsi u nás zase byl. {{barber_name}} si na tvém střihu dal záležet a doufám, že to je vidět.</p>
+<p>Každý zákazník je pro nás důležitý a snažíme se, aby každá návštěva stála za to. Jestli máš chvilku, napiš nám, jak se ti líbilo.</p>
+<a href="#" class="email-preview-cta">Zarezervovat termín</a>
+<div class="email-preview-sig">MNB Barbershop</div>`
   },
   { id: 'post_care_review_2', flow: 'post_care', order: 3,
     status: 'updated',
-    subject: 'Máte tip na kamaráda?',
-    opening: 'Dobrý den, Honzo, znáte někoho, komu by se hodilo',
-    preheader: 'Když nás doporučíte, oba dostanete slevu.',
+    subject: 'Sluší ti to, {{customer_name_vocative}}',
+    opening: 'Ahoj {{customer_name_vocative}}, doufám, že nový střih šlape a cítíš se s ním dobře.',
+    preheader: 'Doufám, že nový střih šlape. Dej vědět, jak se cítíš.',
     sender: 'Martin · MNB Barbershop',
-    tags: ['customer_name_vocative', 'referral_code'],
-    body: `<h1>Znáte někoho, kdo potřebuje ostříhat?</h1>
-<p>Dobrý den, Honzo, znáte někoho, komu by se hodilo s tím svým bordelem nahoře něco udělat?</p>
-<p>Pošlete mu tenhle kód: <strong>HONZA-100</strong>. Dostane 100 Kč slevu na první návštěvu, a Vy dostanete taky 100 Kč na příští střih.</p>
-<a href="#" class="email-preview-cta">Sdílet kód</a>
-<div class="email-preview-sig"><strong>Martin</strong></div>`
+    tags: ['customer_name_vocative'],
+    body: `<h1>Sluší ti to</h1>
+<p>Ahoj {{customer_name_vocative}}, doufám, že nový střih šlape a cítíš se s ním dobře. Občas je ten pocit den po návštěvě ještě lepší, než přímo v křesle.</p>
+<p>Jestli jsi spokojený, udělá mi radost, když o tom dáš vědět i ostatním. Recenze nám opravdu pomáhají.</p>
+<a href="#" class="email-preview-cta">Zarezervovat termín</a>
+<div class="email-preview-sig">MNB Barbershop</div>`
   },
   { id: 'post_care_review_3', flow: 'post_care', order: 4,
     status: 'updated',
-    subject: 'Ještě jedna drobnost',
-    opening: 'Dobrý den, Honzo, tohle je ode mě posledně, slibuji',
-    preheader: 'Malá závěrečná nabídka.',
+    subject: 'Už přemýšlíš nad dalším střihem, {{customer_name_vocative}}?',
+    opening: 'Ahoj {{customer_name_vocative}}, snad jsi s posledním střihem spokojený.',
+    preheader: 'Další návštěvu si naplánuj, kdy ti to bude vyhovovat.',
     sender: 'Martin · MNB Barbershop',
     tags: ['customer_name_vocative'],
-    body: `<h1>Poslední na týden, slibuji</h1>
-<p>Dobrý den, Honzo, tohle je ode mě posledně, slibuji. Jen jsem chtěl říct, že jestli Vás napadne cokoli k poslední návštěvě, napište. Otevřený tomu.</p>
-<p>Kdybyste se chtěl zase rovnou objednat, <a href="#">tady je kalendář</a>.</p>
-<div class="email-preview-sig">Díky, <br><strong>Martin</strong></div>`
+    body: `<h1>Už přemýšlíš nad dalším střihem?</h1>
+<p>Ahoj {{customer_name_vocative}}, snad jsi s posledním střihem spokojený. Nejlepší způsob, jak si ho udržet, je naplánovat další návštěvu dopředu.</p>
+<p>A pokud bys měl chvilku, budu rád za zpětnou vazbu. Každá recenze nám pomáhá růst.</p>
+<a href="#" class="email-preview-cta">Zarezervovat termín</a>
+<div class="email-preview-sig">MNB Barbershop</div>`
   },
   { id: 'post_care_nextlevel', flow: 'post_care', order: 5,
     status: 'updated',
-    subject: 'Co takhle zkusit něco nového?',
-    opening: 'Dobrý den, Honzo, chodíte k nám na klasiku, co třeba',
-    preheader: 'Malý upsell, jen pokud by Vás to bavilo.',
+    subject: 'Něco speciálního pro tebe, {{customer_name_vocative}}',
+    opening: 'Ahoj {{customer_name_vocative}}, protože k nám pravidelně chodíš, mám pro tebe sleva {{discount_value}}.',
+    preheader: 'Máme pro tebe speciální nabídku se slevou.',
     sender: 'Martin · MNB Barbershop',
-    tags: ['customer_name_vocative', 'last_service'],
-    body: `<h1>Zkusíme příště něco jiného?</h1>
-<p>Dobrý den, Honzo, chodíte k nám na klasiku a ta sedí, super. Ale napadlo mě: co třeba <strong>kontur plnovousu</strong> k tomu? Přidává to k účesu šmrnc a zabere to max dalších 15 minut.</p>
-<p>Pokud by Vás to bavilo zkusit, dejte vědět u příští rezervace nebo napište, ukážu Vám pár příkladů, ať víte, o čem mluvím.</p>
-<div class="email-preview-sig"><strong>Martin</strong></div>`
+    tags: ['customer_name_vocative', 'discount_value', 'discount_expiry'],
+    body: `<h1>Něco speciálního pro tebe</h1>
+<p>Ahoj {{customer_name_vocative}}, protože k nám pravidelně chodíš, mám pro tebe speciální nabídku: <strong>sleva {{discount_value}}</strong> na tvůj další střih.</p>
+<p>Platí do <strong>{{discount_expiry}}</strong>.</p>
+<a href="#" class="email-preview-cta">Využít slevu</a>
+<div class="email-preview-sig">MNB Barbershop</div>`
   },
 
   // REACTIVATION
   { id: 'reactivation', flow: 'reactivation', order: 1,
     status: 'updated',
-    subject: 'Dlouho jsme se neviděli, Tomáši',
-    opening: 'Dobrý den, Tomáši, naposledy jste u nás byl 15. prosince',
-    preheader: 'Už je to 130 dní, chybíte nám.',
+    subject: 'Dlouho jsme se neviděli, {{customer_name_vocative}}',
+    opening: 'Ahoj {{customer_name_vocative}}, naposledy jsi u nás byl {{last_visit_date}}.',
+    preheader: 'Poslední návštěva byla {{last_visit_date}}. Rádi tě zase uvidíme.',
     sender: 'Martin · MNB Barbershop',
-    tags: ['customer_name_vocative', 'last_visit_date', 'days_since'],
+    tags: ['customer_name_vocative', 'last_visit_date', 'days_since_last_visit', 'last_service_name'],
     body: `<h1>Dlouho jsme se neviděli</h1>
-<p>Dobrý den, Tomáši, naposledy jste u nás byl <strong>15. prosince</strong>, to je už 130 dní. Chyběl jste mi v kalendáři, tak se ozývám.</p>
-<p>Kdybyste se chtěl stavit, <a href="#">tady se dá zarezervovat</a>, nebo stačí odpovědět na tenhle e-mail. Žádný tlak, vím, že život se občas zamotá.</p>
-<a href="#" class="email-preview-cta">Zarezervovat termín</a>
-<div class="email-preview-sig"><strong>Martin</strong></div>`
+<p>Ahoj {{customer_name_vocative}}, naposledy jsi u nás byl <strong>{{last_visit_date}}</strong>, to je už <strong>{{days_since_last_visit}} dní</strong>. Vím, že život je někdy hektický a člověk prostě nestíhá.</p>
+<p>Naposledy jsi měl {{last_service_name}}. Kdyby ses chtěl stavit znovu, rádi tě uvidíme.</p>
+<a href="#" class="email-preview-cta">Objednat se</a>
+<div class="email-preview-sig">MNB Barbershop</div>`
   },
 
   // WIN-BACK FINAL
   { id: 'win_back_final', flow: 'win_back_final', order: 1,
     status: 'new',
-    subject: 'Chybíte nám, Lukáši. Máme pro Vás slevu',
-    opening: 'Dobrý den, Lukáši, vím, že jsem Vám už párkrát psal',
+    subject: 'Chybíš nám, {{customer_name_vocative}}',
+    opening: 'Ahoj {{customer_name_vocative}}, tohle je ode mě poslední e-mail, slibuju.',
     preheader: 'Poslední pokus, pak už přestaneme.',
     sender: 'Martin · MNB Barbershop',
-    tags: ['customer_name_vocative', 'discount_percent', 'valid_until'],
-    body: `<h1>Poslední pokus, Lukáši</h1>
-<p>Dobrý den, Lukáši, vím, že jsem Vám už párkrát psal. Tohle bude poslední e-mail ode mě, slibuji.</p>
-<p>Kdybyste se chtěl někdy vrátit, mám pro Vás <strong>slevu 20 % na další návštěvu</strong>. Platí do konce května. Kód: <strong>VRAT-SE</strong>.</p>
-<p>Pokud Vám nic neřekne, nic se neděje, nebudeme Vám už psát. Přeji Vám všechno dobré.</p>
-<a href="#" class="email-preview-cta">Použít kód VRAT-SE</a>
-<div class="email-preview-sig"><strong>Martin</strong></div>`
+    tags: ['customer_name_vocative', 'discount_value', 'discount_expiry'],
+    body: `<h1>Poslední pokus, {{customer_name_vocative}}</h1>
+<p>Ahoj {{customer_name_vocative}}, vím, že jsem ti už párkrát psal, a tohle je ode mě poslední e-mail, slibuju.</p>
+<p>Kdyby ses chtěl někdy vrátit, mám pro tebe <strong>slevu {{discount_value}}</strong> na další návštěvu. Platí do <strong>{{discount_expiry}}</strong>.</p>
+<p>Pokud ti to nic neříká, nic se neděje, nebudeme ti už psát. Přeju ti všechno dobrý.</p>
+<a href="#" class="email-preview-cta">Využít slevu</a>
+<div class="email-preview-sig">MNB Barbershop</div>`
   },
 
   // RECOMMEND (regular_cut / irregular_cut)
   { id: 'regular_cut', flow: 'recommend', order: 1,
     status: 'updated',
-    subject: 'Pár dní a je čas, Petře',
-    opening: 'Dobrý den, Petře, chodíte k nám zhruba každých 28 dní',
-    preheader: 'Rezervujte si termín, než Vám to uteče.',
+    subject: 'Nebyl bys pro střih, {{customer_name_vocative}}?',
+    opening: 'Ahoj {{customer_name_vocative}}, naposledy jsi byl před {{mean_gap_days}} dny.',
+    preheader: 'Tvůj obvyklý rytmus je {{regular_visit_days}} dní. Čas se objednat.',
     sender: 'Martin · MNB Barbershop',
-    tags: ['customer_name_vocative', 'avg_interval_days', 'next_suggested_slot'],
-    body: `<h1>Je čas na další střih</h1>
-<p>Dobrý den, Petře, chodíte k nám zhruba <strong>každých 28 dní</strong> a teď bude 25. den. Takže kdybyste chtěl držet rytmus, hodí se zarezervovat.</p>
-<p>Mám pro Vás <a href="#">pár volných termínů</a> na příští týden, vyberte si, co sedí.</p>
-<a href="#" class="email-preview-cta">Zarezervovat</a>
-<div class="email-preview-sig"><strong>Martin</strong></div>`
+    tags: ['customer_name_vocative', 'mean_gap_days', 'regular_visit_days'],
+    body: `<h1>Nebyl bys pro střih?</h1>
+<p>Ahoj {{customer_name_vocative}}, naposledy jsi byl před <strong>{{mean_gap_days}} dny</strong> a tvůj obvyklý rytmus je tak <strong>{{regular_visit_days}} dní</strong>.</p>
+<p>Vím, že chodíš pravidelně, a to je vidět. Střih vypadá nejlíp, když se drží rytmus.</p>
+<a href="#" class="email-preview-cta">Aktuální volné termíny</a>
+<div class="email-preview-sig">MNB Barbershop</div>`
   },
   { id: 'irregular_cut', flow: 'recommend', order: 2,
     status: 'updated',
-    subject: 'Co takhle se zase ukázat?',
-    opening: 'Dobrý den, Radime, vím, že nemáte úplně pravidelný rytmus',
-    preheader: 'Bez tlaku, jen připomínka, kdyby se hodilo.',
+    subject: 'Co kdybys zase přišel, {{customer_name_vocative}}?',
+    opening: 'Ahoj {{customer_name_vocative}}, už je to chvíli, co jsi u nás byl naposledy.',
+    preheader: 'Už je to nějaký čas. Zkus se stavit, {{barber_name}} se na tebe těší.',
     sender: 'Martin · MNB Barbershop',
-    tags: ['customer_name_vocative', 'days_since_last'],
-    body: `<h1>Ukázal byste se zase?</h1>
-<p>Dobrý den, Radime, vím, že nemáte úplně pravidelný rytmus (což je v pohodě). Od poslední návštěvy uběhlo <strong>46 dní</strong>, tak kdyby Vás napadlo zase se zastavit, tady je <a href="#">kalendář</a>.</p>
-<p>Žádný tlak, kdykoli to bude sedět.</p>
-<div class="email-preview-sig"><strong>Martin</strong></div>`
+    tags: ['customer_name_vocative', 'last_service_name', 'mean_gap_days', 'barber_name'],
+    body: `<h1>Co kdybys zase přišel?</h1>
+<p>Ahoj {{customer_name_vocative}}, už je to chvíli, co jsi u nás byl naposledy.</p>
+<p>Měl jsi <strong>{{last_service_name}}</strong> a od té doby uběhlo <strong>{{mean_gap_days}} dní</strong>.</p>
+<p>Nemusíš mít přesný plán. Někdy stačí jen přijít a říct, co ti vadí nebo co bys chtěl zkusit.</p>
+<a href="#" class="email-preview-cta">Aktuální volné termíny</a>
+<div class="email-preview-sig">MNB Barbershop</div>`
   },
 
   // REFERRAL
   { id: 'referral_invite', flow: 'referral', order: 1,
     status: 'new',
-    subject: 'Pošlete kamarádovi 100 Kč, dostanete taky',
-    opening: 'Dobrý den, Michale, chodíte k nám už nějakou dobu',
-    preheader: 'Za každého nového klienta od Vás oba dostanete slevu.',
+    subject: 'Pošli kamarádovi slevu, dostaneš taky',
+    opening: 'Ahoj {{customer_name_vocative}}, chodíš k nám už {{visit_count}}× a sedí ti to.',
+    preheader: 'Za každého nového klienta od tebe oba dostanete slevu.',
     sender: 'Martin · MNB Barbershop',
     tags: ['customer_name_vocative', 'referral_code', 'visit_count'],
-    body: `<h1>Pošlete kámošovi slevu</h1>
-<p>Dobrý den, Michale, chodíte k nám už <strong>4×</strong> a sedí Vám to, fajn. Tak jsme si řekli, že když nám přivedete kamaráda, dáme za to něco Vám oběma.</p>
-<p>Pošlete mu tenhle kód: <strong>MICHAL-100</strong>. On dostane <strong>100 Kč slevu</strong> na první návštěvu, a Vy dostanete taky <strong>100 Kč</strong> na příští střih.</p>
-<p>Kód dostáváte jen jednou, tak ho dejte někomu, o kom víte, že Vám za to poděkuje.</p>
+    body: `<h1>Pošli kámošovi slevu</h1>
+<p>Ahoj {{customer_name_vocative}}, chodíš k nám už <strong>{{visit_count}}×</strong> a sedí ti to, fajn. Když nám přivedeš kamaráda, dáme za to něco vám oběma.</p>
+<p>Pošli mu tenhle kód: <strong>{{referral_code}}</strong>. On dostane <strong>100 Kč slevu</strong> na první návštěvu, a ty dostaneš taky <strong>100 Kč</strong> na příští střih.</p>
+<p>Kód dostáváš jen jednou, tak ho dej někomu, o kom víš, že ti za to poděkuje.</p>
 <a href="#" class="email-preview-cta">Sdílet kód</a>
-<div class="email-preview-sig"><strong>Martin</strong></div>`
+<div class="email-preview-sig">MNB Barbershop</div>`
   },
   { id: 'referral_thank_you', flow: 'referral', order: 2,
     status: 'new',
-    subject: 'Díky za Matěje! Tady je Vaše sleva',
-    opening: 'Dobrý den, Michale, Matěj, kterého jste poslal, právě dorazil',
-    preheader: 'Vaše sleva 100 Kč je připravená.',
+    subject: 'Díky za {{referred_name}}! Tady je tvoje sleva',
+    opening: 'Ahoj {{customer_name_vocative}}, {{referred_name}} právě dorazil a odjel spokojený.',
+    preheader: 'Tvoje sleva 100 Kč je připravená.',
     sender: 'Martin · MNB Barbershop',
     tags: ['customer_name_vocative', 'referred_name', 'discount_code'],
     body: `<h1>Díky</h1>
-<p>Dobrý den, Michale, <strong>Matěj</strong>, kterého jste poslal, právě dorazil a odjel spokojený. Jak jsem slíbil, <strong>100 Kč sleva</strong> na Vaši příští návštěvu čeká.</p>
-<p>Kód: <strong>DIKY-MICHAL</strong>. Uplatníte ho při další rezervaci.</p>
-<p>Díky, že nás šíříte dál. Je to nejlepší marketing, jaký máme.</p>
+<p>Ahoj {{customer_name_vocative}}, <strong>{{referred_name}}</strong>, kterého jsi poslal, právě dorazil a odjel spokojený. Jak jsem slíbil, <strong>100 Kč sleva</strong> na tvoji příští návštěvu čeká.</p>
+<p>Kód: <strong>{{discount_code}}</strong>. Uplatníš ho při další rezervaci.</p>
+<p>Díky, že nás šíříš dál. Je to nejlepší marketing, jakej máme.</p>
 <a href="#" class="email-preview-cta">Zarezervovat se slevou</a>
-<div class="email-preview-sig"><strong>Martin</strong></div>`
+<div class="email-preview-sig">MNB Barbershop</div>`
   },
 
   // NAME DAY
   { id: 'name_day', flow: 'name_day', order: 1,
     status: 'new',
-    subject: 'Zítra máte svátek, Radime! 🎉',
-    opening: 'Dobrý den, Radime, jen rychle, zítra je Radimův den',
+    subject: 'Zítra máš svátek, {{customer_name_vocative}}! 🎉',
+    opening: 'Ahoj {{customer_name_vocative}}, zítra je tvůj den. Bez prodejního blábolu.',
     preheader: 'Bez prodejního blábolu, fakt.',
     sender: 'Martin · MNB Barbershop',
-    tags: ['customer_name_vocative', 'name_day_date'],
-    body: `<h1>Zítra máte svátek 🎉</h1>
-<p>Dobrý den, Radime, jen rychle, zítra je <strong>Radimův den</strong>, tak jsme si řekli, že se Vám ozveme. Mějte pohodový svátek, užijte si ho.</p>
-<p>Žádná sleva, nic neprodáváme. Jen Vám tady fandíme.</p>
-<div class="email-preview-sig"><strong>Martin</strong> & kluci z MNB</div>`
+    tags: ['customer_name_vocative'],
+    body: `<h1>Zítra máš svátek 🎉</h1>
+<p>Ahoj {{customer_name_vocative}}, jen rychle, zítra máš svátek, tak jsme si řekli, že se ti ozveme. Měj pohodovej svátek, užij si ho.</p>
+<p>Žádná sleva, nic neprodáváme. Jen ti tady fandíme.</p>
+<div class="email-preview-sig">MNB Barbershop</div>`
   },
 
   // POPUP (2 templates)
   { id: 'popup_promocode', flow: 'popup', order: 1,
     status: 'updated',
-    subject: 'Tady máte slevu 100 Kč, na první návštěvu',
-    opening: 'Zdravíme, díky, že jste nám nechal e-mail',
-    preheader: 'Kód platí 30 dní.',
+    subject: 'Tvůj slevový kód, {{customer_name_vocative}}',
+    opening: 'Ahoj {{customer_name_vocative}}, díky za registraci! Tady je tvůj slevový kód:',
+    preheader: 'Sleva na tvůj první střih čeká.',
     sender: 'Martin · MNB Barbershop',
-    tags: ['discount_code', 'valid_until'],
-    body: `<h1>Tady je Vaše sleva</h1>
-<p>Zdravíme, díky, že jste nám nechal e-mail. Tady je slibovaný kód:</p>
-<p style="text-align:center;padding:16px;background:#F1F5F9;border-radius:8px;font-size:20px;font-weight:700"><strong>VITAJ-100</strong></p>
-<p>Uplatníte ho při první rezervaci, sleva <strong>100 Kč</strong>. Platí 30 dní.</p>
-<a href="#" class="email-preview-cta">Zarezervovat první návštěvu</a>
-<div class="email-preview-sig"><strong>Martin</strong> · MNB Barbershop</div>`
+    tags: ['customer_name_vocative', 'promocode', 'promocode_expiry'],
+    body: `<h1>Tvůj slevový kód</h1>
+<p>Ahoj {{customer_name_vocative}}, díky za registraci! Tady je tvůj slevový kód:</p>
+<p style="text-align:center;padding:16px;background:#F1F5F9;border-radius:8px;font-size:20px;font-weight:700"><strong>{{promocode}}</strong></p>
+<p>Stačí ho zmínit při objednání. Platí do <strong>{{promocode_expiry}}</strong>.</p>
+<a href="#" class="email-preview-cta">Zarezervovat termín</a>
+<div class="email-preview-sig">MNB Barbershop</div>`
   },
   { id: 'popup_no_promocode', flow: 'popup', order: 2,
     status: 'updated',
-    subject: 'Díky, že jste si nás všiml',
-    opening: 'Zdravíme, díky, že jste nám nechal e-mail',
-    preheader: 'Jestli někdy budete chtít vyzkoušet.',
+    subject: 'Díky za registraci, {{customer_name_vocative}}!',
+    opening: 'Ahoj {{customer_name_vocative}}, díky za registraci! Vítej, těšíme se na tebe.',
+    preheader: 'Vítej, těšíme se na tebe.',
     sender: 'Martin · MNB Barbershop',
-    tags: [],
-    body: `<h1>Díky</h1>
-<p>Zdravíme, díky, že jste nám nechal e-mail. Jsme MNB Barbershop v Teplicích (a také v Litoměřicích a Duchcově), otevřeno máme pondělí až sobota a stříháme pánské účesy, vousy, barvíme vousy a zvládneme i dětské mini-klienty.</p>
-<p>Kdybyste měl někdy chuť vyzkoušet, <a href="#">tady je kalendář</a>. Nebudeme Vám nic posílat často, jen občas shrnutí nebo volný termín, když se hodí.</p>
-<a href="#" class="email-preview-cta">Podívat se na termíny</a>
-<div class="email-preview-sig"><strong>Martin</strong> · MNB Barbershop</div>`
+    tags: ['customer_name_vocative'],
+    body: `<h1>Díky za registraci!</h1>
+<p>Ahoj {{customer_name_vocative}}, díky za registraci! Od teď tě budeme informovat o volných termínech a dalších novinkách.</p>
+<p>Zarezervuj si svůj první termín, těšíme se na tebe.</p>
+<a href="#" class="email-preview-cta">Zarezervovat termín</a>
+<div class="email-preview-sig">MNB Barbershop</div>`
   }
 ];
 
