@@ -1,0 +1,86 @@
+{
+  "icebreaker": {
+    "subject": "{{replace_customer_name_vocative}}, mám pro Vás novinky",
+    "preheader": "Spouštíme nový komunikační systém pro lepší správu služeb Torinos Barbershop. &#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;"
+  },
+  "irregular_cut": {
+    "subject": "Krátká připomínka ke střihu ať si zachováte svůj styl!",
+    "preheader": "Od poslední návštěvy je to chvíli. Rád Vás zase uvidím. &#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;"
+  },
+  "last_minute": {
+    "subject": "Poslední volná okna - tak píšu přednostně.",
+    "preheader": "Koukal jsem do kalendáře, máme ještě pár volných míst. &#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;"
+  },
+  "last_minute_advance": {
+    "subject": "Uvolnil se mi termín a napadlo mně se Vám rovnou ozvat",
+    "preheader": "{{replace_free_slot_display}}. Jestli Vám to vyhovuje, dejte vědět. &#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;"
+  },
+  "name_day": {
+    "subject": "Všechno nejlepší k svátku, {{replace_customer_name_vocative}}!",
+    "preheader": "Dnes {{replace_name_day_date}} máte svátek. Máme pro Vás překvapení. &#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;"
+  },
+  "other_cancelled": {
+    "subject": "Uvolněné místo, {{replace_free_slot_display}}",
+    "preheader": "Právě se uvolnil termín, kdybyste se chtěl stavit. &#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;"
+  },
+  "popup_no_promocode": {
+    "subject": "Díky za registraci, {{replace_customer_name_vocative}}!",
+    "preheader": "Vítejte, budu se na Vás těšit. &#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;"
+  },
+  "popup_promocode": {
+    "subject": "Váš slevový kód, {{replace_customer_name_vocative}}",
+    "preheader": "Sleva na Váš první střih čeká. &#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;"
+  },
+  "post_care_nextlevel": {
+    "subject": "Něco speciálního pro Vás, {{replace_customer_name_vocative}}",
+    "preheader": "Máme pro Vás speciální nabídku se slevou. &#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;"
+  },
+  "post_care_review_0": {
+    "subject": "Jak jste se po střihu cítil, {{replace_customer_name_vocative}}?",
+    "preheader": "Snad jste byl spokojený. Budu rád za Váš názor. &#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;"
+  },
+  "post_care_review_1": {
+    "subject": "Díky za návštěvu, {{replace_customer_name_vocative}}",
+    "preheader": "Dal jsem si záležet. Co na to říkáte? &#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;"
+  },
+  "post_care_review_2": {
+    "subject": "Sluší Vám to, {{replace_customer_name_vocative}}",
+    "preheader": "Doufám, že nový střih šlape. Dejte vědět, jak se cítíte. &#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;"
+  },
+  "post_care_review_3": {
+    "subject": "Už přemýšlíte nad dalším střihem, {{replace_customer_name_vocative}}?",
+    "preheader": "Další návštěvu si naplánujte, kdy Vám to bude vyhovovat. &#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;"
+  },
+  "reactivation": {
+    "subject": "Dlouho jsme se neviděli, co takhle si zajít na střih?",
+    "preheader": "Poslední návštěva byla {{replace_last_visit_date}}. Rád Vás zase uvidím. &#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;"
+  },
+  "referral_invite": {
+    "subject": "Doveďte kamaráda a získejte odměnu, {{replace_customer_name_vocative}}",
+    "preheader": "Váš osobní kód: {{replace_referral_code}}. Sdílejte a oba ušetříte. &#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;"
+  },
+  "referral_thank_you": {
+    "subject": "Díky za doporučení, {{replace_customer_name_vocative}}!",
+    "preheader": "Váš kamarád využil pozvánku. Tady je nový kód pro dalšího. &#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;"
+  },
+  "regular_cut": {
+    "subject": "Jen krátká připomínka ke střihu ať si zachováte svůj styl!",
+    "preheader": "Koukám do kalendáře, Vaše obvyklé okno se blíží. &#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;"
+  },
+  "reschedule": {
+    "subject": "V pohodě máte to zrušené, vyberte si v klidu náhradní termín",
+    "preheader": "Mrkněte rovnou do kalendáře a vyberte si náhradní termín. &#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;"
+  },
+  "welcome_first_time": {
+    "subject": "Vítej u Torinos, pohodový servis s italským nádechem",
+    "preheader": "U nás nejde jen o střih. Jde o zážitek. &#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;"
+  },
+  "welcome_returning": {
+    "subject": "Vítám tě zpátky u Torinos",
+    "preheader": "Dlouho jsme se neviděli. Je fajn, že ses vrátil. &#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;"
+  },
+  "win_back_final": {
+    "subject": "Jen jsem se chtěl ujistit, zda moje zpráva nezapadla",
+    "preheader": "Sleva {{replace_discount_amount}} platí 14 dní. Stačí se objednat. &#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;&#847;&zwnj;"
+  }
+}

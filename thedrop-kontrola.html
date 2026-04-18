@@ -407,6 +407,18 @@
   html[data-theme="dark"] :root {
     --ascent-100: color-mix(in srgb, #D4A574 22%, transparent);
   }
+
+  /* Per-org accent override */
+  :root {
+    --ascent-500: #C9A961;
+    --ascent-600: #C9A961;
+    --ascent-700: #C9A961;
+    --ascent-100: color-mix(in srgb, #C9A961 18%, white);
+    --ascent-300: color-mix(in srgb, #C9A961 55%, white);
+  }
+  html[data-theme="dark"] :root {
+    --ascent-100: color-mix(in srgb, #C9A961 22%, transparent);
+  }
 </style>
 </head>
 
@@ -423,10 +435,10 @@
       <div class="topbar-right">
         <div class="session-badge" title="Přihlášen jedinečným odkazem">
           <span class="magic-dot"></span>
-          <span class="avatar">MN</span>
+          <span class="avatar">TD</span>
           <span class="session-info">
-            <span class="session-name">Martin</span>
-            <span class="session-org">MNB Barbershop</span>
+            <span class="session-name">The Drop Barber Shop</span>
+            <span class="session-org">The Drop Barber Shop</span>
           </span>
         </div>
         <button class="icon-btn" title="Přepnout režim" id="theme-toggle" aria-label="Přepnout světlý/tmavý režim">
@@ -452,7 +464,7 @@
 <section class="page-header">
   <div class="page-eyebrow">
     <span>Boostmail 2.0 · náhled před spuštěním</span>
-    <span class="tag">pro MNB Barbershop</span>
+    <span class="tag">pro The Drop Barber Shop</span>
   </div>
   <h1 class="page-title">
     Nová verze <span class="accent">Boostmailu</span> <span class="serif-italic">je připravená.</span><br>
@@ -578,7 +590,7 @@
     <div class="modal-foot">
       <div class="modal-foot-info">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
-        Náhled s vašimi daty, <span id="modal-brand-ref">MNB Barbershop</span>
+        Náhled s vašimi daty, <span id="modal-brand-ref">The Drop Barber Shop</span>
       </div>
       <div class="modal-foot-actions">
         <button class="btn-ghost" id="modal-comment-btn">
@@ -1324,11 +1336,11 @@ function openPreview(id) {
     <span class="modal-meta-label">Preheader</span><span class="modal-meta-val" style="color:var(--slate-500)">${t.preheader || ''}</span>
   `;
   const preview = document.getElementById('email-preview');
-  preview.innerHTML = `<iframe src="./rendered/mnb/${t.id}.html"
+  preview.innerHTML = `<iframe src="./rendered/thedrop/${t.id}.html"
       title="Náhled e-mailu" loading="lazy"
       style="display:block;width:100%;max-width:640px;min-height:70vh;height:calc(100vh - 260px);margin:0 auto;border:0;border-radius:10px;background:#fff;box-shadow:0 10px 40px rgba(15,23,42,.18);"></iframe>
     <div style="max-width:640px;margin:10px auto 0;text-align:center;font-size:11.5px;color:var(--slate-500);line-height:1.5">
-      MNB Barbershop · Prazska 2988/6, 415 01 Teplice
+      The Drop Barber Shop · Jana Palacha 490, 530 02 Pardubice
     </div>`;
   document.getElementById('modal-overlay').classList.add('open');
 }
