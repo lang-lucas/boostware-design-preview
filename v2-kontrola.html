@@ -52,18 +52,18 @@
 
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
   html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
-  body{font-family:'Satoshi',system-ui,-apple-system,sans-serif;background:var(--slate-50);color:var(--slate-900);min-height:100vh;transition:background .28s var(--ease-out),color .28s var(--ease-out);}
+  body{font-family:'Satoshi',system-ui,-apple-system, sans-serif;background:var(--slate-50);color:var(--slate-900);min-height:100vh;transition:background .28s var(--ease-out),color .28s var(--ease-out);}
   button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit;}
   a{color:inherit;text-decoration:none;}
-  textarea,input{font-family:inherit;}
-  .serif-italic{font-family:'Instrument Serif',Georgia,serif;font-style:italic;font-weight:400;letter-spacing:-.01em;}
+  textarea, input{font-family:inherit;}
+  .serif-italic{font-family:'Instrument Serif',Georgia, serif;font-style:italic;font-weight:400;letter-spacing:-.01em;}
   .mono{font-family:'JetBrains Mono',monospace;}
   .tabular{font-variant-numeric:tabular-nums;}
 
   /* ═══════ APP HEADER ═══════ */
-  .app-header{position:sticky;top:0;z-index:60;background:color-mix(in srgb,var(--slate-0) 85%,transparent);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--slate-200);transition:background-color .25s var(--ease-out),box-shadow .25s var(--ease-out),border-color .25s var(--ease-out);}
-  .app-header.scrolled{background:color-mix(in srgb,var(--slate-0) 96%,transparent);box-shadow:0 2px 8px rgba(0,0,0,.04);}
-  html[data-theme="dark"] .app-header.scrolled{background:color-mix(in srgb,var(--slate-0) 92%,transparent);box-shadow:0 2px 10px rgba(0,0,0,.25);}
+  .app-header{position:sticky;top:0;z-index:60;background:color-mix(in srgb, var(--slate-0) 85%,transparent);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--slate-200);transition:background-color .25s var(--ease-out),box-shadow .25s var(--ease-out),border-color .25s var(--ease-out);}
+  .app-header.scrolled{background:color-mix(in srgb, var(--slate-0) 96%,transparent);box-shadow:0 2px 8px rgba(0,0,0,.04);}
+  html[data-theme="dark"] .app-header.scrolled{background:color-mix(in srgb, var(--slate-0) 92%,transparent);box-shadow:0 2px 10px rgba(0,0,0,.25);}
 
   .topbar{background:transparent;}
   .topbar-inner{max-width:1180px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
@@ -77,7 +77,7 @@
   .session-badge .session-info{display:flex;flex-direction:column;font-size:12px;line-height:1.25;padding-right:4px;}
   .session-badge .session-name{font-weight:600;color:var(--slate-800);}
   .session-badge .session-org{color:var(--slate-500);}
-  .session-badge .magic-dot{width:6px;height:6px;border-radius:50%;background:var(--success-500);box-shadow:0 0 0 3px color-mix(in srgb,var(--success-500) 22%,transparent);margin-right:2px;flex-shrink:0;}
+  .session-badge .magic-dot{width:6px;height:6px;border-radius:50%;background:var(--success-500);box-shadow:0 0 0 3px color-mix(in srgb, var(--success-500) 22%,transparent);margin-right:2px;flex-shrink:0;}
 
   .icon-btn{position:relative;width:36px;height:36px;border-radius:var(--r-md);display:inline-flex;align-items:center;justify-content:center;color:var(--slate-500);transition:all .15s var(--ease-out);}
   .icon-btn:hover{background:var(--slate-100);color:var(--slate-800);}
@@ -85,12 +85,12 @@
   #theme-toggle:hover svg{transform:rotate(20deg);}
 
   /* ═══════ PROGRESS STRIP ═══════ */
-  .progress-strip{max-width:1180px;margin:0 auto;padding:12px 24px 14px;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:18px;border-top:1px solid color-mix(in srgb,var(--slate-200) 60%,transparent);}
+  .progress-strip{max-width:1180px;margin:0 auto;padding:12px 24px 14px;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:18px;border-top:1px solid color-mix(in srgb, var(--slate-200) 60%,transparent);}
   .progress-label{font-size:12.5px;color:var(--slate-600);display:flex;align-items:center;gap:8px;}
   .progress-label strong{color:var(--slate-900);font-weight:700;font-variant-numeric:tabular-nums;}
   .progress-track{height:6px;background:var(--slate-100);border-radius:999px;overflow:hidden;position:relative;box-shadow:inset 0 1px 2px rgba(15,23,42,.05);}
-  .progress-fill{height:100%;background:linear-gradient(90deg,var(--ascent-500),var(--ascent-600));border-radius:999px;transition:width .5s var(--ease-out);box-shadow:0 0 12px rgba(57,143,255,.4);}
-  .progress-fill.complete{background:linear-gradient(90deg,var(--success-500),#059669);box-shadow:0 0 12px rgba(16,185,129,.4);}
+  .progress-fill{height:100%;background:linear-gradient(90deg, var(--ascent-500),var(--ascent-600));border-radius:999px;transition:width .5s var(--ease-out);box-shadow:0 0 12px rgba(57,143,255,.4);}
+  .progress-fill.complete{background:linear-gradient(90deg, var(--success-500),#059669);box-shadow:0 0 12px rgba(16,185,129,.4);}
   .progress-meta{font-size:11.5px;color:var(--slate-500);font-variant-numeric:tabular-nums;white-space:nowrap;}
   .progress-meta strong{color:var(--slate-700);font-weight:600;}
 
@@ -98,9 +98,9 @@
   .page-header{max-width:1180px;margin:0 auto;padding:56px 24px 28px;}
   .page-eyebrow{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--ascent-500);margin-bottom:14px;display:inline-flex;align-items:center;gap:8px;}
   .page-eyebrow .tag{padding:3px 8px;background:var(--ascent-100);border-radius:999px;font-size:10.5px;letter-spacing:.06em;}
-  html[data-theme="dark"] .page-eyebrow .tag{background:color-mix(in srgb,var(--ascent-500) 18%,transparent);color:var(--ascent-300);}
+  html[data-theme="dark"] .page-eyebrow .tag{background:color-mix(in srgb, var(--ascent-500) 18%,transparent);color:var(--ascent-300);}
   .page-title{font-size:clamp(34px,4.4vw,48px);font-weight:800;letter-spacing:-.032em;line-height:1.04;color:var(--slate-900);}
-  .page-title .serif-italic{font-weight:400;color:var(--slate-500);}
+  .page-title .serif-italic{font-weight:400;color:inherit;}
   .page-title .accent{color:var(--ascent-500);}
   .page-lede{margin-top:18px;font-size:17px;line-height:1.55;color:var(--slate-600);max-width:680px;}
   .page-lede strong{color:var(--slate-800);font-weight:600;}
@@ -109,12 +109,12 @@
   .how-trigger{width:100%;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:14px;font-weight:600;color:var(--slate-800);text-align:left;}
   .how-trigger .left{display:flex;align-items:center;gap:12px;}
   .how-trigger .ico{width:26px;height:26px;border-radius:8px;background:var(--ascent-100);color:var(--ascent-600);display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;}
-  html[data-theme="dark"] .how-trigger .ico{color:var(--ascent-300);background:color-mix(in srgb,var(--ascent-500) 20%,transparent);}
+  html[data-theme="dark"] .how-trigger .ico{color:var(--ascent-300);background:color-mix(in srgb, var(--ascent-500) 20%,transparent);}
   .how-trigger .chev{transition:transform .25s var(--ease-out);color:var(--slate-400);}
   .how-panel[data-open="true"] .how-trigger .chev{transform:rotate(180deg);}
   .how-body{max-height:0;overflow:hidden;transition:max-height .32s var(--ease-out);border-top:1px solid transparent;}
   .how-panel[data-open="true"] .how-body{max-height:520px;border-top-color:var(--slate-200);}
-  .how-inner{padding:18px 20px 22px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;}
+  .how-inner{padding:18px 20px 22px;display:grid;grid-template-columns:repeat(auto-fit, minmax(220px,1fr));gap:18px;}
   .how-step{display:flex;flex-direction:column;gap:6px;}
   .how-step-num{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600;color:var(--ascent-600);letter-spacing:.04em;}
   html[data-theme="dark"] .how-step-num{color:var(--ascent-300);}
@@ -157,7 +157,7 @@
   .flow-card{background:var(--slate-0);border:1px solid var(--slate-200);border-radius:var(--r-lg);margin-bottom:16px;overflow:hidden;transition:border-color .2s var(--ease-out),box-shadow .2s var(--ease-out);}
   .flow-card:hover{border-color:var(--slate-300);box-shadow:var(--shadow-sm);}
   .flow-card[data-expanded="true"]{border-color:var(--slate-300);box-shadow:var(--shadow-md);}
-  .flow-card[data-all-approved="true"]{border-color:color-mix(in srgb,var(--success-500) 45%,var(--slate-200));background:color-mix(in srgb,var(--success-100) 35%,var(--slate-0));}
+  .flow-card[data-all-approved="true"]{border-color:color-mix(in srgb, var(--success-500) 45%,var(--slate-200));background:color-mix(in srgb, var(--success-100) 35%,var(--slate-0));}
 
   .flow-head{display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:16px;padding:18px 22px;cursor:pointer;user-select:none;}
   .flow-head-main{display:flex;flex-direction:column;gap:8px;min-width:0;}
@@ -197,7 +197,7 @@
 
   /* Description block */
   .flow-desc{background:var(--slate-50);border:1px solid var(--slate-200);border-radius:var(--r-md);padding:16px 18px;font-size:13px;line-height:1.6;display:flex;flex-direction:column;gap:12px;position:sticky;top:130px;}
-  html[data-theme="dark"] .flow-desc{background:color-mix(in srgb,var(--slate-0) 50%,var(--slate-50));}
+  html[data-theme="dark"] .flow-desc{background:color-mix(in srgb, var(--slate-0) 50%,var(--slate-50));}
   .flow-desc-row{display:flex;flex-direction:column;gap:3px;}
   .flow-desc-label{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--slate-500);display:flex;align-items:center;gap:6px;}
   .flow-desc-label svg{color:var(--slate-400);}
@@ -218,11 +218,11 @@
 
   .tpl-card{background:var(--slate-0);border:1px solid var(--slate-200);border-radius:var(--r-md);overflow:hidden;transition:border-color .18s var(--ease-out),box-shadow .18s var(--ease-out);}
   .tpl-card:hover{border-color:var(--slate-300);}
-  .tpl-card[data-status="approved"]{border-color:color-mix(in srgb,var(--success-500) 40%,var(--slate-200));background:color-mix(in srgb,var(--success-100) 28%,var(--slate-0));}
-  .tpl-card[data-status="commented"]{border-color:color-mix(in srgb,var(--warning-500) 40%,var(--slate-200));}
+  .tpl-card[data-status="approved"]{border-color:color-mix(in srgb, var(--success-500) 40%,var(--slate-200));background:color-mix(in srgb, var(--success-100) 28%,var(--slate-0));}
+  .tpl-card[data-status="commented"]{border-color:color-mix(in srgb, var(--warning-500) 40%,var(--slate-200));}
 
   .tpl-head{padding:14px 16px 12px;display:grid;grid-template-columns:1fr auto;gap:12px;align-items:start;border-bottom:1px solid var(--slate-200);}
-  .tpl-card[data-status="approved"] .tpl-head{border-bottom-color:color-mix(in srgb,var(--success-500) 22%,var(--slate-200));}
+  .tpl-card[data-status="approved"] .tpl-head{border-bottom-color:color-mix(in srgb, var(--success-500) 22%,var(--slate-200));}
   .tpl-head-main{display:flex;flex-direction:column;gap:6px;min-width:0;}
   .tpl-sub-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.09em;color:var(--slate-400);}
   .tpl-subject{font-size:15px;font-weight:700;color:var(--slate-900);line-height:1.35;}
@@ -243,7 +243,7 @@
   html[data-theme="dark"] .status-approved{color:#34D399;}
 
   .tpl-actions{padding:12px 16px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;background:var(--slate-50);}
-  html[data-theme="dark"] .tpl-actions{background:color-mix(in srgb,var(--slate-0) 50%,var(--slate-50));}
+  html[data-theme="dark"] .tpl-actions{background:color-mix(in srgb, var(--slate-0) 50%,var(--slate-50));}
   .tpl-action-btn{display:inline-flex;align-items:center;gap:6px;padding:7px 11px;font-size:12.5px;font-weight:500;color:var(--slate-700);background:var(--slate-0);border:1px solid var(--slate-200);border-radius:var(--r-sm);transition:all .15s var(--ease-out);}
   .tpl-action-btn:hover{border-color:var(--slate-300);background:var(--slate-50);color:var(--slate-900);}
   .tpl-action-btn svg{color:var(--slate-500);}
@@ -254,7 +254,7 @@
   html[data-theme="dark"] .tpl-action-btn.primary:hover{background:var(--ascent-600);border-color:var(--ascent-600);}
   .tpl-action-btn.ghost{background:transparent;border-color:transparent;color:var(--slate-500);}
   .tpl-action-btn.ghost:hover{background:var(--slate-100);color:var(--slate-800);}
-  .tpl-action-btn.success{color:var(--success-700);border-color:color-mix(in srgb,var(--success-500) 35%,var(--slate-200));background:var(--success-100);}
+  .tpl-action-btn.success{color:var(--success-700);border-color:color-mix(in srgb, var(--success-500) 35%,var(--slate-200));background:var(--success-100);}
   .tpl-action-btn.success svg{color:var(--success-700);}
   html[data-theme="dark"] .tpl-action-btn.success{color:#34D399;}
   html[data-theme="dark"] .tpl-action-btn.success svg{color:#34D399;}
@@ -267,7 +267,8 @@
   .tpl-comment-inner{padding:14px 16px 16px;}
   .tpl-comment-label{font-size:11.5px;font-weight:600;color:var(--slate-600);margin-bottom:6px;display:flex;align-items:center;gap:6px;}
   .tpl-comment-label .req{color:var(--danger-500);}
-  .tpl-comment textarea{width:100%;min-height:74px;padding:9px 11px;font-size:13px;line-height:1.5;color:var(--slate-800);background:var(--slate-0);border:1px solid var(--slate-200);border-radius:var(--r-sm);resize:vertical;transition:border-color .15s ease,box-shadow .15s ease;}
+  .tpl-comment-label .req-optional{color:var(--slate-500);font-weight:400;}
+  .tpl-comment textarea{width:100%;min-height:74px;padding:9px 11px;font-size:13px;line-height:1.5;color:var(--slate-800);background:var(--slate-0);border:1px solid var(--slate-200);border-radius:var(--r-sm);resize:vertical;transition:border-color .15s ease, box-shadow .15s ease;}
   .tpl-comment textarea:focus{outline:none;border-color:var(--ascent-500);box-shadow:0 0 0 3px rgba(57,143,255,.14);}
   .tpl-comment-opts{margin-top:10px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;}
   .tpl-comment-check{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;color:var(--slate-600);cursor:pointer;user-select:none;}
@@ -276,8 +277,8 @@
 
   /* ═══════ FINISH BAR ═══════ */
   .finish-bar{max-width:1180px;margin:48px auto 60px;padding:0 24px;}
-  .finish-card{background:linear-gradient(135deg,var(--slate-0) 0%,color-mix(in srgb,var(--ascent-100) 50%,var(--slate-0)) 100%);border:1px solid var(--slate-200);border-radius:var(--r-xl);padding:32px 36px;display:grid;grid-template-columns:1fr auto;align-items:center;gap:28px;position:relative;overflow:hidden;}
-  .finish-card::before{content:'';position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(circle,var(--slate-300) 1px,transparent 1px);background-size:22px 22px;opacity:.18;-webkit-mask-image:radial-gradient(ellipse at right top,black 0%,transparent 70%);mask-image:radial-gradient(ellipse at right top,black 0%,transparent 70%);}
+  .finish-card{background:linear-gradient(135deg, var(--slate-0) 0%,color-mix(in srgb, var(--ascent-100) 50%,var(--slate-0)) 100%);border:1px solid var(--slate-200);border-radius:var(--r-xl);padding:32px 36px;display:grid;grid-template-columns:1fr auto;align-items:center;gap:28px;position:relative;overflow:hidden;}
+  .finish-card::before{content:'';position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(circle, var(--slate-300) 1px, transparent 1px);background-size:22px 22px;opacity:.18;-webkit-mask-image:radial-gradient(ellipse at right top, black 0%,transparent 70%);mask-image:radial-gradient(ellipse at right top, black 0%,transparent 70%);}
   .finish-title{font-size:22px;font-weight:800;letter-spacing:-.02em;color:var(--slate-900);margin-bottom:8px;}
   .finish-body{font-size:14px;color:var(--slate-600);line-height:1.55;max-width:560px;}
   .finish-body strong{color:var(--slate-800);font-weight:700;}
@@ -300,7 +301,7 @@
   .modal{width:100%;max-width:720px;max-height:calc(100vh - 48px);background:var(--slate-0);border:1px solid var(--slate-200);border-radius:var(--r-lg);display:flex;flex-direction:column;transform:translateY(12px) scale(.98);transition:transform .28s cubic-bezier(.16,1,.3,1);overflow:hidden;box-shadow:var(--shadow-lg);}
   .modal-overlay.open .modal{transform:translateY(0) scale(1);}
   .modal-head{padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid var(--slate-200);background:var(--slate-50);}
-  html[data-theme="dark"] .modal-head{background:color-mix(in srgb,var(--slate-0) 60%,var(--slate-50));}
+  html[data-theme="dark"] .modal-head{background:color-mix(in srgb, var(--slate-0) 60%,var(--slate-50));}
   .modal-title{font-size:14px;font-weight:700;color:var(--slate-900);display:flex;align-items:center;gap:10px;min-width:0;}
   .modal-title .kind{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--slate-500);font-weight:500;background:var(--slate-100);padding:2px 7px;border-radius:4px;border:1px solid var(--slate-200);}
   .modal-close{width:32px;height:32px;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;color:var(--slate-500);transition:all .15s var(--ease-out);flex-shrink:0;}
@@ -328,7 +329,7 @@
   .email-preview-sig{padding:16px 0 4px;border-top:1px solid #E2E8F0;color:#475569;font-size:13.5px;margin-top:10px;}
 
   .modal-foot{padding:12px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px;border-top:1px solid var(--slate-200);background:var(--slate-50);flex-wrap:wrap;}
-  html[data-theme="dark"] .modal-foot{background:color-mix(in srgb,var(--slate-0) 60%,var(--slate-50));}
+  html[data-theme="dark"] .modal-foot{background:color-mix(in srgb, var(--slate-0) 60%,var(--slate-50));}
   .modal-foot-info{font-size:11.5px;color:var(--slate-500);display:flex;align-items:center;gap:8px;}
   .modal-foot-actions{display:flex;gap:8px;}
 
@@ -348,7 +349,7 @@
   .confirm-body{font-size:14px;line-height:1.6;color:var(--slate-600);margin-bottom:18px;}
   .confirm-body strong{color:var(--slate-900);font-weight:600;}
   .confirm-summary{padding:14px 16px;background:var(--slate-50);border:1px solid var(--slate-200);border-radius:10px;font-size:13px;color:var(--slate-700);line-height:1.55;margin-bottom:20px;}
-  html[data-theme="dark"] .confirm-summary{background:color-mix(in srgb,var(--slate-0) 50%,var(--slate-50));}
+  html[data-theme="dark"] .confirm-summary{background:color-mix(in srgb, var(--slate-0) 50%,var(--slate-50));}
   .confirm-summary strong{color:var(--slate-900);}
   .confirm-actions{display:flex;justify-content:flex-end;gap:10px;}
 
@@ -416,10 +417,10 @@
   <div class="progress-strip">
     <div class="progress-label">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-      <span><strong id="progress-count">0</strong> z <strong id="progress-total">20</strong> šablon schváleno</span>
+      <span><strong id="progress-count">0</strong> z <strong id="progress-total">21</strong> šablon schváleno</span>
     </div>
     <div class="progress-track"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
-    <div class="progress-meta"><span id="progress-remaining">zbývá 20 šablon</span></div>
+    <div class="progress-meta"><span id="progress-remaining">zbývá 21 šablon</span></div>
   </div>
 </div>
 
@@ -430,14 +431,14 @@
     <span class="tag">pro Barbershop Holešovice</span>
   </div>
   <h1 class="page-title">
-    Nová verze <span class="accent">Boostmailu</span> <span class="serif-italic">je připravená.</span><br>
+    Nová verze <span class="accent">Boostmailu</span> <span class="serif-italic">je skoro připravená.</span><br>
     Mrkni na to, než to pustíme klientům.
   </h1>
   <p class="page-lede">
-    Chystáme pro vás <strong>novou verzi všech e-mailů</strong>, které Boostmail rozesílá vaším jménem. Přidali jsme několik nových situací
-    (svátek, doporučení, poslední pokus o návrat) a zbytek jsme zčistili, aby to znělo víc jako vy a míň jako šablona.
+    Chystáme pro vás <strong>novou verzi všech e-mailů</strong>, které Boostmail posílá. Přidali jsme několik nových situací
+    (svátek, doporučení, poslední pokus o návrat) a zbytek jsme vyčistili tak, aby fungoval lépe než dosud.
     <br><br>Projděte si prosím každou šablonu, napište <strong>jednu větu zpětné vazby</strong> a schvalte. Jakmile budete se vším hotoví,
-    pustíme Boostmail 2.0 u vás naostro — do 48 hodin.
+    pustíme Boostmail 2.0 u vás naostro, do 48 hodin.
   </p>
 
   <div class="how-panel" data-open="false" id="how-panel">
@@ -455,7 +456,7 @@
         <div class="how-step">
           <span class="how-step-num">01 · Kliknete na šablonu</span>
           <span class="how-step-title">Uvidíte, co klientovi přijde</span>
-          <span class="how-step-body">U každé šablony si můžete otevřít přesný náhled — tak jak to klient uvidí v e-mailu.</span>
+          <span class="how-step-body">U každé šablony si můžete otevřít přesný náhled, tak jak to klient uvidí v e-mailu.</span>
         </div>
         <div class="how-step">
           <span class="how-step-num">02 · Napíšete krátký komentář</span>
@@ -464,7 +465,7 @@
         </div>
         <div class="how-step">
           <span class="how-step-num">03 · Potvrdíte přechod</span>
-          <span class="how-step-title">Jakmile máte všech 20 šablon</span>
+          <span class="how-step-title">Jakmile máte všech 21 šablon</span>
           <span class="how-step-body">Spustíme Boostmail 2.0 u vás do 48 hodin. Klienti to poznají jen na tom, že e-maily zní líp.</span>
         </div>
       </div>
@@ -479,7 +480,7 @@
     <span class="dot">·</span>
     <span><strong id="sum-commented">0</strong> s poznámkou</span>
     <span class="dot">·</span>
-    <span><strong id="sum-pending">20</strong> čeká</span>
+    <span><strong id="sum-pending">21</strong> čeká</span>
     <span class="dot">·</span>
     <span id="sum-last">Ještě žádná aktivita</span>
   </div>
@@ -517,7 +518,7 @@
     <div>
       <div class="finish-title">Skoro tam jsme</div>
       <div class="finish-body" id="finish-body">
-        Až budete mít všech <strong>20 šablon</strong> schválených, stiskněte tlačítko níže.
+        Až budete mít všech <strong>21 šablon</strong> schválených, stiskněte tlačítko níže.
         My pak během <strong>48 hodin</strong> přepneme Boostmail 2.0 u vás naostro
         a pošleme vám na e-mail shrnutí všech vašich poznámek.
       </div>
@@ -525,9 +526,9 @@
     <div>
       <button class="finish-cta" id="finish-btn" disabled>
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-        <span id="finish-cta-label">Schvalte prosím všech 20 šablon</span>
+        <span id="finish-cta-label">Schvalte prosím všech 21 šablon</span>
       </button>
-      <div class="finish-cta-sub" id="finish-sub">Chybí vám ještě 20 šablon</div>
+      <div class="finish-cta-sub" id="finish-sub">Chybí vám ještě 21 šablon</div>
     </div>
   </div>
 </section>
@@ -552,7 +553,7 @@
     <div class="modal-foot">
       <div class="modal-foot-info">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
-        Náhled s vašimi daty — <span id="modal-brand-ref">Barbershop Holešovice</span>
+        Náhled s vašimi daty,<span id="modal-brand-ref">Barbershop Holešovice</span>
       </div>
       <div class="modal-foot-actions">
         <button class="btn-ghost" id="modal-comment-btn">
@@ -574,7 +575,7 @@
     <div class="confirm-title">Potvrdit přechod na Boostmail 2.0</div>
     <div class="confirm-body">
       Děkujeme za projití všech šablon. Kliknutím níže nám dáte <strong>zelenou</strong> k přepnutí vašeho studia na novou verzi.
-      Než to uděláme, přečteme si všechny vaše poznámky a případné úpravy doladíme — do 48 hodin vám pošleme potvrzení,
+      Než to uděláme, přečteme si všechny vaše poznámky a případné úpravy doladíme, do 48 hodin vám pošleme potvrzení,
       že jsme naživo.
     </div>
     <div class="confirm-summary" id="confirm-summary"><!-- summary --></div>
@@ -625,10 +626,10 @@ const CATEGORIES = [
     desc: 'Reakce na zrušení, přesun a snahu zaplnit volná okna',
     flows: ['cancel', 'free_slots', 'last_minute_progressive'] },
   { id: 'postcare',     num: '03', label: 'Po návštěvě',
-    desc: 'Jemná série po stříhání — ověření, doporučení, upsell',
+    desc: 'Jemná série po stříhání, ověření, doporučení, upsell',
     flows: ['post_care'] },
   { id: 'reactivation', num: '04', label: 'Reaktivace',
-    desc: 'Klienti, co u vás chvíli nebyli — než o ně přijdete',
+    desc: 'Klienti, co u vás chvíli nebyli, než o ně přijdete',
     flows: ['reactivation', 'win_back_final'] },
   { id: 'referral',     num: '05', label: 'Doporučení',
     desc: 'Připomínka pravidelné péče a odměna za přivedené kamarády',
@@ -641,7 +642,7 @@ const CATEGORIES = [
     flows: ['popup'] }
 ];
 
-// The 12 flows — rich descriptions + per-flow metadata
+// The 12 flows, rich descriptions + per-flow metadata
 const FLOWS = {
   welcome: {
     title: 'Vítám tě u nás',
@@ -650,7 +651,7 @@ const FLOWS = {
     transactional: true,
     v2Change: null,
     desc: {
-      kdy: 'Hned potom, co si u vás poprvé v životě někdo zarezervuje termín — přes web, Reservio nebo telefon.',
+      kdy: 'Hned potom, co si u vás poprvé v životě někdo zarezervuje termín, přes web, Reservio nebo telefon.',
       koho: 'Úplně nový klient. V databázi u vás ještě není, ale právě si vytvořil první rezervaci.',
       priklad: 'Tomáš Novák si ve středu večer zarezervoval termín na sobotu u Petra Jaroše. Do hodiny od rezervace mu přijde uvítací e-mail.',
       cil: 'Dát první dobrý dojem, potvrdit termín lidsky a snížit šanci, že nepřijde.',
@@ -664,19 +665,19 @@ const FLOWS = {
     v2Change: null,
     desc: {
       kdy: 'Když se po delší pauze (obvykle 8+ měsíců) ozve klient, kterého už v databázi máte.',
-      koho: 'Starý klient, který byl aspoň jednou — ale dlouho ne. Teď se vrátil.',
+      koho: 'Starý klient, který byl aspoň jednou, ale dlouho ne. Teď se vrátil.',
       priklad: 'Martin Král byl u vás naposledy v srpnu. Teď v dubnu se znovu objednal přes web. Systém ho pozná a pošle osobní uvítání.',
-      cil: 'Dát najevo, že si ho pamatujete a že je vítán zpátky — bez zbytečné formality.',
+      cil: 'Dát najevo, že si ho pamatujete a že je vítán zpátky, bez zbytečné formality.',
     }
   },
   cancel: {
     title: 'Zrušený nebo přesunutý termín',
     kind: 'cancel',
-    oneLiner: 'Reakce na zrušení/přesun — lidsky, bez dotěrnosti.',
+    oneLiner: 'Reakce na zrušení/přesun, lidsky, bez dotěrnosti.',
     transactional: true,
-    v2Change: 'Sloučili jsme dřív oddělené flows pro zrušení a přesun do jednoho — systém automaticky pozná, co se stalo, a pošle odpovídající variantu.',
+    v2Change: 'Sloučili jsme dřív oddělené flows pro zrušení a přesun do jednoho, systém automaticky pozná, co se stalo, a pošle odpovídající variantu.',
     desc: {
-      kdy: 'Jakmile klient zruší nebo přesune svou rezervaci — přes web, v Reserviu nebo zavoláním.',
+      kdy: 'Jakmile klient zruší nebo přesune svou rezervaci, přes web, v Reserviu nebo zavoláním.',
       koho: 'Kdokoli, kdo měl termín a rozhodl se ho neudělat nebo posunout.',
       priklad: 'Karel Svoboda přesunul termín ze středy na pátek → přijde potvrzení s novým datem. Adéla Procházková zrušila úplně → přijde krátké "rozumíme, kdyžtak se ozvěte" bez tlaku.',
       cil: 'Ušetřit klientovi trapnost a dát mu signál, že se rádi uvidíme, až to půjde.',
@@ -687,11 +688,11 @@ const FLOWS = {
     kind: 'free_slots',
     oneLiner: 'Nabídka volných termínů v nejbližších dnech.',
     transactional: false,
-    v2Change: 'Nově — tenhle flow je v 2.0 celý nový. Sám se spustí, když máte v kalendáři volno, které stojí za to vyplnit.',
+    v2Change: 'Nově, tenhle flow je v 2.0 celý nový. Sám se spustí, když máte v kalendáři volno, které stojí za to vyplnit.',
     desc: {
       kdy: 'Systém sleduje váš kalendář. Když vidí, že máte v nejbližších 3–7 dnech volno a méně rezervací než obvykle, sám osloví vybrané klienty.',
       koho: 'Pravidelní klienti, kterým obvykle vyhovuje podobný čas a den jako ten volný termín.',
-      priklad: 'Ve čtvrtek odpoledne je 3× prázdno. Systém vidí, že Pavel Horáček, Honza Dvořák a Radim Pokorný obvykle chodí ve čtvrtek odpoledne — pošle jim nabídku.',
+      priklad: 'Ve čtvrtek odpoledne je 3× prázdno. Systém vidí, že Pavel Horáček, Honza Dvořák a Radim Pokorný obvykle chodí ve čtvrtek odpoledne, pošle jim nabídku.',
       cil: 'Zaplnit rozumně okna v kalendáři, aniž by to vypadalo jako hromadný spam.',
     }
   },
@@ -700,10 +701,10 @@ const FLOWS = {
     kind: 'last_minute_progressive',
     oneLiner: 'Rychlá záchrana termínu, který byl zrušen na poslední chvíli.',
     transactional: false,
-    v2Change: 'Nové dvoustupňové rozesílání — první vlna jde aktivním klientům, druhá (o hodinu později) širšímu kruhu, pokud se nikdo neozve.',
+    v2Change: 'Nové dvoustupňové rozesílání, první vlna jde aktivním klientům, druhá (o hodinu později) širšímu kruhu, pokud se nikdo neozve.',
     desc: {
       kdy: 'Když vám dnes nebo zítra někdo zruší termín a zbývá málo času. Systém reaguje během pár minut.',
-      koho: 'Klienti, kteří obvykle reagují rychle na nabídky — typicky aktivní pravidelníci.',
+      koho: 'Klienti, kteří obvykle reagují rychle na nabídky, typicky aktivní pravidelníci.',
       priklad: 'Ve 13:00 vám zruší termín na 15:30. V 13:05 jde last-minute nabídka Petrovi, Martinovi a Lukášovi. Pokud se do 14:00 nikdo neozve, rozešle to dalším 5 klientům.',
       cil: 'Zachránit příjmy z díry v kalendáři, která by jinak zůstala prázdná.',
     }
@@ -713,7 +714,7 @@ const FLOWS = {
     kind: 'post_care',
     oneLiner: 'Série 4 krátkých zpráv: jak sedí střih, hodnocení, doporučení, příští návštěva.',
     transactional: false,
-    v2Change: 'Celá série dostala jemnější tón — méně „ohodnoťte nás na 5★!", více „tak jak to sedí?". Frekvence zůstává stejná.',
+    v2Change: 'Celá série dostala jemnější tón, méně „ohodnoťte nás na 5★!", více „tak jak to sedí?". Frekvence zůstává stejná.',
     desc: {
       kdy: 'Po každé ukončené návštěvě. První zpráva den po, další v rozmezí 2–7 dní. Max jedna série na návštěvu.',
       koho: 'Klient, který byl právě ostříhaný. Nezáleží, jestli poprvé nebo popadesáté.',
@@ -726,7 +727,7 @@ const FLOWS = {
     kind: 'reactivation',
     oneLiner: 'Jemná připomínka klientům, co u vás nebyli 120+ dní.',
     transactional: false,
-    v2Change: 'Dřív se posílalo po 90 dnech, v 2.0 čeká systém na 120 — u barbershopů se ukázalo, že 90 je moc agresivní.',
+    v2Change: 'Dřív se posílalo po 90 dnech, v 2.0 čeká systém na 120, u barbershopů se ukázalo, že 90 je moc agresivní.',
     desc: {
       kdy: 'Když klient, který chodil pravidelně, u vás nebyl už 120–140 dní a nejsou po něm žádné plánované rezervace.',
       koho: 'Dřív pravidelný klient, který náhle přestal chodit. Ještě to není ztracená věc.',
@@ -739,11 +740,11 @@ const FLOWS = {
     kind: 'win_back_final',
     oneLiner: 'Krajní win-back s konkrétní pobídkou pro klienty, co už dvakrát neodpověděli.',
     transactional: false,
-    v2Change: 'Nové v 2.0. Dosud jsme po 2 neúspěšných reaktivacích nechali klienta být — teď přijde ještě jeden poslední e-mail.',
+    v2Change: 'Nové v 2.0. Dosud jsme po 2 neúspěšných reaktivacích nechali klienta být, teď přijde ještě jeden poslední e-mail.',
     desc: {
       kdy: 'Klient nepřišel 140–180 dní, proběhl mu už minimálně 2× reaktivační e-mail a žádný z nich neotevřel nebo neodpověděl.',
-      koho: 'Téměř ztracený klient. „Jemné" připomínání na něj nezabralo — tohle je poslední pokus.',
-      priklad: 'Lukáš Němec byl naposled v listopadu. Dostal v únoru a březnu reaktivaci, oba nic. V dubnu přijde „chybíš nám — tady je sleva 20 % na další návštěvu".',
+      koho: 'Téměř ztracený klient. „Jemné" připomínání na něj nezabralo, tohle je poslední pokus.',
+      priklad: 'Lukáš Němec byl naposled v listopadu. Dostal v únoru a březnu reaktivaci, oba nic. V dubnu přijde „chybíš nám, tady je sleva 20 % na další návštěvu".',
       cil: 'Poslední rozumný pokus ho vrátit. Pokud ani tohle nezabere, systém ho přestane oslovovat.',
     }
   },
@@ -755,22 +756,22 @@ const FLOWS = {
     v2Change: null,
     desc: {
       kdy: 'Pár dní předtím, než by měl klient podle svého rytmu obvykle znovu přijít. Systém zná průměr návštěv každého.',
-      koho: 'Klienti s pravidelným rytmem (regular_cut) i ti s nepravidelným (irregular_cut) — každý dostane jinou variantu.',
-      priklad: 'Petr Navrátil chodí průměrně každých 28 dní. Den 25 po poslední návštěvě mu přijde „hele, za pár dní budeš potřebovat — rezervuj si?".',
-      cil: 'Udržet rytmus — klient si jinak zapomene a odchytí ho konkurence.',
+      koho: 'Klienti s pravidelným rytmem (regular_cut) i ti s nepravidelným (irregular_cut), každý dostane jinou variantu.',
+      priklad: 'Petr Navrátil chodí průměrně každých 28 dní. Den 25 po poslední návštěvě mu přijde „hele, za pár dní budeš potřebovat, rezervuj si?".',
+      cil: 'Udržet rytmus, klient si jinak zapomene a odchytí ho konkurence.',
     }
   },
   referral: {
     title: 'Přiveď kamaráda',
     kind: 'referral',
-    oneLiner: 'Odměna za přivedení nového klienta — pro obě strany.',
+    oneLiner: 'Odměna za přivedení nového klienta, pro obě strany.',
     transactional: false,
     v2Change: 'Nové v 2.0. Kód dostane spokojený pravidelný klient, a když jeho kamarád přijde, oba dostanou slevu na další návštěvu.',
     desc: {
       kdy: 'Klient u vás byl už minimálně 2× a otevřel poslední post-care e-mail. Pošle se jen 1× za život klienta.',
-      koho: 'Spokojení pravidelní klienti — ti nejlepší ambasadoři.',
+      koho: 'Spokojení pravidelní klienti, ti nejlepší ambasadoři.',
       priklad: 'Michal Krejčí byl už 4×, otevřel 3 z posledních 4 e-mailů. Dostane „pošli kámošovi kód na 100 Kč slevu, dostaneš taky 100 Kč". Po úspěchu obě strany dostanou poděkování.',
-      cil: 'Noví klienti přes existující — nejlevnější akvizice, jakou máte.',
+      cil: 'Noví klienti přes existující, nejlevnější akvizice, jakou máte.',
     }
   },
   name_day: {
@@ -782,8 +783,8 @@ const FLOWS = {
     desc: {
       kdy: 'Den před klientovým svátkem podle českého kalendáře jmen. Max 1× za 300 dní (aby se to netrefilo znovu u někoho jiného se stejným jménem příští rok a navíc).',
       koho: 'Klienti, u kterých systém zná křestní jméno a jméno je v českém kalendáři.',
-      priklad: 'Martin má svátek 11. 11. — 10. 11. dostane krátkou „zítra máš svátek, přejeme pohodovej den".',
-      cil: 'Nečekaný osobní moment — nic neprodává, jen připomíná, že jste lidé. Klienti si to pamatují.',
+      priklad: 'Martin má svátek 11. 11.,10. 11. dostane krátkou „zítra máš svátek, přejeme pohodovej den".',
+      cil: 'Nečekaný osobní moment, nic neprodává, jen připomíná, že jste lidé. Klienti si to pamatují.',
     }
   },
   popup: {
@@ -794,52 +795,52 @@ const FLOWS = {
     v2Change: null,
     desc: {
       kdy: 'Návštěvník webu vyplní pop-up (nevkládá rezervaci, jen e-mail). Automaticky mu přijde uvítací zpráva podle vašeho nastavení.',
-      koho: 'Zatím úplně neznámý člověk z webu — ještě klient není.',
+      koho: 'Zatím úplně neznámý člověk z webu, ještě klient není.',
       priklad: 'Karolína poprvé navštívila váš web, vyplnila e-mail. Podle nastavení dostane buď slevový kód 100 Kč na první návštěvu, nebo jen přátelské uvítání bez kódu.',
       cil: 'Převést anonymního návštěvníka webu na první rezervaci co nejdřív.',
     }
   }
 };
 
-// Templates — each rendered email variant
+// Templates, each rendered email variant
 const TEMPLATES = [
-  // — WELCOME —
+  // WELCOME
   { id: 'welcome_first_time', flow: 'welcome', order: 1,
     status: 'updated',
     subject: 'Vítej v klubu, Tome',
     opening: 'Ahoj Tome, chtěl jsem tě jen krátce přivítat. Těším se na sobotu',
     preheader: 'Jen pár vět k tvé první návštěvě u nás.',
-    sender: 'Petr — Barbershop Holešovice',
+    sender: 'Petr · Barbershop Holešovice',
     tags: ['customer_name_vocative', 'booking_date', 'barber_name'],
     body: `<h1>Vítej v klubu, Tome</h1>
-<p>chtěl jsem tě jen krátce přivítat. Když si někdo zarezervuje termín poprvé, vždycky si říkám — fajn, další novej parťák.</p>
+<p>chtěl jsem tě jen krátce přivítat. Když si někdo zarezervuje termín poprvé, vždycky si říkám, fajn, další novej parťák.</p>
 <p>Tvůj termín máme zapsanej na <strong>sobotu 20. 4. v 14:30</strong>, u mě (Petra). Pokud by se ti cokoliv nehodilo nebo bys potřeboval posunout, stačí odpovědět na tenhle e-mail.</p>
-<p>A kdyby tě zajímalo, na co se máš těšit — klasika u nás je kafe, půl hodiny v klidu, a hlavně poctivej střih.</p>
+<p>A kdyby tě zajímalo, na co se máš těšit, klasika u nás je kafe, půl hodiny v klidu, a hlavně poctivej střih.</p>
 <a href="#" class="email-preview-cta">Mám rezervaci v kalendáři</a>
-<div class="email-preview-sig">Těším se, <br><strong>Petr</strong> — Barbershop Holešovice</div>`
+<div class="email-preview-sig">Těším se, <br><strong>Petr</strong> · Barbershop Holešovice</div>`
   },
   { id: 'welcome_returning', flow: 'welcome_returning', order: 1,
     status: 'updated',
     subject: 'Rád tě zase vidím, Martine',
     opening: 'Díky, že ses ozval. Kdy ses u nás byl ostříhat posledně? Už to',
     preheader: 'Po delší pauze máme pár drobných změn.',
-    sender: 'Petr — Barbershop Holešovice',
+    sender: 'Petr · Barbershop Holešovice',
     tags: ['customer_name_vocative', 'last_visit_date', 'barber_name'],
     body: `<h1>Rád tě zase vidím, Martine</h1>
 <p>díky, že ses ozval. Kdy ses u nás byl ostříhat posledně? Už to bylo přes půl roku, tak jsem rád, že tě zase zahlídnu.</p>
-<p>Zarezervovanej máš <strong>termín na pátek 22. 4. ve 13:00</strong>. Mezitím se u nás pár věcí změnilo — máme novej pager na tužené a Jakub je teď na plný úvazek, kdyby sis ho chtěl zkusit.</p>
+<p>Zarezervovanej máš <strong>termín na pátek 22. 4. ve 13:00</strong>. Mezitím se u nás pár věcí změnilo, máme novej pager na tužené a Jakub je teď na plný úvazek, kdyby sis ho chtěl zkusit.</p>
 <p>Pokud potřebuješ cokoli posunout, stačí odpovědět na tenhle e-mail.</p>
 <a href="#" class="email-preview-cta">V pořádku, přijdu</a>
 <div class="email-preview-sig">Těším se, <br><strong>Petr</strong></div>`
   },
 
-  // — CANCEL / BOOKING —
+  // CANCEL / BOOKING
   { id: 'reschedule', flow: 'cancel', order: 1,
     status: 'updated',
     subject: 'Máš nový termín potvrzenej',
     opening: 'Ahoj Karle, přesun máme zapsanej. Nový termín je',
     preheader: 'Ve středu 17. 4. v 11:00, u Petra.',
-    sender: 'Petr — Barbershop Holešovice',
+    sender: 'Petr · Barbershop Holešovice',
     tags: ['customer_name_vocative', 'new_booking_date', 'old_booking_date'],
     body: `<h1>Přesun je potvrzený</h1>
 <p>Ahoj Karle, přesun máme zapsanej.</p>
@@ -852,26 +853,26 @@ const TEMPLATES = [
     status: 'updated',
     subject: 'Rozumíme, kdyžtak se ozvi',
     opening: 'Ahoj Adélo, všiml jsem si, že jsi zrušila termín na',
-    preheader: 'Bez tlaku — kdykoli budeš potřebovat, jsme tu.',
-    sender: 'Petr — Barbershop Holešovice',
+    preheader: 'Bez tlaku, kdykoli budeš potřebovat, jsme tu.',
+    sender: 'Petr · Barbershop Holešovice',
     tags: ['customer_name_vocative', 'cancelled_date'],
     body: `<h1>Rozumíme</h1>
-<p>Ahoj Adélo, všiml jsem si, že jsi zrušila termín na <strong>pátek 19. 4.</strong>. Žádnej stres — stane se, život je takovej.</p>
+<p>Ahoj Adélo, všiml jsem si, že jsi zrušila termín na <strong>pátek 19. 4.</strong>. Žádnej stres, stane se, život je takovej.</p>
 <p>Kdybys někdy v budoucnu chtěla nový termín, stačí odpovědět na tenhle e-mail nebo si vybrat online. Nebudeme tě zbytečně bombardovat.</p>
 <p>Přeju ti hezkej zbytek týdne.</p>
-<div class="email-preview-sig"><strong>Petr</strong> — Barbershop Holešovice</div>`
+<div class="email-preview-sig"><strong>Petr</strong> · Barbershop Holešovice</div>`
   },
 
-  // — FREE SLOTS —
+  // FREE SLOTS
   { id: 'free_slot_offer', flow: 'free_slots', order: 1,
     status: 'new',
     subject: 'Máme pár volných termínů tenhle týden',
     opening: 'Ahoj Pavle, mám pro tebe tři volný termíny do pátku',
     preheader: 'Dá se to stihnout, než se ti zase udělá nepořádek nahoře.',
-    sender: 'Petr — Barbershop Holešovice',
+    sender: 'Petr · Barbershop Holešovice',
     tags: ['customer_name_vocative', 'slot_1', 'slot_2', 'slot_3'],
     body: `<h1>Tenhle týden máme volno</h1>
-<p>Ahoj Pavle, mám pro tebe tři volný termíny do pátku — vyber si, co ti sedí:</p>
+<p>Ahoj Pavle, mám pro tebe tři volný termíny do pátku, vyber si, co ti sedí:</p>
 <p>
 • <strong>Středa 17. 4. · 14:30</strong><br>
 • <strong>Čtvrtek 18. 4. · 10:00</strong><br>
@@ -879,20 +880,20 @@ const TEMPLATES = [
 </p>
 <p>Stačí kliknout nebo odpovědět, který termín by sedl. Dá se to stihnout dřív, než se ti zase udělá nepořádek nahoře.</p>
 <a href="#" class="email-preview-cta">Rezervovat termín</a>
-<div class="email-preview-sig"><strong>Petr</strong> — Barbershop Holešovice</div>`
+<div class="email-preview-sig"><strong>Petr</strong> · Barbershop Holešovice</div>`
   },
 
-  // — LAST MINUTE —
+  // LAST MINUTE
   { id: 'last_minute', flow: 'last_minute_progressive', order: 1,
     status: 'updated',
     subject: 'Dneska v 15:30 se uvolnil termín',
-    opening: 'Ahoj Petře, někdo právě zrušil — máš 20 minut reakční',
+    opening: 'Ahoj Petře, někdo právě zrušil, máš 20 minut reakční',
     preheader: 'Jestli ti to vyjde, je tvůj.',
-    sender: 'Petr — Barbershop Holešovice',
+    sender: 'Petr · Barbershop Holešovice',
     tags: ['customer_name_vocative', 'slot_time', 'response_deadline'],
     body: `<h1>Dneska v 15:30 se uvolnil termín</h1>
 <p>Ahoj Petře, někdo právě zrušil a mně se uvolnil termín na <strong>dnes v 15:30</strong>.</p>
-<p>Posílám to nejdřív tobě — kdybys to chtěl vzít, stačí kliknout do <strong>15 minut</strong>. Pak to jde dál.</p>
+<p>Posílám to nejdřív tobě, kdybys to chtěl vzít, stačí kliknout do <strong>15 minut</strong>. Pak to jde dál.</p>
 <a href="#" class="email-preview-cta">Beru termín</a>
 <div class="email-preview-sig"><strong>Petr</strong></div>`
   },
@@ -901,7 +902,7 @@ const TEMPLATES = [
     subject: 'Zítra mám volno v 11:00',
     opening: 'Ahoj Honzo, zítra v jedenáct se uvolnil slot',
     preheader: 'Kdyby se to hodilo, dej vědět.',
-    sender: 'Petr — Barbershop Holešovice',
+    sender: 'Petr · Barbershop Holešovice',
     tags: ['customer_name_vocative', 'slot_time'],
     body: `<h1>Zítra mám volno v 11:00</h1>
 <p>Ahoj Honzo, zítra v jedenáct se mi uvolnil slot. Posílám to vybraným klientům napřed, takže jestli to chceš brát, jsi první v řadě.</p>
@@ -909,16 +910,16 @@ const TEMPLATES = [
 <div class="email-preview-sig"><strong>Petr</strong></div>`
   },
 
-  // — POST CARE (5 templates) —
+  // POST CARE (5 templates)
   { id: 'post_care_review_0', flow: 'post_care', order: 1,
     status: 'updated',
     subject: 'Jak sedí střih, Honzo?',
-    opening: 'Ahoj Honzo, už je to den a já zvědavej — jak ti',
-    preheader: 'Dva dny po návštěvě — krátký check.',
-    sender: 'Petr — Barbershop Holešovice',
+    opening: 'Ahoj Honzo, už je to den a já zvědavej, jak ti',
+    preheader: 'Dva dny po návštěvě, krátký check.',
+    sender: 'Petr · Barbershop Holešovice',
     tags: ['customer_name_vocative'],
     body: `<h1>Jak ti to sedí?</h1>
-<p>Ahoj Honzo, už je to den a já zvědavej — jak ti to sedí, když si s tím ráno hraješ?</p>
+<p>Ahoj Honzo, už je to den a já zvědavej, jak ti to sedí, když si s tím ráno hraješ?</p>
 <p>Kdyby něco nedrželo nebo ti něco nesedí, <strong>napiš mi</strong>, zkusíme to vychytat příště (nebo tě vezmu na rychlou korekci).</p>
 <div class="email-preview-sig"><strong>Petr</strong></div>`
   },
@@ -927,7 +928,7 @@ const TEMPLATES = [
     subject: 'Dal bys nám Google hodnocení?',
     opening: 'Ahoj Honzo, pokud jsi byl spokojenej, budeme rádi',
     preheader: '30 vteřin práce a hrozně nám to pomůže.',
-    sender: 'Petr — Barbershop Holešovice',
+    sender: 'Petr · Barbershop Holešovice',
     tags: ['customer_name_vocative', 'google_review_link'],
     body: `<h1>Pokud se ti to líbilo…</h1>
 <p>Ahoj Honzo, pokud jsi byl spokojenej, budeme rádi, když nám hodíš hvězdičky na Google. Jsme malý studio a každý review nám pomáhá.</p>
@@ -940,81 +941,81 @@ const TEMPLATES = [
     subject: 'Máš tip na kamaráda?',
     opening: 'Ahoj Honzo, znáš někoho, komu by se hodilo',
     preheader: 'Když nás doporučíš, oba dostanete slevu.',
-    sender: 'Petr — Barbershop Holešovice',
+    sender: 'Petr · Barbershop Holešovice',
     tags: ['customer_name_vocative', 'referral_code'],
     body: `<h1>Znáš někoho, kdo potřebuje ostříhat?</h1>
 <p>Ahoj Honzo, znáš někoho, komu by se hodilo něco s tím svým bordelem nahoře udělat?</p>
-<p>Pošli mu tenhle kód: <strong>HONZA-100</strong>. Dostane 100 Kč slevu na první návštěvu — a ty dostaneš taky 100 Kč na příští střih.</p>
+<p>Pošli mu tenhle kód: <strong>HONZA-100</strong>. Dostane 100 Kč slevu na první návštěvu, a ty dostaneš taky 100 Kč na příští střih.</p>
 <a href="#" class="email-preview-cta">Sdílet kód</a>
 <div class="email-preview-sig"><strong>Petr</strong></div>`
   },
   { id: 'post_care_review_3', flow: 'post_care', order: 4,
     status: 'updated',
     subject: 'Ještě jedna drobnost',
-    opening: 'Ahoj Honzo, to je ode mě posledně — slibuju',
+    opening: 'Ahoj Honzo, to je ode mě posledně, slibuju',
     preheader: 'Malá závěrečná nabídka.',
-    sender: 'Petr — Barbershop Holešovice',
+    sender: 'Petr · Barbershop Holešovice',
     tags: ['customer_name_vocative'],
     body: `<h1>Poslední na týden, slibuju</h1>
-<p>Ahoj Honzo, to je ode mě posledně — slibuju. Jen jsem chtěl říct, že jestli tě napadne cokoli k poslední návštěvě, napiš. Otevřený tomu.</p>
+<p>Ahoj Honzo, to je ode mě posledně, slibuju. Jen jsem chtěl říct, že jestli tě napadne cokoli k poslední návštěvě, napiš. Otevřený tomu.</p>
 <p>Kdyby ses chtěl zase rovnou objednat, <a href="#">tady je kalendář</a>.</p>
 <div class="email-preview-sig">Díky, <br><strong>Petr</strong></div>`
   },
   { id: 'post_care_nextlevel', flow: 'post_care', order: 5,
     status: 'updated',
     subject: 'Co takhle zkusit něco novýho?',
-    opening: 'Ahoj Honzo, chodíš k nám na klasiku — co třeba',
-    preheader: 'Malý upsell — jen pokud by tě to bavilo.',
-    sender: 'Petr — Barbershop Holešovice',
+    opening: 'Ahoj Honzo, chodíš k nám na klasiku, co třeba',
+    preheader: 'Malý upsell, jen pokud by tě to bavilo.',
+    sender: 'Petr · Barbershop Holešovice',
     tags: ['customer_name_vocative', 'last_service'],
     body: `<h1>Zkusíme příště něco jiného?</h1>
-<p>Ahoj Honzo, chodíš k nám na klasiku a ta sedí — super. Ale napadlo mě: co třeba <strong>kontur plnovousu</strong> k tomu? Přidává to k účesu šmrnc a zabere to max dalších 15 minut.</p>
-<p>Pokud by tě to bavilo zkusit, dej vědět u příští rezervace nebo napiš — ukážu ti pár příkladů, ať víš, o čem mluvím.</p>
+<p>Ahoj Honzo, chodíš k nám na klasiku a ta sedí, super. Ale napadlo mě: co třeba <strong>kontur plnovousu</strong> k tomu? Přidává to k účesu šmrnc a zabere to max dalších 15 minut.</p>
+<p>Pokud by tě to bavilo zkusit, dej vědět u příští rezervace nebo napiš, ukážu ti pár příkladů, ať víš, o čem mluvím.</p>
 <div class="email-preview-sig"><strong>Petr</strong></div>`
   },
 
-  // — REACTIVATION —
+  // REACTIVATION
   { id: 'reactivation', flow: 'reactivation', order: 1,
     status: 'updated',
     subject: 'Dlouho jsme se neviděli, Tome',
     opening: 'Ahoj Tome, naposledy jsi u nás byl 15. prosince',
-    preheader: 'Už je to 130 dní — chybíš nám.',
-    sender: 'Petr — Barbershop Holešovice',
+    preheader: 'Už je to 130 dní, chybíš nám.',
+    sender: 'Petr · Barbershop Holešovice',
     tags: ['customer_name_vocative', 'last_visit_date', 'days_since'],
     body: `<h1>Dlouho jsme se neviděli</h1>
-<p>Ahoj Tome, naposledy jsi u nás byl <strong>15. prosince</strong> — to je už 130 dní. Chyběl jsi mi v kalendáři, tak se ozývám.</p>
-<p>Kdyby ses chtěl stavit, <a href="#">tady se dá zarezervovat</a> nebo stačí odpovědět na tenhle e-mail. Žádnej tlak — vím, že život se občas zamotá.</p>
+<p>Ahoj Tome, naposledy jsi u nás byl <strong>15. prosince</strong>, to je už 130 dní. Chyběl jsi mi v kalendáři, tak se ozývám.</p>
+<p>Kdyby ses chtěl stavit, <a href="#">tady se dá zarezervovat</a> nebo stačí odpovědět na tenhle e-mail. Žádnej tlak, vím, že život se občas zamotá.</p>
 <a href="#" class="email-preview-cta">Zarezervovat termín</a>
 <div class="email-preview-sig"><strong>Petr</strong></div>`
   },
 
-  // — WIN-BACK FINAL —
+  // WIN-BACK FINAL
   { id: 'win_back_final', flow: 'win_back_final', order: 1,
     status: 'new',
     subject: 'Chybíš nám, Lukáši. Máme pro tebe slevu',
     opening: 'Ahoj Lukáši, vím, že jsem ti už párkrát psal',
-    preheader: 'Poslední pokus — pak už přestaneme.',
-    sender: 'Petr — Barbershop Holešovice',
+    preheader: 'Poslední pokus, pak už přestaneme.',
+    sender: 'Petr · Barbershop Holešovice',
     tags: ['customer_name_vocative', 'discount_percent', 'valid_until'],
     body: `<h1>Poslední pokus, Lukáši</h1>
-<p>Ahoj Lukáši, vím, že jsem ti už párkrát psal. Tohle bude poslední e-mail ode mě — slibuju.</p>
+<p>Ahoj Lukáši, vím, že jsem ti už párkrát psal. Tohle bude poslední e-mail ode mě, slibuju.</p>
 <p>Kdyby ses chtěl někdy vrátit, mám pro tebe <strong>slevu 20 % na další návštěvu</strong>. Platí do konce května. Kód: <strong>VRAT-SE</strong>.</p>
-<p>Pokud ti nic neřekne, nic se neděje — nebudeme ti už psát. Přeju ti všechno dobrý.</p>
+<p>Pokud ti nic neřekne, nic se neděje, nebudeme ti už psát. Přeju ti všechno dobrý.</p>
 <a href="#" class="email-preview-cta">Použít kód VRAT-SE</a>
 <div class="email-preview-sig"><strong>Petr</strong></div>`
   },
 
-  // — RECOMMEND (regular_cut / irregular_cut) —
+  // RECOMMEND (regular_cut / irregular_cut)
   { id: 'regular_cut', flow: 'recommend', order: 1,
     status: 'updated',
     subject: 'Pár dní a je čas, Petře',
     opening: 'Ahoj Petře, chodíš k nám zhruba každých 28 dní',
     preheader: 'Rezervuj si termín než ti to uteče.',
-    sender: 'Petr — Barbershop Holešovice',
+    sender: 'Petr · Barbershop Holešovice',
     tags: ['customer_name_vocative', 'avg_interval_days', 'next_suggested_slot'],
     body: `<h1>Je čas na další střih</h1>
 <p>Ahoj Petře, chodíš k nám zhruba <strong>každých 28 dní</strong> a teď bude 25. den. Takže kdybys chtěl držet rytmus, hodí se zarezervovat.</p>
-<p>Mám pro tebe <a href="#">pár volných termínů</a> na příští týden — vyber si, co sedí.</p>
+<p>Mám pro tebe <a href="#">pár volných termínů</a> na příští týden, vyber si, co sedí.</p>
 <a href="#" class="email-preview-cta">Zarezervovat</a>
 <div class="email-preview-sig"><strong>Petr</strong></div>`
   },
@@ -1022,26 +1023,26 @@ const TEMPLATES = [
     status: 'updated',
     subject: 'Co takhle se zase ukázat?',
     opening: 'Ahoj Radime, vím, že nemáš úplně pravidelný rytmus',
-    preheader: 'Bez tlaku — jen připomínka, kdyby se hodilo.',
-    sender: 'Petr — Barbershop Holešovice',
+    preheader: 'Bez tlaku, jen připomínka, kdyby se hodilo.',
+    sender: 'Petr · Barbershop Holešovice',
     tags: ['customer_name_vocative', 'days_since_last'],
     body: `<h1>Ukázal bys se zas?</h1>
 <p>Ahoj Radime, vím, že nemáš úplně pravidelný rytmus (což je v pohodě). Od poslední návštěvy uběhlo <strong>46 dní</strong>, tak kdyby tě napadlo zase se zastavit, tady je <a href="#">kalendář</a>.</p>
-<p>Žádnej tlak — kdykoli to bude sedět.</p>
+<p>Žádnej tlak, kdykoli to bude sedět.</p>
 <div class="email-preview-sig"><strong>Petr</strong></div>`
   },
 
-  // — REFERRAL —
+  // REFERRAL
   { id: 'referral_invite', flow: 'referral', order: 1,
     status: 'new',
     subject: 'Pošli kamarádovi 100 Kč, dostaneš taky',
     opening: 'Ahoj Michale, chodíš k nám už nějakou dobu',
     preheader: 'Za každého nového klienta od tebe oba dostanete slevu.',
-    sender: 'Petr — Barbershop Holešovice',
+    sender: 'Petr · Barbershop Holešovice',
     tags: ['customer_name_vocative', 'referral_code', 'visit_count'],
     body: `<h1>Pošli kámošovi slevu</h1>
-<p>Ahoj Michale, chodíš k nám už <strong>4×</strong> a sedí ti to — fajn. Tak jsme si řekli, že když nám přivedeš kamaráda, dáme za to něco vám oběma.</p>
-<p>Pošli mu tenhle kód: <strong>MICHAL-100</strong>. Ten dostane <strong>100 Kč slevu</strong> na první návštěvu — a ty dostaneš taky <strong>100 Kč</strong> na příští střih.</p>
+<p>Ahoj Michale, chodíš k nám už <strong>4×</strong> a sedí ti to, fajn. Tak jsme si řekli, že když nám přivedeš kamaráda, dáme za to něco vám oběma.</p>
+<p>Pošli mu tenhle kód: <strong>MICHAL-100</strong>. Ten dostane <strong>100 Kč slevu</strong> na první návštěvu, a ty dostaneš taky <strong>100 Kč</strong> na příští střih.</p>
 <p>Kód dostaneš jen jednou, tak ho dej někomu, o kom víš, že ti za to poděkuje.</p>
 <a href="#" class="email-preview-cta">Sdílet kód</a>
 <div class="email-preview-sig"><strong>Petr</strong></div>`
@@ -1051,7 +1052,7 @@ const TEMPLATES = [
     subject: 'Díky za Matěje! Tady je tvoje sleva',
     opening: 'Ahoj Michale, Matěj, kterýho jsi poslal, právě dorazil',
     preheader: 'Tvoje sleva 100 Kč je ready.',
-    sender: 'Petr — Barbershop Holešovice',
+    sender: 'Petr · Barbershop Holešovice',
     tags: ['customer_name_vocative', 'referred_name', 'discount_code'],
     body: `<h1>Díky, parťáku</h1>
 <p>Ahoj Michale, <strong>Matěj</strong>, kterýho jsi poslal, právě dorazil a odjel spokojenej. Jak jsem slíbil, <strong>100 Kč sleva</strong> na tvoji příští návštěvu čeká.</p>
@@ -1061,47 +1062,47 @@ const TEMPLATES = [
 <div class="email-preview-sig"><strong>Petr</strong></div>`
   },
 
-  // — NAME DAY —
+  // NAME DAY
   { id: 'name_day', flow: 'name_day', order: 1,
     status: 'new',
     subject: 'Zítra máš svátek, Martine! 🎉',
-    opening: 'Ahoj Martine, jen rychle — zítra je Martinův den',
+    opening: 'Ahoj Martine, jen rychle, zítra je Martinův den',
     preheader: 'Bez prodejního blábolu, fakt.',
-    sender: 'Petr — Barbershop Holešovice',
+    sender: 'Petr · Barbershop Holešovice',
     tags: ['customer_name_vocative', 'name_day_date'],
     body: `<h1>Zítra máš svátek 🎉</h1>
-<p>Ahoj Martine, jen rychle — zítra je <strong>Martinův den</strong>, tak jsme si řekli, že se ti ozveme. Měj pohodovej svátek, užij si ho.</p>
+<p>Ahoj Martine, jen rychle, zítra je <strong>Martinův den</strong>, tak jsme si řekli, že se ti ozveme. Měj pohodovej svátek, užij si ho.</p>
 <p>Žádná sleva, nic neprodáváme. Jen tady fandíme.</p>
 <div class="email-preview-sig"><strong>Petr</strong> & kluci z Holešovic</div>`
   },
 
-  // — POPUP (2 templates) —
+  // POPUP (2 templates)
   { id: 'popup_promocode', flow: 'popup', order: 1,
     status: 'updated',
-    subject: 'Tady máš slevu 100 Kč — na první návštěvu',
+    subject: 'Tady máš slevu 100 Kč, na první návštěvu',
     opening: 'Zdravíme, díky, že jsi nám nechal e-mail',
     preheader: 'Kód platí 30 dní.',
-    sender: 'Petr — Barbershop Holešovice',
+    sender: 'Petr · Barbershop Holešovice',
     tags: ['discount_code', 'valid_until'],
     body: `<h1>Tady je tvá sleva</h1>
 <p>Zdravíme, díky, že jsi nám nechal e-mail. Tady je slibovaný kód:</p>
 <p style="text-align:center;padding:16px;background:#F1F5F9;border-radius:8px;font-size:20px;font-weight:700"><strong>VITAJ-100</strong></p>
-<p>Uplatníš ho při první rezervaci — sleva <strong>100 Kč</strong>. Platí 30 dní.</p>
+<p>Uplatníš ho při první rezervaci, sleva <strong>100 Kč</strong>. Platí 30 dní.</p>
 <a href="#" class="email-preview-cta">Zarezervovat první návštěvu</a>
-<div class="email-preview-sig"><strong>Petr</strong> — Barbershop Holešovice</div>`
+<div class="email-preview-sig"><strong>Petr</strong> · Barbershop Holešovice</div>`
   },
   { id: 'popup_no_promocode', flow: 'popup', order: 2,
     status: 'updated',
     subject: 'Díky, že sis nás všiml',
     opening: 'Zdravíme, díky, že jsi nám nechal e-mail',
     preheader: 'Jestli někdy budeš chtít vyzkoušet.',
-    sender: 'Petr — Barbershop Holešovice',
+    sender: 'Petr · Barbershop Holešovice',
     tags: [],
     body: `<h1>Díky</h1>
 <p>Zdravíme, díky, že jsi nám nechal e-mail. Jsme barbershop v Holešovicích, otevřeno máme pondělí–sobota, a stříháme pánské účesy, vousy a občas i dětský mini-klienty.</p>
-<p>Kdybys měl někdy chuť vyzkoušet, <a href="#">tady je kalendář</a>. Nebudeme ti nic posílat často — jen občas shrnutí nebo volnej termín, když se hodí.</p>
+<p>Kdybys měl někdy chuť vyzkoušet, <a href="#">tady je kalendář</a>. Nebudeme ti nic posílat často, jen občas shrnutí nebo volnej termín, když se hodí.</p>
 <a href="#" class="email-preview-cta">Podívat se na termíny</a>
-<div class="email-preview-sig"><strong>Petr</strong> — Barbershop Holešovice</div>`
+<div class="email-preview-sig"><strong>Petr</strong> · Barbershop Holešovice</div>`
   }
 ];
 
@@ -1153,7 +1154,7 @@ function iconSpark() {
 }
 
 function templatesForFlow(flowKind) {
-  return TEMPLATES.filter(t => t.flow === flowKind).sort((a,b) => a.order - b.order);
+  return TEMPLATES.filter(t => t.flow === flowKind).sort((a, b) => a.order - b.order);
 }
 function totalTemplates() { return TEMPLATES.length; }
 
@@ -1328,11 +1329,11 @@ function renderTemplateCard(t) {
     <div class="tpl-comment">
       <div class="tpl-comment-inner">
         <div class="tpl-comment-label">
-          Poznámka pro nás <span class="req">(povinná pro schválení)</span>
+          Poznámka pro nás <span class="req-optional">(volitelná)</span>
         </div>
         <textarea
           data-comment-input="${t.id}"
-          placeholder="Cokoli, co chcete změnit — tón, formulaci, pořadí vět. Nebo zaškrtněte dole, že je vše v pořádku.">${s.comment || ''}</textarea>
+          placeholder="Cokoli, co chcete změnit, tón, formulaci, pořadí vět. Nebo klidně jen „takhle je to dobrý".">${s.comment || ''}</textarea>
         <div class="tpl-comment-opts">
           <label class="tpl-comment-check">
             <input type="checkbox" data-nochanges="${t.id}" ${s.noChanges ? 'checked':''}>
@@ -1342,7 +1343,8 @@ function renderTemplateCard(t) {
             <button class="tpl-action-btn ghost" data-clear-comment="${t.id}">Smazat</button>
             ${status === 'approved'
               ? `<button class="tpl-action-btn success" data-save-comment="${t.id}"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Uložit úpravu</button>`
-              : `<button class="tpl-action-btn primary" data-approve="${t.id}"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Uložit a schválit</button>`}
+              : `<button class="tpl-action-btn ghost" data-save-comment="${t.id}">Jen uložit poznámku</button>
+                 <button class="tpl-action-btn primary" data-approve="${t.id}"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Uložit a schválit</button>`}
           </div>
         </div>
       </div>
@@ -1362,23 +1364,6 @@ function approveTemplate(id) {
   const comment = textareaEl ? textareaEl.value.trim() : s.comment || '';
   const noChanges = nochangesEl ? nochangesEl.checked : s.noChanges;
 
-  if (!comment && !noChanges) {
-    // Open the comment drawer and focus textarea
-    const card = document.querySelector(`[data-tpl="${id}"]`);
-    if (card) card.setAttribute('data-comment-open', 'true');
-    if (textareaEl) {
-      textareaEl.focus();
-      textareaEl.style.borderColor = 'var(--danger-500)';
-      textareaEl.style.boxShadow = '0 0 0 3px rgba(239,68,68,.14)';
-      setTimeout(() => {
-        textareaEl.style.borderColor = '';
-        textareaEl.style.boxShadow = '';
-      }, 1600);
-    }
-    toast('Napište prosím jednu větu poznámky — nebo zaškrtněte „žádné úpravy, takhle je to dobrý"', 'info');
-    return;
-  }
-
   store.set(id, {
     status: 'approved',
     comment,
@@ -1387,7 +1372,10 @@ function approveTemplate(id) {
   });
   refreshTemplate(id);
   updateAllCounters();
-  toast(`Schváleno: ${t.subject}`, 'success');
+  const msg = comment
+    ? `Schváleno s poznámkou: ${t.subject}`
+    : `Schváleno: ${t.subject}`;
+  toast(msg, 'success');
 }
 
 function unapprove(id) {
@@ -1511,7 +1499,7 @@ function updateAllCounters() {
   // Last activity
   const latest = Object.values(store.data)
     .filter(s => s.approvedAt)
-    .sort((a,b) => b.approvedAt - a.approvedAt)[0];
+    .sort((a, b) => b.approvedAt - a.approvedAt)[0];
   document.getElementById('sum-last').textContent = latest
     ? `Poslední aktivita ${formatRelTime(latest.approvedAt)}`
     : 'Ještě žádná aktivita';
@@ -1822,7 +1810,7 @@ function init() {
   const firstFlow = document.querySelector('.flow-card');
   if (firstFlow) firstFlow.setAttribute('data-expanded', 'true');
 
-  // Keyboard shortcut: press R to reset (dev only — for testing flow)
+  // Keyboard shortcut: press R to reset (dev only, for testing flow)
   window.addEventListener('keydown', e => {
     if (e.key === 'r' && (e.metaKey || e.ctrlKey) && e.shiftKey) {
       e.preventDefault();
