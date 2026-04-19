@@ -410,14 +410,14 @@
 
   /* Per-org accent override */
   :root {
-    --ascent-500: #DD43A0;
-    --ascent-600: #DD43A0;
-    --ascent-700: #DD43A0;
-    --ascent-100: color-mix(in srgb, #DD43A0 18%, white);
-    --ascent-300: color-mix(in srgb, #DD43A0 55%, white);
+    --ascent-500: #8b35c4;
+    --ascent-600: #8b35c4;
+    --ascent-700: #8b35c4;
+    --ascent-100: color-mix(in srgb, #8b35c4 18%, white);
+    --ascent-300: color-mix(in srgb, #8b35c4 55%, white);
   }
   html[data-theme="dark"] :root {
-    --ascent-100: color-mix(in srgb, #DD43A0 22%, transparent);
+    --ascent-100: color-mix(in srgb, #8b35c4 22%, transparent);
   }
 </style>
 </head>
@@ -468,7 +468,7 @@
   </div>
   <h1 class="page-title">
     Nová verze <span class="accent">Boostmailu</span> <span class="serif-italic">je připravená.</span><br>
-    Mrkněte na to, než to pustíme klientům.
+    Mrkněte na to, než to pustíme zákazníkům.
   </h1>
   <p class="page-lede">
     Chystáme pro Vás <strong>novou verzi všech e-mailů</strong>, které Boostmail posílá. Přidali jsme několik nových situací
@@ -491,8 +491,8 @@
       <div class="how-inner">
         <div class="how-step">
           <span class="how-step-num">01 · Kliknete na šablonu</span>
-          <span class="how-step-title">Uvidíte, co klientovi přijde</span>
-          <span class="how-step-body">U každé šablony si můžete otevřít přesný náhled, tak jak to klient uvidí v e-mailu.</span>
+          <span class="how-step-title">Uvidíte, co zákazníkovi přijde</span>
+          <span class="how-step-body">U každé šablony si můžete otevřít přesný náhled, tak jak to zákazník uvidí v e-mailu.</span>
         </div>
         <div class="how-step">
           <span class="how-step-num">02 · Napíšete krátký komentář</span>
@@ -502,7 +502,7 @@
         <div class="how-step">
           <span class="how-step-num">03 · Potvrdíte přechod</span>
           <span class="how-step-title">Jakmile máte všech 21 šablon</span>
-          <span class="how-step-body">Spustíme Boostmail 2.0 u Vás do 48 hodin. Klienti to poznají jen na tom, že e-maily zní líp.</span>
+          <span class="how-step-body">Spustíme Boostmail 2.0 u Vás do 48 hodin. Zákazníci to poznají jen na tom, že e-maily zní líp.</span>
         </div>
       </div>
     </div>
@@ -534,7 +534,6 @@
 
 <!-- ═══════ CATEGORY NAV (desktop floating) ═══════ -->
 <nav class="catnav" id="catnav" aria-label="Přejít na kategorii">
-  <a class="catnav-item" href="#cat-icebreaker"><span class="ring" data-ring="icebreaker" style="--pct:0"></span>Oznámení</a>
   <a class="catnav-item" href="#cat-welcome"><span class="ring" data-ring="welcome" style="--pct:0"></span>Uvítací</a>
   <a class="catnav-item" href="#cat-booking"><span class="ring" data-ring="booking" style="--pct:0"></span>Rezervace</a>
   <a class="catnav-item" href="#cat-postcare"><span class="ring" data-ring="postcare" style="--pct:0"></span>Po návštěvě</a>
@@ -651,52 +650,35 @@ const orgFlows = {
   name_day:                  { enabled: false },
   referral:                  { enabled: false },
   win_back_final:            { enabled: false },
-  icebreaker:                { enabled: true },
 };
 
 // Categories (8 groups)
 const CATEGORIES = [
-  { id: 'icebreaker',   num: '01', label: 'Oznámení o spuštění',
-    desc: 'Jednorázová zpráva všem stávajícím klientům o přechodu na Boostmail 2.0',
-    flows: ['icebreaker'] },
-  { id: 'welcome',      num: '02', label: 'Uvítací zprávy',
-    desc: 'První dojem pro úplně nové i vracející se klienty',
+  { id: 'welcome',      num: '01', label: 'Uvítací zprávy',
+    desc: 'První dojem pro úplně nové i vracející se zákazníky',
     flows: ['welcome', 'welcome_returning'] },
-  { id: 'booking',      num: '03', label: 'Kolem rezervace',
+  { id: 'booking',      num: '02', label: 'Rezervace',
     desc: 'Reakce na zrušení, přesun a snahu zaplnit volná okna',
     flows: ['cancel', 'free_slots', 'last_minute_progressive'] },
-  { id: 'postcare',     num: '04', label: 'Po návštěvě',
+  { id: 'postcare',     num: '03', label: 'Po návštěvě',
     desc: 'Jemná série po stříhání, ověření, doporučení, upsell',
     flows: ['post_care'] },
-  { id: 'reactivation', num: '05', label: 'Reaktivace',
-    desc: 'Klienti, co u vás chvíli nebyli, než o ně přijdete',
+  { id: 'reactivation', num: '04', label: 'Reaktivace',
+    desc: 'Zákazníci, co u vás chvíli nebyli, než o ně přijdete',
     flows: ['reactivation', 'win_back_final'] },
-  { id: 'referral',     num: '06', label: 'Doporučení',
+  { id: 'referral',     num: '05', label: 'Doporučení',
     desc: 'Připomínka pravidelné péče a odměna za přivedené kamarády',
     flows: ['recommend', 'referral'] },
-  { id: 'personal',     num: '07', label: 'Osobní momenty',
+  { id: 'personal',     num: '06', label: 'Osobní momenty',
     desc: 'Chvíle, kdy má smysl se ozvat jen tak',
     flows: ['name_day'] },
-  { id: 'web',          num: '08', label: 'Z webu',
+  { id: 'web',          num: '07', label: 'Z webu (budeme brzy přidávat)',
     desc: 'První kontakt s návštěvníkem, co ještě nikdy nebyl',
     flows: ['popup'] }
 ];
 
 // Flow definitions
 const FLOWS = {
-  icebreaker: {
-    title: 'Oznámení o spuštění Boostmail 2.0',
-    kind: 'icebreaker',
-    oneLiner: 'Jednorázová zpráva všem aktivním klientům o novém systému.',
-    transactional: false,
-    v2Change: 'Nové v 2.0. Rozešle se jednou všem stávajícím klientům – oznámení o přechodu na nový komunikační systém a připomenutí, že u vás mají dveře otevřené.',
-    desc: {
-      kdy: 'Jednorázově – v den spuštění Boostmail 2.0 u vás v salonu.',
-      koho: 'Všichni stávající klienti v databázi, kteří mají platný souhlas se zasíláním e-mailů.',
-      priklad: 'V den přechodu dostanou všichni vaši klienti krátkou zprávu "spouštím nový systém, dál se uvidíme jako dřív". Žádný prodej, jen oznámení.',
-      cil: 'Transparentní přechod. Klient ví, že se nic zlého neděje, jen se mění nástroj v pozadí.',
-    }
-  },
   welcome: {
     title: 'Vítáme Vás u nás',
     kind: 'welcome',
@@ -704,21 +686,21 @@ const FLOWS = {
     transactional: true,
     v2Change: null,
     desc: {
-      kdy: 'Hned potom, co si u vás poprvé v životě někdo zarezervuje termín, přes web, Reservanto nebo telefon.',
-      koho: 'Úplně nový klient. V databázi u vás ještě není, ale právě si vytvořil první rezervaci.',
+      kdy: 'Hned potom, co si u vás poprvé v životě někdo zarezervuje termín, přes web, rezervační systém nebo telefon.',
+      koho: 'Úplně nový zákazník. V databázi u vás ještě není, ale právě si vytvořil první rezervaci.',
       priklad: 'Tomáš Novák si ve středu večer zarezervoval termín na sobotu. Do hodiny od rezervace mu přijde uvítací e-mail.',
       cil: 'Dát první dobrý dojem, potvrdit termín lidsky a snížit šanci, že nepřijde.',
     }
   },
   welcome_returning: {
-    title: 'Vrací se starý klient',
+    title: 'Vrací se starý zákazník',
     kind: 'welcome_returning',
-    oneLiner: 'Krátké uvítání pro klienta, kterého jste dlouho neviděli.',
+    oneLiner: 'Krátké uvítání pro zákazníka, kterého jste dlouho neviděli.',
     transactional: true,
     v2Change: null,
     desc: {
-      kdy: 'Když se po delší pauze (obvykle 8+ měsíců) ozve klient, kterého už v databázi máte.',
-      koho: 'Starý klient, který byl aspoň jednou, ale dlouho ne. Teď se vrátil.',
+      kdy: 'Když se po delší pauze (obvykle 8+ měsíců) ozve zákazník, kterého už v databázi máte.',
+      koho: 'Starý zákazník, který byl aspoň jednou, ale dlouho ne. Teď se vrátil.',
       priklad: 'Martin Král byl u vás naposledy v srpnu. Teď v dubnu se znovu objednal přes web. Systém ho pozná a pošle osobní uvítání.',
       cil: 'Dát najevo, že si ho pamatujete a že je vítán zpátky, bez zbytečné formality.',
     }
@@ -730,10 +712,10 @@ const FLOWS = {
     transactional: true,
     v2Change: 'Sloučili jsme dřív oddělené flows pro zrušení a přesun do jednoho, systém automaticky pozná, co se stalo, a pošle odpovídající variantu.',
     desc: {
-      kdy: 'Jakmile klient zruší nebo přesune svou rezervaci, přes web, v Reservantu nebo zavoláním.',
+      kdy: 'Jakmile zákazník zruší nebo přesune svou rezervaci, přes web, v rezervačním systému nebo zavoláním.',
       koho: 'Kdokoli, kdo měl termín a rozhodl se ho neudělat nebo posunout.',
       priklad: 'Karel Svoboda přesunul termín ze středy na pátek → přijde potvrzení s novým datem. Pan Novák zrušil úplně → přijde krátké „rozumíme, kdyžtak se ozvěte" bez tlaku.',
-      cil: 'Ušetřit klientovi trapnost a dát mu signál, že se rádi uvidíme, až to půjde.',
+      cil: 'Ušetřit zákazníkovi trapnost a dát mu signál, že se rádi uvidíme, až to půjde.',
     }
   },
   free_slots: {
@@ -743,8 +725,8 @@ const FLOWS = {
     transactional: false,
     v2Change: 'Nově, tenhle flow je v 2.0 celý nový. Sám se spustí, když máte v kalendáři volno, které stojí za to vyplnit.',
     desc: {
-      kdy: 'Systém sleduje váš kalendář. Když vidí, že máte v nejbližších 3–7 dnech volno a méně rezervací než obvykle, sám osloví vybrané klienty.',
-      koho: 'Pravidelní klienti, kterým obvykle vyhovuje podobný čas a den jako ten volný termín.',
+      kdy: 'Systém sleduje váš kalendář. Když vidí, že máte v nejbližších 3–7 dnech volno a méně rezervací než obvykle, sám osloví vybrané zákazníky.',
+      koho: 'Pravidelní zákazníci, kterým obvykle vyhovuje podobný čas a den jako ten volný termín.',
       priklad: 'Ve čtvrtek odpoledne je 3× prázdno. Systém vidí, že Pavel Horáček, Honza Dvořák a Radim Pokorný obvykle chodí ve čtvrtek odpoledne, pošle jim nabídku.',
       cil: 'Zaplnit rozumně okna v kalendáři, aniž by to vypadalo jako hromadný spam.',
     }
@@ -754,11 +736,11 @@ const FLOWS = {
     kind: 'last_minute_progressive',
     oneLiner: 'Rychlá záchrana termínu, který byl zrušen na poslední chvíli.',
     transactional: false,
-    v2Change: 'Nové dvoustupňové rozesílání, první vlna jde aktivním klientům, druhá (o hodinu později) širšímu kruhu, pokud se nikdo neozve.',
+    v2Change: 'Nové dvoustupňové rozesílání, první vlna jde aktivním zákazníkům, druhá (o hodinu později) širšímu kruhu, pokud se nikdo neozve.',
     desc: {
       kdy: 'Když vám dnes nebo zítra někdo zruší termín a zbývá málo času. Systém reaguje během pár minut.',
-      koho: 'Klienti, kteří obvykle reagují rychle na nabídky, typicky aktivní pravidelníci.',
-      priklad: 'Ve 13:00 vám zruší termín na 15:30. V 13:05 jde last-minute nabídka Lukášovi, Honzovi a Tomášovi. Pokud se do 14:00 nikdo neozve, rozešle to dalším 5 klientům.',
+      koho: 'Zákazníci, kteří obvykle reagují rychle na nabídky, typicky aktivní pravidelníci.',
+      priklad: 'Ve 13:00 vám zruší termín na 15:30. V 13:05 jde last-minute nabídka Lukášovi, Honzovi a Tomášovi. Pokud se do 14:00 nikdo neozve, rozešle to dalším 5 zákazníkům.',
       cil: 'Zachránit příjmy z díry v kalendáři, která by jinak zůstala prázdná.',
     }
   },
@@ -770,7 +752,7 @@ const FLOWS = {
     v2Change: 'Celá série dostala jemnější tón, méně „ohodnoťte nás na 5★!", více „tak jak to sedí?". Frekvence zůstává stejná.',
     desc: {
       kdy: 'Po každé ukončené návštěvě. První zpráva den po, další v rozmezí 2–7 dní. Max jedna série na návštěvu.',
-      koho: 'Klient, který byl právě ostříhaný. Nezáleží, jestli poprvé nebo popadesáté.',
+      koho: 'Zákazník, který byl právě ostříhaný. Nezáleží, jestli poprvé nebo popadesáté.',
       priklad: 'Honza Málek byl v pondělí v 15:00. V úterý dostane „Jak sedí střih?", ve čtvrtek „Jde to doporučit kámošovi?", v neděli „Zkusíme příště kontur plnovousu?".',
       cil: 'Zpětná vazba, recenze online, doporučení a někdy upsell na náročnější službu.',
     }
@@ -778,12 +760,12 @@ const FLOWS = {
   reactivation: {
     title: 'Dlouho jsme se neviděli',
     kind: 'reactivation',
-    oneLiner: 'Jemná připomínka klientům, co u vás nebyli 120+ dní.',
+    oneLiner: 'Jemná připomínka zákazníkům, co u vás nebyli 120+ dní.',
     transactional: false,
     v2Change: 'Dřív se posílalo po 90 dnech, v 2.0 čeká systém na 120, u barbershopů se ukázalo, že 90 je moc agresivní.',
     desc: {
-      kdy: 'Když klient, který chodil pravidelně, u vás nebyl už 120–140 dní a nejsou po něm žádné plánované rezervace.',
-      koho: 'Dřív pravidelný klient, který náhle přestal chodit. Ještě to není ztracená věc.',
+      kdy: 'Když zákazník, který chodil pravidelně, u vás nebyl už 120–140 dní a nejsou po něm žádné plánované rezervace.',
+      koho: 'Dřív pravidelný zákazník, který náhle přestal chodit. Ještě to není ztracená věc.',
       priklad: 'Tomáš Veselý chodil každé 3 týdny. Teď je to 130 dní od jeho poslední návštěvy a nemá další termín. Přijde mu osobní „dlouho jsme se neviděli".',
       cil: 'Připomenout se, než ho někdo jiný natrvalo získá. Ideálně vyvolat odpověď nebo rezervaci.',
     }
@@ -791,12 +773,12 @@ const FLOWS = {
   win_back_final: {
     title: 'Poslední pokus o návrat',
     kind: 'win_back_final',
-    oneLiner: 'Krajní win-back s konkrétní pobídkou pro klienty, co už dvakrát neodpověděli.',
+    oneLiner: 'Krajní win-back s konkrétní pobídkou pro zákazníky, co už dvakrát neodpověděli.',
     transactional: false,
-    v2Change: 'Nové v 2.0. Dosud jsme po 2 neúspěšných reaktivacích nechali klienta být, teď přijde ještě jeden poslední e-mail.',
+    v2Change: 'Nové v 2.0. Dosud jsme po 2 neúspěšných reaktivacích nechali zákazníka být, teď přijde ještě jeden poslední e-mail.',
     desc: {
-      kdy: 'Klient nepřišel 140–180 dní, proběhl mu už minimálně 2× reaktivační e-mail a žádný z nich neotevřel nebo neodpověděl.',
-      koho: 'Téměř ztracený klient. „Jemné" připomínání na něj nezabralo, tohle je poslední pokus.',
+      kdy: 'Zákazník nepřišel 140–180 dní, proběhl mu už minimálně 2× reaktivační e-mail a žádný z nich neotevřel nebo neodpověděl.',
+      koho: 'Téměř ztracený zákazník. „Jemné" připomínání na něj nezabralo, tohle je poslední pokus.',
       priklad: 'Lukáš Němec byl naposled v listopadu. Dostal v únoru a březnu reaktivaci, oba nic. V dubnu přijde „chybíte nám, tady je sleva 20 % na další návštěvu".',
       cil: 'Poslední rozumný pokus ho vrátit. Pokud ani tohle nezabere, systém ho přestane oslovovat.',
     }
@@ -808,23 +790,23 @@ const FLOWS = {
     transactional: false,
     v2Change: null,
     desc: {
-      kdy: 'Pár dní předtím, než by měl klient podle svého rytmu obvykle znovu přijít. Systém zná průměr návštěv každého.',
-      koho: 'Klienti s pravidelným rytmem (regular_cut) i ti s nepravidelným (irregular_cut), každý dostane jinou variantu.',
+      kdy: 'Pár dní předtím, než by měl zákazník podle svého rytmu obvykle znovu přijít. Systém zná průměr návštěv každého.',
+      koho: 'Zákazníci s pravidelným rytmem (regular_cut) i ti s nepravidelným (irregular_cut), každý dostane jinou variantu.',
       priklad: 'Tomáš Navrátil chodí průměrně každých 28 dní. Den 25 po poslední návštěvě mu přijde „hele, za pár dní budete potřebovat, rezervujete si?".',
-      cil: 'Udržet rytmus, klient si jinak zapomene a odchytí ho konkurence.',
+      cil: 'Udržet rytmus, zákazník si jinak zapomene a odchytí ho konkurence.',
     }
   },
   referral: {
     title: 'Přiveď kamaráda',
     kind: 'referral',
-    oneLiner: 'Odměna za přivedení nového klienta, pro obě strany.',
+    oneLiner: 'Odměna za přivedení nového zákazníka, pro obě strany.',
     transactional: false,
-    v2Change: 'Nové v 2.0. Kód dostane spokojený pravidelný klient, a když jeho kamarád přijde, oba dostanou slevu na další návštěvu.',
+    v2Change: 'Nové v 2.0. Kód dostane spokojený pravidelný zákazník, a když jeho kamarád přijde, oba dostanou slevu na další návštěvu.',
     desc: {
-      kdy: 'Klient u vás byl už minimálně 2× a otevřel poslední post-care e-mail. Pošle se jen 1× za život klienta.',
-      koho: 'Spokojení pravidelní klienti, ti nejlepší ambasadoři.',
+      kdy: 'Zákazník u vás byl už minimálně 2× a otevřel poslední post-care e-mail. Pošle se jen 1× za život zákazníka.',
+      koho: 'Spokojení pravidelní zákazníci, ti nejlepší ambasadoři.',
       priklad: 'Michal Krejčí byl už 4×, otevřel 3 z posledních 4 e-mailů. Dostane „pošlete kámošovi kód na slevu, dostanete taky slevu". Po úspěchu obě strany dostanou poděkování.',
-      cil: 'Noví klienti přes existující, nejlevnější akvizice, jakou máte.',
+      cil: 'Noví zákazníci přes existující, nejlevnější akvizice, jakou máte.',
     }
   },
   name_day: {
@@ -834,10 +816,10 @@ const FLOWS = {
     transactional: false,
     v2Change: 'Nové v 2.0. Systém sleduje český kalendář a u známého křestního jména pošle den před svátkem krátkou gratulaci.',
     desc: {
-      kdy: 'V den klientova svátku podle českého kalendáře jmen. Max 1× za 300 dní.',
-      koho: 'Klienti, u kterých systém zná křestní jméno a jméno je v českém kalendáři.',
+      kdy: 'V den zákazníkova svátku podle českého kalendáře jmen. Max 1× za 300 dní.',
+      koho: 'Zákazníci, u kterých systém zná křestní jméno a jméno je v českém kalendáři.',
       priklad: 'Radim má svátek 12. 10., v ten den dostane krátkou „dnes máš svátek, přejeme pohodový den".',
-      cil: 'Nečekaný osobní moment, nic neprodává, jen připomíná, že jste lidé. Klienti si to pamatují.',
+      cil: 'Nečekaný osobní moment, nic neprodává, jen připomíná, že jste lidé. Zákazníci si to pamatují.',
     }
   },
   popup: {
@@ -848,7 +830,7 @@ const FLOWS = {
     v2Change: null,
     desc: {
       kdy: 'Návštěvník webu vyplní pop-up (nevkládá rezervaci, jen e-mail). Automaticky mu přijde uvítací zpráva podle vašeho nastavení.',
-      koho: 'Zatím úplně neznámý člověk z webu, ještě klient není.',
+      koho: 'Zatím úplně neznámý člověk z webu, ještě zákazník není.',
       priklad: 'Karolína poprvé navštívila váš web, vyplnila e-mail. Podle nastavení dostane buď slevový kód na první návštěvu, nebo jen přátelské uvítání bez kódu.',
       cil: 'Převést anonymního návštěvníka webu na první rezervaci co nejdřív.',
     }
@@ -857,7 +839,6 @@ const FLOWS = {
 
 // Templates (21 real rendered emails)
 const TEMPLATES = [
-  { id: "icebreaker", flow: "icebreaker", order: 1, status: "new", subject: "{{replace_customer_name_vocative}}, mám pro tebe novinky", preheader: "Spouštíme nový komunikační systém u nás v MNB – mrkni na detaily.", sender: "Martin \u00b7 MNB Barbershop", tags: ["customer_name_vocative"] },
   { id: "welcome_first_time", flow: "welcome", order: 1, status: "updated", subject: "Vítej v rodině, tvá cesta za lepším stylem začíná!", preheader: "Exkluzivní péče v Teplících, Litoměřicích i Duchcově...", sender: "Martin \u00b7 MNB Barbershop", tags: ["customer_name_vocative", "barber_name"] },
   { id: "welcome_returning", flow: "welcome_returning", order: 1, status: "updated", subject: "Rád tě vidím zpátky v MNB", preheader: "Nečekaný návrat volá po dobrém střihu.", sender: "Martin \u00b7 MNB Barbershop", tags: ["customer_name_vocative"] },
   { id: "reschedule", flow: "cancel", order: 1, status: "updated", subject: "V pohodě máš to zrušené, vyber si náhradní termín", preheader: "Tvůj termín {{replace_cancelled_date}} jsem musel zrušit – mrkni na náhradní.", sender: "Martin \u00b7 MNB Barbershop", tags: ["customer_name_vocative", "cancelled_date"] },
