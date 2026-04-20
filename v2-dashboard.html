@@ -1,0 +1,1659 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#060b18">
+<title>Přehled · Boostmail</title>
+
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon.png?v=2">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512.png?v=2">
+<link rel="apple-touch-icon" href="/favicon.png?v=2">
+<link rel="shortcut icon" type="image/png" href="/favicon.png?v=2">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://api.fontshare.com">
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700,800,900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  /* ═══════ TOKENS ═══════ */
+  :root {
+    --ascent-100:#EAF2FF;--ascent-300:#9CC3FF;--ascent-500:#398FFF;--ascent-600:#2B7AE6;--ascent-700:#1E5EBF;
+    --slate-0:#FFFFFF;--slate-50:#F8FAFC;--slate-100:#F1F5F9;--slate-200:#E2E8F0;--slate-300:#CBD5E1;
+    --slate-400:#94A3B8;--slate-500:#64748B;--slate-600:#475569;--slate-700:#334155;--slate-800:#1E293B;
+    --slate-900:#0F172A;--slate-950:#060B18;
+    --success-100:#D1FAE5;--success-500:#10B981;--success-700:#047857;
+    --warning-100:#FEF3C7;--warning-500:#F59E0B;--warning-700:#B45309;
+    --danger-100:#FEE2E2;--danger-500:#EF4444;--danger-700:#B91C1C;
+    --r-sm:6px;--r-md:10px;--r-lg:14px;--r-xl:20px;
+    --shadow-xs:0 1px 2px rgba(15,23,42,.04);
+    --shadow-sm:0 2px 4px rgba(15,23,42,.06);
+    --shadow-md:0 4px 12px rgba(15,23,42,.08),0 1px 2px rgba(15,23,42,.04);
+    --shadow-lg:0 12px 32px rgba(15,23,42,.12),0 4px 8px rgba(15,23,42,.06);
+    --ease-out:cubic-bezier(.22,.8,.36,1);
+  }
+  html[data-theme="dark"] {
+    --slate-0:#0F172A;--slate-50:#060B18;--slate-100:#0F172A;--slate-200:#1E293B;--slate-300:#334155;
+    --slate-400:#475569;--slate-500:#64748B;--slate-600:#94A3B8;--slate-700:#CBD5E1;--slate-800:#E2E8F0;
+    --slate-900:#F1F5F9;--slate-950:#F8FAFC;
+    --shadow-xs:0 1px 2px rgba(0,0,0,.35);
+    --shadow-sm:0 2px 4px rgba(0,0,0,.5);
+    --shadow-md:0 4px 12px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.04);
+    --shadow-lg:0 12px 32px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.05);
+  }
+
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+  body{font-family:'Satoshi',system-ui,-apple-system,sans-serif;background:var(--slate-50);color:var(--slate-900);min-height:100vh;transition:background .28s var(--ease-out),color .28s var(--ease-out);}
+  button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit;}
+  a{color:inherit;text-decoration:none;}
+  .serif-italic{font-family:'Instrument Serif',Georgia,serif;font-style:italic;font-weight:400;letter-spacing:-.01em;}
+  .mono{font-family:'JetBrains Mono',monospace;}
+  .tabular{font-variant-numeric:tabular-nums;}
+
+  /* ═══════ APP HEADER (sticky wrapper for topbar + tabnav) ═══════ */
+  .app-header{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--slate-0) 85%,transparent);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--slate-200);transition:background-color .25s var(--ease-out),box-shadow .25s var(--ease-out),border-color .25s var(--ease-out);}
+  .app-header.scrolled{background:color-mix(in srgb,var(--slate-0) 96%,transparent);box-shadow:0 2px 8px rgba(0,0,0,.04);border-bottom-color:color-mix(in srgb,var(--slate-200) 90%,transparent);}
+  html[data-theme="dark"] .app-header.scrolled{background:color-mix(in srgb,var(--slate-0) 92%,transparent);box-shadow:0 2px 10px rgba(0,0,0,.25);}
+  #theme-toggle svg{transition:transform .35s cubic-bezier(.34,1.56,.64,1);}
+  #theme-toggle:hover svg{transform:rotate(20deg);}
+
+  /* ═══════ TOP BAR ═══════ */
+  .topbar{background:transparent;}
+  .topbar-inner{max-width:1200px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+  .wordmark{display:inline-flex;align-items:center;gap:8px;font-family:'Satoshi',sans-serif;font-size:19px;font-weight:800;letter-spacing:-.03em;color:var(--slate-900);user-select:none;}
+  .wordmark-dot{color:var(--ascent-500);}
+  .wordmark-ver{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:500;color:var(--slate-500);background:var(--slate-100);padding:2px 6px;border-radius:4px;letter-spacing:.02em;border:1px solid var(--slate-200);line-height:1;position:relative;top:-1px;}
+
+  .topbar-right{display:flex;align-items:center;gap:8px;}
+  .cmd-hint{display:inline-flex;align-items:center;gap:10px;padding:7px 10px 7px 12px;background:var(--slate-100);border:1px solid var(--slate-200);border-radius:var(--r-md);font-size:13px;color:var(--slate-500);transition:all .15s var(--ease-out);min-width:180px;}
+  .cmd-hint:hover{background:var(--slate-0);border-color:var(--slate-300);color:var(--slate-700);}
+  .cmd-hint kbd{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;background:var(--slate-0);border:1px solid var(--slate-200);padding:2px 5px;border-radius:4px;color:var(--slate-600);margin-left:auto;}
+
+  .icon-btn{position:relative;width:36px;height:36px;border-radius:var(--r-md);display:inline-flex;align-items:center;justify-content:center;color:var(--slate-500);transition:all .15s var(--ease-out);}
+  .icon-btn:hover{background:var(--slate-100);color:var(--slate-800);}
+  .notif-dot{position:absolute;top:7px;right:8px;width:7px;height:7px;border-radius:50%;background:var(--danger-500);border:2px solid var(--slate-0);}
+
+  .user-btn{display:inline-flex;align-items:center;gap:10px;padding:4px 10px 4px 4px;border-radius:999px;background:var(--slate-0);border:1px solid var(--slate-200);transition:all .15s var(--ease-out);}
+  .user-btn:hover{border-color:var(--slate-300);box-shadow:var(--shadow-xs);}
+  .avatar{width:28px;height:28px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:white;letter-spacing:.02em;background:linear-gradient(135deg,#398FFF 0%,#1E5EBF 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.2);}
+  .user-name{font-size:13px;font-weight:600;color:var(--slate-800);}
+  .user-chev{color:var(--slate-400);}
+
+  .menu{position:absolute;top:calc(100% + 8px);right:0;min-width:240px;background:var(--slate-0);border:1px solid var(--slate-200);border-radius:var(--r-lg);box-shadow:var(--shadow-lg);padding:6px;opacity:0;visibility:hidden;transform:translateY(-4px);transition:all .15s var(--ease-out);z-index:100;}
+  .menu.open{opacity:1;visibility:visible;transform:translateY(0);}
+  .menu-head{padding:10px 12px 8px;border-bottom:1px solid var(--slate-200);margin-bottom:4px;}
+  .menu-head-name{font-size:13px;font-weight:600;color:var(--slate-900);}
+  .menu-head-mail{font-size:12px;color:var(--slate-500);margin-top:2px;}
+  .menu a,.menu button{width:100%;display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;text-decoration:none;font-size:13px;color:var(--slate-700);transition:background .12s var(--ease-out);}
+  .menu a:hover,.menu button:hover{background:var(--slate-100);color:var(--slate-900);}
+  .menu svg{color:var(--slate-400);flex-shrink:0;}
+  .menu button:hover svg{color:var(--slate-700);}
+  .menu-sep{height:1px;background:var(--slate-200);margin:4px -6px;}
+  .menu-danger{color:var(--danger-500) !important;}
+  .menu-danger svg{color:var(--danger-500) !important;}
+  .menu-danger:hover{background:var(--danger-100) !important;}
+  html[data-theme="dark"] .menu-danger:hover{background:rgba(239,68,68,.12) !important;}
+  .rel{position:relative;}
+
+  /* ═══════ TAB NAV ═══════ */
+  .tabnav{background:transparent;border-top:1px solid color-mix(in srgb,var(--slate-200) 60%,transparent);}
+  .tabnav-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:6px;overflow-x:auto;scrollbar-width:none;position:relative;}
+  .tabnav-inner::-webkit-scrollbar{display:none;}
+  .tab-indicator{position:absolute;bottom:-1px;left:0;height:2px;background:var(--ascent-500);border-radius:2px 2px 0 0;width:0;transform:translateX(0);transition:transform .32s cubic-bezier(.4,0,.2,1),width .32s cubic-bezier(.4,0,.2,1);pointer-events:none;}
+  .tab{position:relative;display:inline-flex;align-items:center;gap:8px;padding:16px 14px 15px;font-size:13.5px;font-weight:500;color:var(--slate-500);white-space:nowrap;transition:color .15s var(--ease-out);border-bottom:2px solid transparent;margin-bottom:-1px;}
+  .tab:hover{color:var(--slate-800);}
+  .tab.active{color:var(--slate-900);font-weight:600;}
+  .tab svg{opacity:.7;}
+  .tab.active svg{opacity:1;color:var(--ascent-500);}
+  .tab-badge{font-size:10px;font-weight:600;padding:2px 6px;border-radius:999px;background:var(--slate-100);color:var(--slate-600);line-height:1;margin-left:2px;}
+  .tab.active .tab-badge{background:var(--ascent-100);color:var(--ascent-700);}
+  html[data-theme="dark"] .tab.active .tab-badge{background:rgba(57,143,255,.2);color:#9CC3FF;}
+
+  /* ═══════ ORGANIC (inside hero) ═══════ */
+  .hero-organic{margin-top:22px;padding-top:18px;border-top:1px dashed var(--slate-200);display:flex;align-items:center;justify-content:space-between;gap:20px;font-size:13px;color:var(--slate-500);flex-wrap:wrap;}
+  .hero-organic strong{color:var(--slate-700);font-weight:600;}
+  .hero-organic-right{color:var(--slate-700);font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap;}
+
+  /* ═══════ PAGE HEADER ═══════ */
+  .page-header{max-width:1200px;margin:0 auto;padding:28px 24px 20px;display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;position:relative;z-index:40;}
+  .page-title{font-size:26px;font-weight:700;letter-spacing:-.02em;color:var(--slate-900);}
+  .page-title .serif-italic{color:var(--slate-500);font-weight:400;margin-left:2px;}
+  .page-meta{font-size:13px;color:var(--slate-500);margin-top:6px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+  .page-meta .dot{color:var(--slate-300);}
+  .live-pill{display:inline-flex;align-items:center;gap:6px;padding:2px 8px 2px 6px;border-radius:999px;background:color-mix(in srgb,var(--success-500) 12%,transparent);color:var(--success-700);font-size:11px;font-weight:600;}
+  html[data-theme="dark"] .live-pill{color:#34D399;}
+  .live-dot{width:6px;height:6px;border-radius:50%;background:var(--success-500);animation:pulse 2.4s ease-in-out infinite;}
+  @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(16,185,129,.55);transform:scale(1);}50%{box-shadow:0 0 0 6px rgba(16,185,129,0);transform:scale(1.18);}}
+
+  /* ═══════ RANGE PICKER ═══════ */
+  .range-picker{position:relative;}
+  .range-trigger{display:inline-flex;align-items:center;gap:9px;padding:9px 12px 9px 13px;font-size:13px;font-weight:500;color:var(--slate-800);background:var(--slate-0);border:1px solid var(--slate-200);border-radius:var(--r-md);transition:all .18s var(--ease-out);font-variant-numeric:tabular-nums;box-shadow:0 1px 2px rgba(15,23,42,.04);}
+  .range-trigger:hover{border-color:var(--slate-300);box-shadow:0 1px 3px rgba(15,23,42,.08);}
+  .range-trigger[aria-expanded="true"]{border-color:var(--ascent-500);box-shadow:0 0 0 3px rgba(57,143,255,.14);}
+  .range-trigger .range-icon{color:var(--slate-500);flex-shrink:0;}
+  .range-trigger .range-chevron{color:var(--slate-400);transition:transform .18s var(--ease-out);margin-left:2px;}
+  .range-trigger[aria-expanded="true"] .range-chevron{transform:rotate(180deg);}
+  .range-popover{position:absolute;top:calc(100% + 8px);right:0;width:620px;background:var(--slate-0);border:1px solid var(--slate-200);border-radius:var(--r-lg);box-shadow:var(--shadow-lg),0 0 0 1px rgba(15,23,42,.02);z-index:90;display:grid;grid-template-columns:172px 1fr;grid-template-rows:1fr auto;grid-template-areas:"presets calendar" "footer footer";overflow:hidden;opacity:0;visibility:hidden;transform:translateY(-8px) scale(.96);transform-origin:top right;transition:opacity .18s cubic-bezier(.16,1,.3,1),transform .22s cubic-bezier(.16,1,.3,1),visibility 0s .22s;pointer-events:none;}
+  .range-popover.open{opacity:1;visibility:visible;transform:translateY(0) scale(1);transition:opacity .16s cubic-bezier(.16,1,.3,1),transform .22s cubic-bezier(.16,1,.3,1),visibility 0s 0s;pointer-events:auto;}
+  .rp-presets{grid-area:presets;padding:10px 8px;background:var(--slate-50);border-right:1px solid var(--slate-200);display:flex;flex-direction:column;gap:1px;}
+  .rp-preset{text-align:left;padding:8px 12px;font-size:13px;font-weight:500;color:var(--slate-700);border-radius:6px;transition:all .14s var(--ease-out);}
+  .rp-preset:hover{background:var(--slate-100);color:var(--slate-900);}
+  .rp-preset.active{background:var(--ascent-500);color:white;}
+  .rp-preset.active:hover{background:var(--ascent-600);}
+  .rp-divider{height:1px;background:var(--slate-200);margin:6px 4px;}
+  .rp-calendar{grid-area:calendar;padding:14px 16px 10px;}
+  .rp-cal-nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+  .rp-cal-nav button{width:28px;height:28px;display:inline-flex;align-items:center;justify-content:center;border-radius:6px;color:var(--slate-500);transition:all .14s var(--ease-out);}
+  .rp-cal-nav button:hover{background:var(--slate-100);color:var(--slate-900);}
+  .rp-cal-nav button:disabled{opacity:.3;cursor:not-allowed;}
+  .rp-cal-months{display:grid;grid-template-columns:1fr 1fr;gap:14px;flex:1;text-align:center;font-size:13px;font-weight:600;color:var(--slate-900);}
+  .rp-cal-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .rp-cal-month{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;}
+  .rp-cal-dow{text-align:center;font-size:10px;font-weight:600;color:var(--slate-400);text-transform:uppercase;letter-spacing:.04em;padding:4px 0 6px;}
+  .rp-cal-blank{}
+  .rp-cal-day{height:32px;font-size:12.5px;font-weight:500;color:var(--slate-700);border-radius:5px;transition:background-color .1s ease,color .1s ease;font-variant-numeric:tabular-nums;position:relative;}
+  .rp-cal-day:hover:not(:disabled):not(.in-range):not(.selected){background:var(--slate-100);color:var(--slate-900);}
+  .rp-cal-day:active:not(:disabled){filter:brightness(.92);}
+  .rp-cal-day:disabled{color:var(--slate-300);cursor:not-allowed;}
+  .rp-cal-day.today{font-weight:700;color:var(--ascent-600);}
+  .rp-cal-day.in-range{background:var(--ascent-100);color:var(--ascent-700);border-radius:0;}
+  .rp-cal-day.in-range-preview{background:var(--slate-100);color:var(--slate-800);border-radius:0;}
+  .rp-cal-day.selected{background:var(--ascent-500);color:white;font-weight:600;}
+  .rp-cal-day.selected.start{border-top-right-radius:0;border-bottom-right-radius:0;}
+  .rp-cal-day.selected.end{border-top-left-radius:0;border-bottom-left-radius:0;}
+  .rp-cal-day.selected.start.end{border-radius:5px;}
+  .rp-footer{grid-area:footer;display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-top:1px solid var(--slate-200);background:var(--slate-50);}
+  .rp-footer-meta{font-size:11px;color:var(--slate-400);font-variant-numeric:tabular-nums;}
+  .rp-footer-btns{display:flex;gap:8px;}
+  .rp-cancel,.rp-apply{padding:7px 14px;font-size:13px;font-weight:500;border-radius:6px;transition:all .14s var(--ease-out);}
+  .rp-cancel{color:var(--slate-600);}
+  .rp-cancel:hover{background:var(--slate-100);color:var(--slate-900);}
+  .rp-apply{background:var(--slate-900);color:white;font-weight:600;transition:background .14s ease,transform .08s ease,opacity .14s ease;}
+  .rp-apply:hover{background:var(--slate-800);}
+  .rp-apply:active{transform:scale(.97);}
+  .rp-apply:disabled{background:var(--slate-200);color:var(--slate-400);cursor:not-allowed;transform:none;}
+  html[data-theme="dark"] .rp-apply{background:var(--ascent-500);}
+  html[data-theme="dark"] .rp-apply:hover{background:var(--ascent-600);}
+  @media (max-width:760px){
+    .range-popover{width:calc(100vw - 32px);max-width:420px;grid-template-columns:1fr;grid-template-areas:"presets" "calendar" "footer";}
+    .rp-presets{flex-direction:row;flex-wrap:wrap;border-right:none;border-bottom:1px solid var(--slate-200);}
+    .rp-divider{display:none;}
+    .rp-cal-months,.rp-cal-grid{grid-template-columns:1fr;}
+    .rp-cal-grid > :nth-child(2),.rp-cal-months > :nth-child(2){display:none;}
+  }
+
+  .container{max-width:1200px;margin:0 auto;padding:0 24px 60px;}
+
+  /* ═══════ HERO ═══════ */
+  .hero{position:relative;background:var(--slate-0);border:1px solid var(--slate-200);border-radius:var(--r-xl);padding:32px 36px 24px;overflow:hidden;margin-bottom:16px;}
+  .hero::before{content:'';position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(circle,var(--slate-300) 1px,transparent 1px);background-size:22px 22px;opacity:.22;-webkit-mask-image:radial-gradient(ellipse at right top,black 10%,transparent 70%);mask-image:radial-gradient(ellipse at right top,black 10%,transparent 70%);}
+  .hero::after{content:'';position:absolute;width:420px;height:420px;right:-80px;top:-120px;background:radial-gradient(circle,rgba(57,143,255,.14) 0%,transparent 65%);pointer-events:none;filter:blur(10px);}
+  .hero-inner{position:relative;z-index:1;}
+  .hero-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.09em;color:var(--slate-500);margin-bottom:12px;display:flex;align-items:center;gap:10px;}
+  .hero-row{display:flex;align-items:flex-end;justify-content:space-between;gap:40px;flex-wrap:wrap;}
+  .hero-main{flex:1;min-width:280px;}
+  .hero-value{font-size:clamp(52px,8.5vw,88px);font-weight:900;line-height:.95;letter-spacing:-.045em;color:var(--slate-900);font-variant-numeric:tabular-nums;display:flex;align-items:baseline;gap:10px;}
+  .hero-unit{font-size:.32em;font-weight:600;color:var(--slate-400);letter-spacing:-.01em;align-self:baseline;}
+  .hero-sub{margin-top:14px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;font-size:15px;color:var(--slate-600);}
+  .hero-sub strong{color:var(--slate-900);font-weight:600;font-variant-numeric:tabular-nums;}
+  .hero-sub .serif-italic{color:var(--slate-500);}
+
+  .delta-pill{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:999px;font-size:13px;font-weight:600;font-variant-numeric:tabular-nums;animation:pillIn .5s cubic-bezier(.34,1.56,.64,1) .35s both;}
+  @keyframes pillIn{from{opacity:0;transform:scale(.6);}to{opacity:1;transform:scale(1);}}
+  .delta-pill.up{background:var(--success-100);color:var(--success-700);}
+  .delta-pill.down{background:var(--danger-100);color:var(--danger-700);}
+  .delta-pill.neutral{background:var(--slate-100);color:var(--slate-600);}
+  html[data-theme="dark"] .delta-pill.up{background:rgba(16,185,129,.15);color:#34D399;}
+  html[data-theme="dark"] .delta-pill.down{background:rgba(239,68,68,.15);color:#F87171;}
+  html[data-theme="dark"] .delta-pill.neutral{background:var(--slate-200);color:var(--slate-700);}
+
+  /* ═══════ CHART ═══════ */
+  .chart-wrap{margin-top:28px;width:100%;position:relative;transition:opacity .22s var(--ease-out);}
+  .chart-wrap svg{display:block;width:100%;height:auto;overflow:visible;}
+  .chart-axis-tick{font-family:'Satoshi',sans-serif;font-size:11px;font-weight:500;fill:var(--slate-500);}
+  .chart-axis-tick-today{fill:var(--ascent-600);font-weight:600;}
+  .chart-pill-bg{fill:var(--slate-900);}
+  html[data-theme="dark"] .chart-pill-bg{fill:var(--slate-200);}
+  .chart-pill-text{font-family:'Satoshi',sans-serif;font-size:11px;font-weight:600;fill:white;font-variant-numeric:tabular-nums;}
+  html[data-theme="dark"] .chart-pill-text{fill:var(--slate-950);}
+  .chart-pill-bg-peak{fill:var(--success-700);}
+  html[data-theme="dark"] .chart-pill-bg-peak{fill:#10B981;}
+  .chart-pill-text-peak{fill:white;}
+  html[data-theme="dark"] .chart-pill-text-peak{fill:var(--slate-950);}
+  .chart-dot-inner{fill:var(--ascent-500);}
+  .chart-dot-outer{fill:var(--slate-0);stroke:var(--ascent-500);stroke-width:2;}
+  .chart-dot-peak{fill:var(--slate-0);stroke:var(--success-500);stroke-width:2.5;}
+  .chart-dot-today{fill:var(--ascent-500);stroke:var(--slate-0);stroke-width:3;}
+  .chart-baseline{stroke:var(--slate-200);stroke-width:1;stroke-dasharray:3 3;}
+  .chart-line{stroke:var(--ascent-500);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:3000;stroke-dashoffset:3000;animation:chartLineDraw .9s cubic-bezier(.16,1,.3,1) forwards;}
+  @keyframes chartLineDraw{to{stroke-dashoffset:0;}}
+  .chart-area-fill{opacity:0;animation:chartAreaIn .5s cubic-bezier(.16,1,.3,1) .5s forwards;}
+  @keyframes chartAreaIn{to{opacity:1;}}
+  .chart-dot-anim{opacity:0;animation:chartDotIn .3s cubic-bezier(.5,1.5,.5,1) forwards;}
+  @keyframes chartDotIn{to{opacity:1;}}
+  .chart-tick-anim{opacity:0;animation:chartTickIn .35s var(--ease-out) forwards;}
+  @keyframes chartTickIn{to{opacity:1;}}
+  .chart-hover-group{transition:transform .1s cubic-bezier(.4,0,.2,1);}
+  .spark-line{stroke-dasharray:300;stroke-dashoffset:300;animation:sparkDraw .8s cubic-bezier(.16,1,.3,1) forwards;}
+  @keyframes sparkDraw{to{stroke-dashoffset:0;}}
+  #spark-conv .spark-line{animation-delay:.1s;}
+  #spark-open .spark-line{animation-delay:.2s;}
+  #spark-click .spark-line{animation-delay:.3s;}
+  .chart-crosshair{stroke:var(--slate-400);stroke-dasharray:2 3;stroke-width:1;pointer-events:none;opacity:0;transition:opacity .12s var(--ease-out);}
+  .chart-crosshair.active{opacity:.65;}
+  .chart-hover-dot{fill:var(--ascent-500);stroke:var(--slate-0);stroke-width:2.5;pointer-events:none;opacity:0;transition:opacity .12s var(--ease-out);}
+  .chart-hover-dot.active{opacity:1;}
+  .chart-overlay{cursor:crosshair;}
+  .chart-tooltip{position:absolute;pointer-events:none;background:var(--slate-900);color:white;padding:8px 12px;border-radius:7px;font-size:12px;box-shadow:var(--shadow-lg);white-space:nowrap;opacity:0;transform:translate(-50%,calc(-100% - 18px)) scale(.96);transition:opacity .12s var(--ease-out),transform .12s var(--ease-out);z-index:20;left:0;top:0;}
+  .chart-tooltip.active{opacity:1;transform:translate(-50%,calc(-100% - 18px)) scale(1);transition:opacity .12s var(--ease-out),transform .12s var(--ease-out),left .14s cubic-bezier(.4,0,.2,1),top .14s cubic-bezier(.4,0,.2,1);}
+  .chart-tooltip::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:var(--slate-900);}
+  .chart-tooltip .tt-date{font-size:10px;font-weight:500;opacity:.6;text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px;font-variant-numeric:tabular-nums;}
+  .chart-tooltip .tt-val{font-size:14px;font-weight:700;font-variant-numeric:tabular-nums;}
+  html[data-theme="dark"] .chart-tooltip{background:var(--slate-200);color:var(--slate-950);}
+  html[data-theme="dark"] .chart-tooltip::after{border-top-color:var(--slate-200);}
+
+  /* ═══════ KPI GRID ═══════ */
+  .kpi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:32px;}
+  .kpi{position:relative;isolation:isolate;background:var(--slate-0);border:1px solid var(--slate-200);border-radius:var(--r-lg);padding:20px 22px;transition:all .22s var(--ease-out);cursor:pointer;}
+  .kpi::before{content:'';position:absolute;inset:0;border-radius:inherit;background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),color-mix(in srgb,var(--ascent-500) 10%,transparent),transparent 42%);opacity:0;transition:opacity .25s var(--ease-out);pointer-events:none;z-index:-1;}
+  .kpi:hover::before{opacity:1;}
+  .kpi:hover{border-color:color-mix(in srgb,var(--ascent-500) 35%,var(--slate-200));transform:translateY(-2px);box-shadow:var(--shadow-md);}
+  .kpi-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+  .kpi-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--slate-500);}
+  .kpi-icon{width:26px;height:26px;border-radius:7px;background:var(--slate-100);color:var(--slate-600);display:inline-flex;align-items:center;justify-content:center;}
+  .kpi-row{display:flex;align-items:baseline;justify-content:space-between;gap:12px;}
+  .kpi-value{font-size:32px;font-weight:800;line-height:1;letter-spacing:-.03em;color:var(--slate-900);font-variant-numeric:tabular-nums;display:flex;align-items:baseline;gap:3px;}
+  .kpi-unit{font-size:15px;font-weight:600;color:var(--slate-400);}
+  .kpi-spark{height:26px;width:68px;}
+  .kpi-foot{margin-top:12px;display:flex;align-items:center;gap:8px;font-size:12px;color:var(--slate-500);}
+  .kpi-foot strong{color:var(--slate-700);font-weight:600;}
+
+  .section-head{display:flex;align-items:center;justify-content:space-between;margin:28px 0 12px;gap:12px;}
+  .section-title{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--slate-500);}
+  .section-title-num{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;color:var(--slate-400);padding:2px 6px;background:var(--slate-100);border-radius:4px;letter-spacing:.05em;}
+  .section-meta{font-size:12px;color:var(--slate-400);font-variant-numeric:tabular-nums;}
+
+  /* ═══════ BREAKDOWN ═══════ */
+  .card{background:var(--slate-0);border:1px solid var(--slate-200);border-radius:var(--r-lg);padding:22px 24px;}
+  .break-list{display:flex;flex-direction:column;gap:14px;}
+  .break-row{display:grid;grid-template-columns:180px 1fr 100px;gap:16px;align-items:center;}
+  .break-label{font-size:14px;font-weight:500;color:var(--slate-800);}
+  .break-bar-wrap{position:relative;height:10px;border-radius:999px;background:var(--slate-100);overflow:hidden;}
+  .break-bar{position:absolute;left:0;top:0;bottom:0;border-radius:999px;transition:width .6s var(--ease-out);}
+  .break-bar.v1{background:linear-gradient(90deg,#A78BFA,#8B5CF6);}
+  .break-bar.v2{background:linear-gradient(90deg,#FBBF24,#F59E0B);}
+  .break-bar.v3{background:linear-gradient(90deg,#60A5FA,#398FFF);}
+  .break-val{display:flex;align-items:baseline;justify-content:flex-end;gap:8px;font-variant-numeric:tabular-nums;}
+  .break-count{font-size:18px;font-weight:700;color:var(--slate-900);}
+  .break-pct{font-size:12px;color:var(--slate-500);font-weight:500;}
+
+  /* ═══════ FUNNEL ═══════ */
+  .funnel{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:4px;}
+  .funnel-step{position:relative;padding:16px 18px;background:var(--slate-0);border:1px solid var(--slate-200);border-right:0;opacity:0;transform:translateX(-10px);animation:funnelIn .5s cubic-bezier(.16,1,.3,1) forwards;}
+  .funnel-step:nth-child(1){animation-delay:.15s;}
+  .funnel-step:nth-child(2){animation-delay:.26s;}
+  .funnel-step:nth-child(3){animation-delay:.37s;}
+  .funnel-step:nth-child(4){animation-delay:.48s;}
+  @keyframes funnelIn{to{opacity:1;transform:translateX(0);}}
+  .funnel-drop{opacity:0;animation:funnelDropIn .35s var(--ease-out) forwards;}
+  .funnel-drop:nth-of-type(1){animation-delay:.4s;}
+  .funnel-drop:nth-of-type(2){animation-delay:.51s;}
+  .funnel-drop:nth-of-type(3){animation-delay:.62s;}
+  @keyframes funnelDropIn{to{opacity:1;}}
+  .flows-table tbody tr{animation:rowIn .4s var(--ease-out) both;}
+  .flows-table tbody tr:nth-child(1){animation-delay:.02s;}
+  .flows-table tbody tr:nth-child(2){animation-delay:.08s;}
+  .flows-table tbody tr:nth-child(3){animation-delay:.14s;}
+  .flows-table tbody tr:nth-child(4){animation-delay:.2s;}
+  .flows-table tbody tr:nth-child(5){animation-delay:.26s;}
+  .flows-table tbody tr:nth-child(6){animation-delay:.32s;}
+  @keyframes rowIn{from{opacity:0;transform:translateY(-6px);}to{opacity:1;transform:translateY(0);}}
+  .funnel-step:first-child{border-top-left-radius:var(--r-md);border-bottom-left-radius:var(--r-md);}
+  .funnel-step:last-child{border-right:1px solid var(--slate-200);border-top-right-radius:var(--r-md);border-bottom-right-radius:var(--r-md);}
+  .funnel-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--slate-500);margin-bottom:6px;}
+  .funnel-val{font-size:22px;font-weight:800;color:var(--slate-900);font-variant-numeric:tabular-nums;letter-spacing:-.02em;}
+  .funnel-pct{font-size:11px;color:var(--slate-400);margin-top:3px;font-variant-numeric:tabular-nums;}
+
+  .funnel-drops{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:4px;margin-left:calc(25% * 0.5);margin-right:calc(25% * 0.5);}
+  .funnel-drop{padding:8px 0;text-align:center;font-size:11px;color:var(--slate-500);display:flex;align-items:center;justify-content:center;gap:6px;font-variant-numeric:tabular-nums;}
+  .funnel-drop-arrow{color:var(--slate-300);}
+  .funnel-drop-pct{font-weight:600;color:var(--success-700);}
+  html[data-theme="dark"] .funnel-drop-pct{color:#34D399;}
+
+  /* ═══════ FLOWS TABLE ═══════ */
+  .flows-wrap{background:var(--slate-0);border:1px solid var(--slate-200);border-radius:var(--r-lg);overflow:hidden;}
+  .flows-scroll{overflow-x:auto;}
+  .flows-table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;min-width:640px;}
+  .flows-table thead th{text-align:right;padding:14px 18px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--slate-500);border-bottom:1px solid var(--slate-200);background:var(--slate-50);}
+  .flows-table thead th:first-child{text-align:left;}
+  .flows-table tbody td{padding:14px 18px;font-size:14px;border-bottom:1px solid var(--slate-100);text-align:right;vertical-align:middle;}
+  .flows-table tbody td:first-child{text-align:left;}
+  .flows-table tbody tr:hover{background:var(--slate-50);}
+  .flows-table tbody tr:last-child td{border-bottom:0;}
+  .flow-name{display:flex;align-items:center;gap:10px;font-weight:500;color:var(--slate-900);}
+  .flow-name-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+  .cell-val{font-weight:700;color:var(--slate-900);}
+  .cell-pct{font-size:11px;color:var(--slate-500);margin-left:8px;font-weight:500;display:inline-block;min-width:40px;text-align:left;}
+  .cell-pct-zero{color:var(--slate-400);}
+  .cell-pct-good{color:var(--success-700);}
+  html[data-theme="dark"] .cell-pct-good{color:#34D399;}
+  .flows-table tfoot td{padding:14px 18px;font-size:13px;background:var(--slate-50);border-top:1px solid var(--slate-200);text-align:right;font-weight:700;color:var(--slate-900);}
+  .flows-table tfoot td:first-child{text-align:left;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--slate-500);}
+
+  /* ═══════ BARBERS TABLE EXTRA ═══════ */
+  .barber-name{display:flex;align-items:center;gap:10px;font-weight:600;color:var(--slate-900);}
+  .barber-avatar{width:28px;height:28px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:10.5px;font-weight:700;color:white;letter-spacing:.02em;flex-shrink:0;box-shadow:inset 0 1px 0 rgba(255,255,255,.15);}
+  .rev-cell{font-weight:700;color:var(--slate-900);}
+  .rev-cell small{font-weight:500;color:var(--slate-500);font-size:12px;}
+
+  /* Stacked bar v buňce Rezervace */
+  .book-cell{display:inline-flex;align-items:center;gap:10px;justify-content:flex-end;}
+  .book-count{font-weight:700;color:var(--slate-900);font-size:15px;font-variant-numeric:tabular-nums;min-width:22px;text-align:right;}
+  .book-bar{display:inline-flex;height:8px;width:88px;border-radius:4px;overflow:visible;background:var(--slate-100);position:relative;}
+  html[data-theme="dark"] .book-bar{background:var(--slate-200);}
+  .book-bar::before{content:'';position:absolute;inset:0;border-radius:4px;overflow:hidden;pointer-events:none;}
+  .book-bar-seg{height:100%;position:relative;transition:opacity .14s var(--ease-out);}
+  .book-bar-seg:first-child{border-top-left-radius:4px;border-bottom-left-radius:4px;}
+  .book-bar-seg:last-child{border-top-right-radius:4px;border-bottom-right-radius:4px;}
+  .book-bar-seg.r{background:#A78BFA;}
+  .book-bar-seg.l{background:#FB923C;}
+  .book-bar-seg.a{background:#60A5FA;}
+  .book-bar:hover .book-bar-seg{opacity:.45;}
+  .book-bar-seg:hover{opacity:1 !important;}
+  .book-bar-seg::after{content:attr(data-label);position:absolute;bottom:calc(100% + 10px);left:50%;transform:translateX(-50%) translateY(3px);background:var(--slate-900);color:white;padding:6px 10px;border-radius:6px;font-size:11.5px;font-weight:600;white-space:nowrap;pointer-events:none;opacity:0;transition:opacity .14s var(--ease-out),transform .14s var(--ease-out);z-index:40;box-shadow:var(--shadow-md);}
+  .book-bar-seg::before{content:'';position:absolute;bottom:calc(100% + 4px);left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:var(--slate-900);opacity:0;transition:opacity .14s var(--ease-out);pointer-events:none;z-index:40;}
+  .book-bar-seg:hover::after{opacity:1;transform:translateX(-50%) translateY(0);}
+  .book-bar-seg:hover::before{opacity:1;}
+  html[data-theme="dark"] .book-bar-seg::after{background:var(--slate-200);color:var(--slate-950);}
+  html[data-theme="dark"] .book-bar-seg::before{border-top-color:var(--slate-200);}
+
+  /* Barber row hover accent — pseudo lives on first TD, not TR.
+     ::before on <tr> generates an anonymous table-cell in Chromium's
+     table algorithm, which shifts all real <td>s right by one column. */
+  .barbers-table tbody td:first-child{position:relative;}
+  .barbers-table tbody td:first-child::before{content:'';position:absolute;left:0;top:22%;bottom:22%;width:3px;background:var(--ascent-500);border-radius:0 3px 3px 0;opacity:0;transform:scaleY(.5);transition:opacity .2s var(--ease-out),transform .22s cubic-bezier(.34,1.56,.64,1);pointer-events:none;}
+  .barbers-table tbody tr:hover td:first-child::before{opacity:1;transform:scaleY(1);}
+  /* Barber bar grow-in on mount */
+  .barbers-table .book-bar{transform:scaleX(0);transform-origin:left center;animation:barGrow .75s cubic-bezier(.16,1,.3,1) both;}
+  .barbers-table tbody tr:nth-child(1) .book-bar{animation-delay:.5s;}
+  .barbers-table tbody tr:nth-child(2) .book-bar{animation-delay:.62s;}
+  .barbers-table tbody tr:nth-child(3) .book-bar{animation-delay:.74s;}
+  @keyframes barGrow{to{transform:scaleX(1);}}
+
+  /* Legenda pod tabulkou */
+  .barber-legend{padding:12px 18px;border-top:1px solid var(--slate-200);background:var(--slate-50);display:flex;align-items:center;gap:18px;flex-wrap:wrap;font-size:11.5px;color:var(--slate-600);}
+  html[data-theme="dark"] .barber-legend{background:var(--slate-100);}
+  .leg-item{display:inline-flex;align-items:center;gap:7px;}
+  .leg-dot{width:9px;height:9px;border-radius:2px;flex-shrink:0;}
+  .leg-item strong{color:var(--slate-800);font-weight:600;}
+
+  /* ═══════ FOOTER ═══════ */
+  .foot{max-width:1200px;margin:16px auto 0;padding:24px 24px 32px;display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--slate-500);border-top:1px solid var(--slate-200);}
+  .foot-support{color:var(--slate-500);display:inline-flex;align-items:center;gap:4px;}
+  .foot-support a{color:#25D366;font-weight:600;display:inline-flex;align-items:center;transition:opacity .15s var(--ease-out);}
+  .foot-support a:hover{opacity:.8;}
+
+  /* ═══════ ANIM ═══════ */
+  .fade-up{opacity:0;transform:translateY(10px);animation:fadeUp .5s var(--ease-out) forwards;}
+  .d-1{animation-delay:.05s;}.d-2{animation-delay:.12s;}.d-3{animation-delay:.2s;}.d-4{animation-delay:.28s;}.d-5{animation-delay:.36s;}
+  @keyframes fadeUp{to{opacity:1;transform:translateY(0);}}
+
+  @media (max-width:860px){
+    .kpi-grid{grid-template-columns:1fr;}
+    .funnel{grid-template-columns:1fr 1fr;}
+    .funnel-step:nth-child(2){border-right:1px solid var(--slate-200);border-top-right-radius:var(--r-md);}
+    .funnel-step:nth-child(3){border-left:1px solid var(--slate-200);border-top-left-radius:var(--r-md);border-bottom-left-radius:0;border-top:0;}
+    .funnel-step:last-child{border-top-right-radius:0;}
+    .funnel-drops{display:none;}
+    .break-row{grid-template-columns:120px 1fr 78px;gap:12px;}
+    .hero{padding:24px 20px 20px;}
+    .hero-row{flex-direction:column;align-items:flex-start;}
+    .cmd-hint{display:none;}
+    .user-name{display:none;}
+    .page-header{padding:20px 16px 16px;flex-direction:column;align-items:stretch;}
+    .container{padding:0 16px 40px;}
+    .topbar-inner{padding:12px 16px;}
+    .tabnav-inner{padding:0 16px;}
+    .tab{padding:12px 10px 11px;font-size:13px;}
+    .foot{flex-direction:column;text-align:center;align-items:center;padding:20px 16px;}
+    .hero-organic{flex-direction:column;align-items:flex-start;gap:8px;}
+  }
+</style>
+</head>
+
+<body>
+
+<div class="app-header">
+
+<!-- ═══════ TOP BAR ═══════ -->
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="wordmark">
+      <span>Boost<span class="wordmark-dot">mail</span></span>
+      <span class="wordmark-ver">v2.0</span>
+    </div>
+
+    <div class="topbar-right">
+      <button class="cmd-hint" title="Rychlé akce" id="cmdk-btn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+        Hledat
+        <kbd>⌘K</kbd>
+      </button>
+
+      <button class="icon-btn" title="Přepnout režim" id="theme-toggle">
+        <svg id="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+        <svg id="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="display:none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+
+      <button class="icon-btn" title="Notifikace">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+        <span class="notif-dot"></span>
+      </button>
+
+      <div class="rel">
+        <button class="user-btn" id="user-btn">
+          <span class="avatar">JN</span>
+          <span class="user-name">Jakub Novák</span>
+          <svg class="user-chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="menu" id="user-menu">
+          <div class="menu-head">
+            <div class="menu-head-name">Jakub Novák</div>
+            <div class="menu-head-mail">jakub@studioflorenc.cz</div>
+          </div>
+          <a href="#"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Profil</a>
+          <a href="#"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v6m0 6v6M4.22 4.22l4.24 4.24m7.08 7.08 4.24 4.24M1 12h6m6 0h6M4.22 19.78l4.24-4.24m7.08-7.08 4.24-4.24"/></svg>Nastavení studia</a>
+          <a href="#"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>Notifikace</a>
+          <a href="#"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>Nápověda</a>
+          <div class="menu-sep"></div>
+          <button class="menu-danger"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Odhlásit se</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════ TAB NAV ═══════ -->
+<nav class="tabnav">
+  <div class="tabnav-inner" role="tablist">
+    <a href="#" class="tab active" role="tab" aria-current="page">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h7v9H3zM14 3h7v5h-7zM14 12h7v9h-7zM3 16h7v5H3z"/></svg>
+      Přehled
+    </a>
+    <a href="#" class="tab" role="tab">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      Automatizace
+      <span class="tab-badge">5</span>
+    </a>
+    <a href="#" class="tab" role="tab">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v4H4zM4 12h10v8H4zM16 12h4v4h-4z"/></svg>
+      Šablony
+    </a>
+    <a href="#" class="tab" role="tab">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      Klienti
+    </a>
+    <div class="tab-indicator" id="tab-indicator"></div>
+  </div>
+</nav>
+
+</div><!-- /.app-header -->
+
+<!-- ═══════ PAGE HEADER ═══════ -->
+<section class="page-header fade-up">
+  <div>
+    <h1 class="page-title">Přehled</h1>
+    <div class="page-meta">
+      <span>Studio Florenc</span>
+      <span class="dot">·</span>
+      <span>Jakub Novák</span>
+      <span class="dot">·</span>
+      <span class="live-pill"><span class="live-dot"></span>aktualizováno před 4 min</span>
+    </div>
+  </div>
+  <div class="range-picker" id="range-picker">
+    <button class="range-trigger" id="range-trigger" aria-haspopup="dialog" aria-expanded="false">
+      <svg class="range-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      <span id="range-label">Posledních 30 dní</span>
+      <svg class="range-chevron" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+    </button>
+    <div class="range-popover" id="range-popover" role="dialog" aria-label="Vyberte období">
+      <div class="rp-presets" id="rp-presets">
+        <button class="rp-preset" data-preset="7">Posledních 7 dní</button>
+        <button class="rp-preset active" data-preset="30">Posledních 30 dní</button>
+        <button class="rp-preset" data-preset="90">Posledních 90 dní</button>
+        <button class="rp-preset" data-preset="365">Od začátku roku</button>
+        <div class="rp-divider"></div>
+        <button class="rp-preset rp-custom" data-preset="custom">Vlastní rozsah</button>
+      </div>
+      <div class="rp-calendar" id="rp-calendar"></div>
+      <div class="rp-footer">
+        <span class="rp-footer-meta" id="rp-footer-meta">Časy v Europe/Prague</span>
+        <div class="rp-footer-btns">
+          <button class="rp-cancel" id="rp-cancel">Zrušit</button>
+          <button class="rp-apply" id="rp-apply">Použít</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<main class="container">
+
+  <!-- ═══════ 01 HERO + CHART ═══════ -->
+  <div class="section-head fade-up" style="margin-top:0"><div class="section-title"><span class="section-title-num">01</span>Díky Boostmailu</div><div class="section-meta">tržby navíc · klienti navíc</div></div>
+  <div class="hero fade-up d-1">
+    <div class="hero-inner">
+      <div class="hero-row">
+        <div class="hero-main">
+          <div class="hero-value">
+            <span data-counter id="hero-revenue">0</span><span class="hero-unit">Kč</span>
+          </div>
+          <div class="hero-sub">
+            <span><strong data-counter id="hero-visits">0</strong> návštěv navíc</span>
+            <span class="delta-pill up" id="hero-delta">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+              <span id="hero-delta-pct">+18 %</span>
+            </span>
+            <span id="hero-ref-wrap"><span class="serif-italic">vs. březen</span>&nbsp;<strong id="hero-delta-abs">+10 400 Kč</strong></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="chart-wrap" id="hero-chart-wrap"></div>
+
+      <div class="hero-organic">
+        <div>
+          <strong>Nepočítáme si, co nám nepatří:</strong>
+          <span id="organic-text">6 klientů v dubnu (4 200 Kč)</span>. Email sice dostali, ale rezervaci by udělali tak jako tak — neúčtujeme si je.
+        </div>
+        <div class="hero-organic-right" id="organic-right">6 klientů · 4 200 Kč</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════ 3 KPI ═══════ -->
+  <div class="kpi-grid">
+    <div class="kpi fade-up d-2">
+      <div class="kpi-head"><span class="kpi-label">Konverze</span>
+        <span class="kpi-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+      </div>
+      <div class="kpi-row">
+        <div class="kpi-value"><span data-counter id="kpi-conv">0</span></div>
+        <svg class="kpi-spark" id="spark-conv" viewBox="0 0 100 26" preserveAspectRatio="none"></svg>
+      </div>
+      <div class="kpi-foot"><span class="delta-pill up"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>+6</span><span>proti minulému období</span></div>
+    </div>
+
+    <div class="kpi fade-up d-3">
+      <div class="kpi-head"><span class="kpi-label">Open rate</span>
+        <span class="kpi-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg></span>
+      </div>
+      <div class="kpi-row">
+        <div class="kpi-value"><span id="kpi-open">58</span><span class="kpi-unit">%</span></div>
+        <svg class="kpi-spark" id="spark-open" viewBox="0 0 100 26" preserveAspectRatio="none"></svg>
+      </div>
+      <div class="kpi-foot"><span class="delta-pill up"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>+24 b.</span><span>nad průměr oboru (34 %)</span></div>
+    </div>
+
+    <div class="kpi fade-up d-4">
+      <div class="kpi-head"><span class="kpi-label">Click rate</span>
+        <span class="kpi-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 11-6 6v3h3l6-6"/><path d="m22 12-4.6 4.6a2 2 0 0 1-2.8 0l-5.2-5.2a2 2 0 0 1 0-2.8L14 4"/></svg></span>
+      </div>
+      <div class="kpi-row">
+        <div class="kpi-value"><span id="kpi-click">24</span><span class="kpi-unit">%</span></div>
+        <svg class="kpi-spark" id="spark-click" viewBox="0 0 100 26" preserveAspectRatio="none"></svg>
+      </div>
+      <div class="kpi-foot"><span class="delta-pill neutral">—</span><span>srovnatelné s minulým obdobím</span></div>
+    </div>
+  </div>
+
+  <!-- ═══════ 02 BREAKDOWN ═══════ -->
+  <div class="section-head fade-up"><div class="section-title"><span class="section-title-num">02</span>Rozložení konverzí</div><div class="section-meta"><span id="break-total">42</span> klientů celkem</div></div>
+  <div class="card fade-up">
+    <div class="break-list">
+      <div class="break-row">
+        <div class="break-label">Reaktivace spících</div>
+        <div class="break-bar-wrap"><div class="break-bar v1" style="width:43%"></div></div>
+        <div class="break-val"><span class="break-count" id="b-reac">18</span><span class="break-pct">43 %</span></div>
+      </div>
+      <div class="break-row">
+        <div class="break-label">Last-minute volné</div>
+        <div class="break-bar-wrap"><div class="break-bar v2" style="width:33%"></div></div>
+        <div class="break-val"><span class="break-count" id="b-last">14</span><span class="break-pct">33 %</span></div>
+      </div>
+      <div class="break-row">
+        <div class="break-label">Zrychlená návštěva</div>
+        <div class="break-bar-wrap"><div class="break-bar v3" style="width:24%"></div></div>
+        <div class="break-val"><span class="break-count" id="b-acc">10</span><span class="break-pct">24 %</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════ 03 EMAIL FLOW ═══════ -->
+  <div class="section-head fade-up"><div class="section-title"><span class="section-title-num">03</span>Email flow</div><div class="section-meta">Jak daleko se dostanou tvoje emaily</div></div>
+  <div class="fade-up">
+    <div class="funnel">
+      <div class="funnel-step"><div class="funnel-label">Odesláno</div><div class="funnel-val" id="f-sent">1 247</div><div class="funnel-pct">100 %</div></div>
+      <div class="funnel-step"><div class="funnel-label">Otevřeno</div><div class="funnel-val" id="f-open">723</div><div class="funnel-pct">58 % z odeslaných</div></div>
+      <div class="funnel-step"><div class="funnel-label">Prokliknuto</div><div class="funnel-val" id="f-click">299</div><div class="funnel-pct">24 % z odeslaných</div></div>
+      <div class="funnel-step"><div class="funnel-label">Rezervace</div><div class="funnel-val" id="f-visit">42</div><div class="funnel-pct">3,4 % z odeslaných</div></div>
+    </div>
+    <div class="funnel-drops">
+      <div class="funnel-drop"><svg class="funnel-drop-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg><span class="funnel-drop-pct" id="step1">+58 %</span>&nbsp;otevřelo</div>
+      <div class="funnel-drop"><svg class="funnel-drop-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg><span class="funnel-drop-pct" id="step2">+41 %</span>&nbsp;z otevření kliklo</div>
+      <div class="funnel-drop"><svg class="funnel-drop-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg><span class="funnel-drop-pct" id="step3">+14 %</span>&nbsp;z kliků rezervovalo</div>
+    </div>
+  </div>
+
+  <!-- ═══════ 04 FLOW BREAKDOWN ═══════ -->
+  <div class="section-head fade-up"><div class="section-title"><span class="section-title-num">04</span>Výkon jednotlivých flow</div><div class="section-meta" id="flows-meta">5 aktivních · % z odeslaných v rámci flow</div></div>
+  <div class="flows-wrap fade-up">
+    <div class="flows-scroll">
+      <table class="flows-table">
+        <thead>
+          <tr>
+            <th>Flow</th>
+            <th>Odesláno</th>
+            <th>Otevřeno</th>
+            <th>Prokliknuto</th>
+            <th>Rezervace</th>
+          </tr>
+        </thead>
+        <tbody id="flows-body"></tbody>
+        <tfoot id="flows-foot"></tfoot>
+      </table>
+    </div>
+  </div>
+
+  <!-- ═══════ 05 PER-BARBER ═══════ -->
+  <div class="section-head fade-up"><div class="section-title"><span class="section-title-num">05</span>Kdo přivádí klienty</div><div class="section-meta" id="barbers-meta">3 barbeři · podle rezervací</div></div>
+  <div class="flows-wrap fade-up">
+    <div class="flows-scroll">
+      <table class="flows-table barbers-table">
+        <thead>
+          <tr>
+            <th>Barber</th>
+            <th>Rezervace · z čeho</th>
+            <th>Tržby</th>
+            <th>Odesláno</th>
+            <th>Open</th>
+            <th>Click</th>
+          </tr>
+        </thead>
+        <tbody id="barbers-body"></tbody>
+      </table>
+    </div>
+    <div class="barber-legend">
+      <span class="leg-item"><span class="leg-dot" style="background:#A78BFA"></span>Reaktivace <span style="color:var(--slate-400)">— spící klient</span></span>
+      <span class="leg-item"><span class="leg-dot" style="background:#FB923C"></span>Last-minute <span style="color:var(--slate-400)">— zaplněný volný termín</span></span>
+      <span class="leg-item"><span class="leg-dot" style="background:#60A5FA"></span>Urychlená návštěva <span style="color:var(--slate-400)">— klient přišel dřív</span></span>
+    </div>
+  </div>
+
+</main>
+
+<footer class="foot">
+  <div class="foot-support">
+    Nefunguje něco? Napište nám na <a href="https://wa.me/420739192790" target="_blank" rel="noopener" title="+420 739 192 790">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413"/></svg>WhatsApp</a>
+  </div>
+</footer>
+
+<script>
+  // ═══════ DATA ═══════
+  // Daily revenue per day; today is April 17, 2026 (Friday)
+  const DAILY_30 = [
+    { date: '2026-03-19', value: 1200 }, { date: '2026-03-20', value: 1800 },
+    { date: '2026-03-21', value: 2400 }, { date: '2026-03-22', value: 800 },
+    { date: '2026-03-23', value: 1500 }, { date: '2026-03-24', value: 1900 },
+    { date: '2026-03-25', value: 2100 }, { date: '2026-03-26', value: 2500 },
+    { date: '2026-03-27', value: 2800 }, { date: '2026-03-28', value: 3200 },
+    { date: '2026-03-29', value: 900 },  { date: '2026-03-30', value: 1600 },
+    { date: '2026-03-31', value: 2200 }, { date: '2026-04-01', value: 2500 },
+    { date: '2026-04-02', value: 2400 }, { date: '2026-04-03', value: 3100 },
+    { date: '2026-04-04', value: 3400 }, { date: '2026-04-05', value: 1100 },
+    { date: '2026-04-06', value: 1700 }, { date: '2026-04-07', value: 2300 },
+    { date: '2026-04-08', value: 2600 }, { date: '2026-04-09', value: 2800 },
+    { date: '2026-04-10', value: 3200 }, { date: '2026-04-11', value: 3800 },
+    { date: '2026-04-12', value: 1200 }, { date: '2026-04-13', value: 1800 },
+    { date: '2026-04-14', value: 2400 }, { date: '2026-04-15', value: 2900 },
+    { date: '2026-04-16', value: 3100 }, { date: '2026-04-17', value: 3500 }
+  ];
+  const DAILY_7 = DAILY_30.slice(-7);
+  // Weekly aggregated last 90 days (13 weeks, dates = Monday of each week)
+  const WEEKLY_90 = [
+    { date: '2026-01-19', value: 8000 },  { date: '2026-01-26', value: 9500 },
+    { date: '2026-02-02', value: 10200 }, { date: '2026-02-09', value: 11800 },
+    { date: '2026-02-16', value: 12400 }, { date: '2026-02-23', value: 13100 },
+    { date: '2026-03-02', value: 13900 }, { date: '2026-03-09', value: 14200 },
+    { date: '2026-03-16', value: 15100 }, { date: '2026-03-23', value: 15800 },
+    { date: '2026-03-30', value: 17200 }, { date: '2026-04-06', value: 18400 },
+    { date: '2026-04-13', value: 19000 }
+  ];
+  // Monthly aggregated YTD (Jan-Apr 2026)
+  const MONTHLY_YTD = [
+    { date: '2026-01-01', value: 56000 },
+    { date: '2026-02-01', value: 62000 },
+    { date: '2026-03-01', value: 70380 },
+    { date: '2026-04-01', value: 68420 }
+  ];
+
+  const DATA = {
+    '7': {
+      revenue: 18700, visits: 11, delta: 9, deltaAbs: 1200, ref: 'vs. minulý týden',
+      conv: 11, open: 61, click: 26,
+      sent: 298, emailOpen: 182, emailClick: 77,
+      stepOpen: 61, stepClick: 42, stepBook: 14,
+      reac: 5, last: 4, acc: 2, breakTotal: 11,
+      organicTxt: '3 klienti za posledních 7 dní (2 100 Kč)', organicRight: '3 klienti · 2 100 Kč',
+      daily: DAILY_7, granularity: 'daily',
+      sparkConv: [1,2,1,2,1,2,2], sparkOpen: [58,60,59,62,60,61,61], sparkClick: [25,24,26,27,26,25,26],
+      flows: [
+        { name: 'Reaktivační 30d',     color: '#8B5CF6', sent: 100, open: 60, click: 28, book: 5 },
+        { name: 'Last-minute dnes',    color: '#F59E0B', sent: 45,  open: 28, click: 16, book: 4 },
+        { name: 'Zrychlená návštěva',  color: '#398FFF', sent: 75,  open: 40, click: 15, book: 2 },
+        { name: 'Narozeniny',          color: '#EC4899', sent: 22,  open: 14, click: 6,  book: 0 },
+        { name: 'Po návštěvě',         color: '#10B981', sent: 56,  open: 27, click: 4,  book: 0 }
+      ],
+      barbers: [
+        { name: 'Jakub Novák',   initials: 'JN', color: '#398FFF', book: 5, revenue: 8400,  sent: 120, open: 62, click: 46, r: 2, l: 2, a: 1 },
+        { name: 'Tomáš Polák',   initials: 'TP', color: '#10B981', book: 4, revenue: 6800,  sent: 95,  open: 55, click: 42, r: 1, l: 1, a: 2 },
+        { name: 'Denis Horák',   initials: 'DH', color: '#F59E0B', book: 2, revenue: 3500,  sent: 83,  open: 57, click: 48, r: 1, l: 1, a: 0 }
+      ]
+    },
+    '30': {
+      revenue: 68420, visits: 42, delta: 18, deltaAbs: 10400, ref: 'vs. březen',
+      conv: 42, open: 58, click: 24,
+      sent: 1247, emailOpen: 723, emailClick: 299,
+      stepOpen: 58, stepClick: 41, stepBook: 14,
+      reac: 18, last: 14, acc: 10, breakTotal: 42,
+      organicTxt: '6 klientů v dubnu (4 200 Kč)', organicRight: '6 klientů · 4 200 Kč',
+      daily: DAILY_30, granularity: 'daily',
+      sparkConv: [3,4,2,5,4,6,5,7,6,8], sparkOpen: [52,55,54,58,60,57,58,60,61,58], sparkClick: [22,21,23,24,22,24,25,23,24,24],
+      flows: [
+        { name: 'Reaktivační 30d',     color: '#8B5CF6', sent: 420, open: 260, click: 120, book: 18 },
+        { name: 'Last-minute dnes',    color: '#F59E0B', sent: 180, open: 115, click: 68,  book: 14 },
+        { name: 'Zrychlená návštěva',  color: '#398FFF', sent: 310, open: 170, click: 62,  book: 10 },
+        { name: 'Narozeniny',          color: '#EC4899', sent: 95,  open: 62,  click: 28,  book: 0 },
+        { name: 'Po návštěvě',         color: '#10B981', sent: 242, open: 116, click: 21,  book: 0 }
+      ],
+      barbers: [
+        { name: 'Jakub Novák',   initials: 'JN', color: '#398FFF', book: 19, revenue: 32600, sent: 486, open: 58, click: 25, r: 9,  l: 6, a: 4 },
+        { name: 'Tomáš Polák',   initials: 'TP', color: '#10B981', book: 14, revenue: 23400, sent: 412, open: 60, click: 24, r: 5,  l: 5, a: 4 },
+        { name: 'Denis Horák',   initials: 'DH', color: '#F59E0B', book: 9,  revenue: 12420, sent: 349, open: 55, click: 22, r: 4,  l: 3, a: 2 }
+      ]
+    },
+    '90': {
+      revenue: 178600, visits: 118, delta: 32, deltaAbs: 43200, ref: 'vs. Q4 2025',
+      conv: 118, open: 56, click: 23,
+      sent: 3580, emailOpen: 2005, emailClick: 823,
+      stepOpen: 56, stepClick: 41, stepBook: 14,
+      reac: 52, last: 38, acc: 28, breakTotal: 118,
+      organicTxt: '17 klientů za posledních 90 dní (11 900 Kč)', organicRight: '17 klientů · 11 900 Kč',
+      daily: WEEKLY_90, granularity: 'weekly',
+      sparkConv: [5,7,9,11,13,10,14,15,17,18], sparkOpen: [50,52,54,55,57,56,58,56,58,56], sparkClick: [20,21,22,23,22,24,23,23,24,23],
+      flows: [
+        { name: 'Reaktivační 30d',     color: '#8B5CF6', sent: 1200, open: 720, click: 336, book: 52 },
+        { name: 'Last-minute dnes',    color: '#F59E0B', sent: 520,  open: 330, click: 198, book: 38 },
+        { name: 'Zrychlená návštěva',  color: '#398FFF', sent: 880,  open: 475, click: 175, book: 28 },
+        { name: 'Narozeniny',          color: '#EC4899', sent: 280,  open: 180, click: 82,  book: 0 },
+        { name: 'Po návštěvě',         color: '#10B981', sent: 700,  open: 300, click: 32,  book: 0 }
+      ],
+      barbers: [
+        { name: 'Jakub Novák',   initials: 'JN', color: '#398FFF', book: 54, revenue: 89200, sent: 1390, open: 57, click: 23, r: 24, l: 18, a: 12 },
+        { name: 'Tomáš Polák',   initials: 'TP', color: '#10B981', book: 38, revenue: 62100, sent: 1180, open: 58, click: 23, r: 16, l: 12, a: 10 },
+        { name: 'Denis Horák',   initials: 'DH', color: '#F59E0B', book: 26, revenue: 37300, sent: 1010, open: 54, click: 21, r: 12, l: 8,  a: 6 }
+      ]
+    },
+    '365': {
+      revenue: 256800, visits: 172, delta: null, deltaAbs: null, ref: 'v roce 2026',
+      conv: 172, open: 55, click: 22,
+      sent: 5420, emailOpen: 2981, emailClick: 1193,
+      stepOpen: 55, stepClick: 40, stepBook: 14,
+      reac: 76, last: 56, acc: 40, breakTotal: 172,
+      organicTxt: '23 klientů letos (16 800 Kč)', organicRight: '23 klientů · 16 800 Kč',
+      daily: MONTHLY_YTD, granularity: 'monthly',
+      sparkConv: [40,46,58,28], sparkOpen: [53,55,56,55], sparkClick: [22,23,23,22],
+      flows: [
+        { name: 'Reaktivační 30d',     color: '#8B5CF6', sent: 1800, open: 1100, click: 500, book: 76 },
+        { name: 'Last-minute dnes',    color: '#F59E0B', sent: 750,  open: 460,  click: 280, book: 56 },
+        { name: 'Zrychlená návštěva',  color: '#398FFF', sent: 1280, open: 700,  click: 260, book: 40 },
+        { name: 'Narozeniny',          color: '#EC4899', sent: 420,  open: 270,  click: 118, book: 0 },
+        { name: 'Po návštěvě',         color: '#10B981', sent: 1170, open: 451,  click: 35,  book: 0 }
+      ],
+      barbers: [
+        { name: 'Jakub Novák',   initials: 'JN', color: '#398FFF', book: 78, revenue: 126400, sent: 2100, open: 56, click: 22, r: 34, l: 26, a: 18 },
+        { name: 'Tomáš Polák',   initials: 'TP', color: '#10B981', book: 56, revenue: 89700,  sent: 1790, open: 57, click: 22, r: 24, l: 18, a: 14 },
+        { name: 'Denis Horák',   initials: 'DH', color: '#F59E0B', book: 38, revenue: 55400,  sent: 1530, open: 53, click: 20, r: 18, l: 12, a: 8 }
+      ]
+    }
+  };
+
+  // ═══════ FORMAT HELPERS ═══════
+  const fmt = n => n.toLocaleString('cs-CZ').replace(/,/g, '\u00a0');
+  const MONTHS_CS = ['led','úno','bře','dub','kvě','čvn','čvc','srp','zář','říj','lis','pro'];
+  const WEEKDAYS_CS = ['ne','po','út','st','čt','pá','so'];
+  function formatTickDate(dateStr, granularity) {
+    const d = new Date(dateStr);
+    if (granularity === 'monthly') return MONTHS_CS[d.getMonth()];
+    return `${d.getDate()}. ${MONTHS_CS[d.getMonth()]}`;
+  }
+  function formatTooltipDate(dateStr, granularity) {
+    const d = new Date(dateStr);
+    if (granularity === 'monthly') {
+      return `${MONTHS_CS[d.getMonth()]} ${d.getFullYear()}`;
+    }
+    if (granularity === 'weekly') {
+      const end = new Date(d); end.setDate(d.getDate() + 6);
+      const sameMonth = d.getMonth() === end.getMonth();
+      return sameMonth
+        ? `${d.getDate()}.–${end.getDate()}. ${MONTHS_CS[end.getMonth()]}`
+        : `${d.getDate()}. ${MONTHS_CS[d.getMonth()]} – ${end.getDate()}. ${MONTHS_CS[end.getMonth()]}`;
+    }
+    return `${WEEKDAYS_CS[d.getDay()]} ${d.getDate()}. ${MONTHS_CS[d.getMonth()]}`;
+  }
+  function formatPillValue(value, isMonthly) {
+    if (value >= 10000) return fmt(Math.round(value / 100) / 10) + ' tis';
+    return fmt(value) + ' Kč';
+  }
+
+  // ═══════ HERO CHART ═══════
+  function buildChartSVG(data) {
+    const W = 800, H = 210;
+    const pad = { top: 52, right: 16, bottom: 30, left: 16 };
+    const iW = W - pad.left - pad.right;
+    const iH = H - pad.top - pad.bottom;
+    const maxV = Math.max(...data.daily.map(d => d.value));
+    const pts = data.daily.map((d, i) => {
+      const x = pad.left + (i / (data.daily.length - 1)) * iW;
+      const y = pad.top + iH - (d.value / maxV) * iH;
+      return { x, y, value: d.value, date: d.date };
+    });
+
+    // Peak (highest value in the window) — always annotated
+    const peakIdx = data.daily.reduce((best, d, i) => d.value > data.daily[best].value ? i : best, 0);
+
+    // Determine tick indices (x-axis date labels + annotation dots)
+    // Density rules (industry standard, ~5-8 ticks per chart):
+    //   7 dní   (daily)   → every day
+    //   30 dní  (daily)   → Mondays only (full weeks)
+    //   90 dní  (weekly)  → every 2nd week (14-day cadence)
+    //   letos   (monthly) → every month
+    const tickIdx = new Set();
+    data.daily.forEach((d, i) => {
+      const dt = new Date(d.date);
+      const dow = dt.getDay();
+      if (data.granularity === 'daily') {
+        if (data.daily.length <= 7) tickIdx.add(i);
+        else if (dow === 1) tickIdx.add(i); // Mondays only for 30-day view
+      } else if (data.granularity === 'weekly') {
+        if (i % 2 === 0) tickIdx.add(i); // every 2nd week = 14-day cadence
+      } else {
+        tickIdx.add(i); // YTD: every month
+      }
+    });
+    tickIdx.add(pts.length - 1);   // always last
+    tickIdx.add(peakIdx);          // always peak
+
+    // Priority: today > peak > 1st of month > Monday (used to resolve spacing conflicts)
+    const priority = i => {
+      if (i === pts.length - 1) return 4;
+      if (i === peakIdx) return 3;
+      const dt = new Date(data.daily[i].date);
+      if (dt.getDate() === 1) return 2;
+      return 1;
+    };
+
+    // Greedy spacing filter — keep highest-priority point when overlap
+    const minSpacing = 58;
+    const sorted = [...tickIdx].sort((a,b) => a - b);
+    const keepTicks = [];
+    sorted.forEach(i => {
+      if (keepTicks.length === 0) { keepTicks.push(i); return; }
+      const prev = keepTicks[keepTicks.length - 1];
+      if (pts[i].x - pts[prev].x >= minSpacing) {
+        keepTicks.push(i);
+      } else if (priority(i) > priority(prev)) {
+        keepTicks.pop();
+        keepTicks.push(i);
+      }
+    });
+
+    // Build SVG
+    let svg = `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid meet">`;
+    svg += `<defs>
+      <linearGradient id="heroArea" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#398FFF" stop-opacity="0.28"/>
+        <stop offset="100%" stop-color="#398FFF" stop-opacity="0"/>
+      </linearGradient>
+    </defs>`;
+
+    // Baseline
+    svg += `<line class="chart-baseline" x1="${pad.left}" y1="${H - pad.bottom}" x2="${W - pad.right}" y2="${H - pad.bottom}"/>`;
+
+    // Area (smooth via Catmull-Rom-ish but using simple line for speed)
+    const areaPath = `M ${pts[0].x},${H - pad.bottom} ` + pts.map(p => `L ${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' ') + ` L ${pts[pts.length-1].x},${H - pad.bottom} Z`;
+    svg += `<path class="chart-area-fill" d="${areaPath}" fill="url(#heroArea)"/>`;
+
+    // Line
+    const linePath = pts.map((p, i) => (i === 0 ? 'M' : 'L') + ` ${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' ');
+    svg += `<path class="chart-line" d="${linePath}"/>`;
+
+    // X-axis date ticks (staggered reveal after line draws)
+    keepTicks.forEach((i, idx) => {
+      const p = pts[i];
+      const isToday = i === pts.length - 1;
+      const cls = 'chart-axis-tick chart-tick-anim' + (isToday ? ' chart-axis-tick-today' : '');
+      const lbl = isToday && data.granularity === 'daily' ? 'dnes' : formatTickDate(p.date, data.granularity);
+      const delay = (0.7 + idx * 0.05).toFixed(2);
+      svg += `<text x="${p.x}" y="${H - 8}" text-anchor="middle" class="${cls}" style="animation-delay:${delay}s">${lbl}</text>`;
+    });
+
+    // Dots + value pills (same positions as keepTicks)
+    keepTicks.forEach((i, idx) => {
+      const p = pts[i];
+      const isToday = i === pts.length - 1;
+      const isPeak = i === peakIdx && !isToday;
+      const delay = (0.75 + idx * 0.05).toFixed(2);
+      // Dot
+      if (isToday) {
+        svg += `<circle class="chart-dot-today chart-dot-anim" cx="${p.x}" cy="${p.y}" r="6" style="animation-delay:${delay}s"/>`;
+      } else if (isPeak) {
+        svg += `<circle class="chart-dot-peak chart-dot-anim" cx="${p.x}" cy="${p.y}" r="5.5" style="animation-delay:${delay}s"/>`;
+      } else {
+        svg += `<circle class="chart-dot-outer chart-dot-anim" cx="${p.x}" cy="${p.y}" r="5" style="animation-delay:${delay}s"/>`;
+      }
+
+      // Value pill above — peak gets a "peak" prefix
+      const valText = formatPillValue(p.value, data.granularity === 'monthly');
+      const label = isPeak ? '▲ ' + valText : valText;
+      const pillW = Math.max(label.length * 5.8 + 14, 48);
+      let pillX = p.x - pillW / 2;
+      if (pillX < pad.left) pillX = pad.left;
+      if (pillX + pillW > W - pad.right) pillX = W - pad.right - pillW;
+      const pillY = Math.max(p.y - 28, 6);
+      const bgCls = isPeak ? 'chart-pill-bg chart-pill-bg-peak chart-tick-anim' : 'chart-pill-bg chart-tick-anim';
+      const txtCls = isPeak ? 'chart-pill-text chart-pill-text-peak chart-tick-anim' : 'chart-pill-text chart-tick-anim';
+      svg += `<rect class="${bgCls}" x="${pillX.toFixed(1)}" y="${pillY.toFixed(1)}" width="${pillW.toFixed(1)}" height="20" rx="6" style="animation-delay:${delay}s"/>`;
+      svg += `<text class="${txtCls}" x="${(pillX + pillW/2).toFixed(1)}" y="${(pillY + 13.5).toFixed(1)}" text-anchor="middle" style="animation-delay:${delay}s">${label}</text>`;
+
+      // Connector line from dot to pill
+      if (pillY + 20 < p.y - 4) {
+        svg += `<line class="chart-tick-anim" x1="${p.x}" y1="${pillY + 20}" x2="${p.x}" y2="${p.y - 7}" stroke="var(--slate-300)" stroke-width="1" stroke-dasharray="2 2" style="animation-delay:${delay}s"/>`;
+      }
+    });
+
+    // Crosshair + hover dot wrapped in groups so we can transition transform
+    // (smoother than animating x1/cx attributes directly)
+    svg += `<g id="crosshair-group" class="chart-hover-group" style="transform:translate(0px,0)">`;
+    svg += `<line class="chart-crosshair" id="crosshair" x1="0" y1="${pad.top}" x2="0" y2="${H - pad.bottom}"/>`;
+    svg += `</g>`;
+    svg += `<g id="dot-group" class="chart-hover-group" style="transform:translate(0px,0)">`;
+    svg += `<circle class="chart-hover-dot" id="hover-dot" cx="0" cy="0" r="6"/>`;
+    svg += `</g>`;
+    // Transparent overlay captures mouse events across whole chart area
+    svg += `<rect class="chart-overlay" x="${pad.left}" y="${pad.top}" width="${iW}" height="${iH + pad.bottom}" fill="transparent"/>`;
+
+    svg += `</svg>`;
+    return { svg, pts, W, H };
+  }
+
+  // ═══════ SPARKLINE (small in KPI) ═══════
+  function buildSparkline(values, color, w, h, filled) {
+    const n = values.length;
+    const max = Math.max(...values);
+    const min = Math.min(...values);
+    const range = max - min || 1;
+    const pad = 2;
+    const pts = values.map((v, i) => {
+      const x = (i / (n - 1)) * (w - pad * 2) + pad;
+      const y = h - pad - ((v - min) / range) * (h - pad * 2);
+      return `${x.toFixed(1)},${y.toFixed(1)}`;
+    }).join(' ');
+    let s = '';
+    if (filled) s += `<polygon points="${pad},${h-pad} ${pts} ${w-pad},${h-pad}" fill="${color}" opacity="0.12"/>`;
+    s += `<polyline class="spark-line" points="${pts}" stroke="${color}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>`;
+    return s;
+  }
+
+  // ═══════ COUNT ANIMATION ═══════
+  function countTo(el, target, duration = 900) {
+    const start = performance.now();
+    const startVal = parseFloat(el.textContent.replace(/\s|\u00a0/g, '')) || 0;
+    const ease = t => 1 - Math.pow(1 - t, 4);
+    function tick(now) {
+      const p = Math.min((now - start) / duration, 1);
+      const val = Math.round(startVal + (target - startVal) * ease(p));
+      el.textContent = fmt(val);
+      if (p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  // ═══════ FLOWS TABLE ═══════
+  function renderFlows(data) {
+    const body = document.getElementById('flows-body');
+    const foot = document.getElementById('flows-foot');
+    const totalSent = data.flows.reduce((s, f) => s + f.sent, 0);
+    const totalOpen = data.flows.reduce((s, f) => s + f.open, 0);
+    const totalClick = data.flows.reduce((s, f) => s + f.click, 0);
+    const totalBook = data.flows.reduce((s, f) => s + f.book, 0);
+    const pctStr = (part, whole) => whole === 0 ? '0 %' : (part / whole * 100).toFixed(part / whole < 0.1 ? 1 : 0).replace('.', ',') + ' %';
+
+    body.innerHTML = data.flows.map(f => {
+      const openPct = f.sent === 0 ? 0 : f.open / f.sent * 100;
+      const clickPct = f.sent === 0 ? 0 : f.click / f.sent * 100;
+      const bookPct = f.sent === 0 ? 0 : f.book / f.sent * 100;
+      return `<tr>
+        <td><div class="flow-name"><span class="flow-name-dot" style="background:${f.color}"></span>${f.name}</div></td>
+        <td><span class="cell-val">${fmt(f.sent)}</span></td>
+        <td><span class="cell-val">${fmt(f.open)}</span><span class="cell-pct">${pctStr(f.open, f.sent)}</span></td>
+        <td><span class="cell-val">${fmt(f.click)}</span><span class="cell-pct">${pctStr(f.click, f.sent)}</span></td>
+        <td><span class="cell-val">${fmt(f.book)}</span><span class="cell-pct ${f.book === 0 ? 'cell-pct-zero' : 'cell-pct-good'}">${pctStr(f.book, f.sent)}</span></td>
+      </tr>`;
+    }).join('');
+
+    foot.innerHTML = `<tr>
+      <td>Celkem</td>
+      <td><span class="cell-val">${fmt(totalSent)}</span></td>
+      <td><span class="cell-val">${fmt(totalOpen)}</span><span class="cell-pct">${pctStr(totalOpen, totalSent)}</span></td>
+      <td><span class="cell-val">${fmt(totalClick)}</span><span class="cell-pct">${pctStr(totalClick, totalSent)}</span></td>
+      <td><span class="cell-val">${fmt(totalBook)}</span><span class="cell-pct cell-pct-good">${pctStr(totalBook, totalSent)}</span></td>
+    </tr>`;
+  }
+
+  // ═══════ BARBERS TABLE ═══════
+  function renderBarbers(data) {
+    const body = document.getElementById('barbers-body');
+    if (!body || !data.barbers) return;
+    const sorted = [...data.barbers].sort((a, b) => b.book - a.book);
+    body.innerHTML = sorted.map(b => {
+      const total = b.r + b.l + b.a;
+      const rP = total ? (b.r / total * 100) : 0;
+      const lP = total ? (b.l / total * 100) : 0;
+      const aP = total ? (b.a / total * 100) : 0;
+      const segs = [];
+      if (rP) segs.push(`<span class="book-bar-seg r" style="width:${rP}%" data-label="Reaktivace — ${b.r}"></span>`);
+      if (lP) segs.push(`<span class="book-bar-seg l" style="width:${lP}%" data-label="Last-minute — ${b.l}"></span>`);
+      if (aP) segs.push(`<span class="book-bar-seg a" style="width:${aP}%" data-label="Urychlené — ${b.a}"></span>`);
+      return `<tr>
+        <td><div class="barber-name">
+          <span class="barber-avatar" style="background:${b.color}">${b.initials}</span>
+          ${b.name}
+        </div></td>
+        <td>
+          <div class="book-cell">
+            <span class="book-count">${fmt(b.book)}</span>
+            <span class="book-bar">${segs.join('')}</span>
+          </div>
+        </td>
+        <td><span class="rev-cell">${fmt(b.revenue)} <small>Kč</small></span></td>
+        <td><span class="cell-val">${fmt(b.sent)}</span></td>
+        <td><span class="cell-val">${b.open} %</span></td>
+        <td><span class="cell-val">${b.click} %</span></td>
+      </tr>`;
+    }).join('');
+    const meta = document.getElementById('barbers-meta');
+    if (meta) meta.textContent = sorted.length + ' barbeři · řazeno podle rezervací';
+  }
+
+  // ═══════ APPLY RANGE ═══════
+  function synthCustomRange(start, end) {
+    // Pick a base preset closest in day count
+    const nDays = Math.round((end - start) / 86400000) + 1;
+    const base = nDays <= 10 ? DATA['7'] : nDays <= 45 ? DATA['30'] : nDays <= 150 ? DATA['90'] : DATA['365'];
+    // Scale totals proportionally to nDays vs base length
+    const baseLen = base.daily.length * (base.granularity === 'weekly' ? 7 : base.granularity === 'monthly' ? 30 : 1);
+    const k = nDays / baseLen;
+    // Build daily series: one point per day between start..end, sampled from base.daily
+    const daily = [];
+    for (let i = 0; i < nDays; i++) {
+      const dt = new Date(start); dt.setDate(start.getDate() + i);
+      const srcIdx = Math.floor(i / nDays * base.daily.length);
+      const srcVal = base.daily[Math.min(srcIdx, base.daily.length - 1)].value;
+      // Normalize: divide by base granularity factor so daily values are plausible
+      const factor = base.granularity === 'weekly' ? 7 : base.granularity === 'monthly' ? 30 : 1;
+      daily.push({ date: toIsoLocal(dt), value: Math.round(srcVal / factor) });
+    }
+    // Clone base with scaled totals + new daily
+    return {
+      ...base,
+      daily,
+      granularity: 'daily',
+      revenue: Math.round(base.revenue * k),
+      visits: Math.round(base.visits * k),
+      delta: null, // no comparison on custom range
+      ref: `vlastní rozsah · ${fmtRange(start, end)}`,
+      conv: Math.round(base.conv * k),
+      sent: Math.round(base.sent * k),
+      emailOpen: Math.round(base.emailOpen * k),
+      emailClick: Math.round(base.emailClick * k),
+      reac: Math.round(base.reac * k),
+      last: Math.round(base.last * k),
+      acc: Math.round(base.acc * k),
+      breakTotal: Math.round(base.breakTotal * k),
+    };
+  }
+
+  function applyRange(r, animated = true) {
+    const d = r === 'custom' ? synthCustomRange(applied.start, applied.end) : DATA[r];
+    // Hero
+    if (animated) {
+      countTo(document.getElementById('hero-revenue'), d.revenue, 1000);
+      countTo(document.getElementById('hero-visits'), d.visits, 800);
+    } else {
+      document.getElementById('hero-revenue').textContent = fmt(d.revenue);
+      document.getElementById('hero-visits').textContent = fmt(d.visits);
+    }
+
+    // Hero delta
+    const deltaEl = document.getElementById('hero-delta');
+    const refWrap = document.getElementById('hero-ref-wrap');
+    if (d.delta === null) {
+      deltaEl.style.display = 'none';
+      refWrap.innerHTML = '<span class="serif-italic">' + d.ref + '</span>';
+    } else {
+      deltaEl.style.display = '';
+      document.getElementById('hero-delta-pct').textContent = (d.delta >= 0 ? '+' : '') + d.delta + ' %';
+      refWrap.innerHTML = '<span class="serif-italic">' + d.ref + '</span>&nbsp;<strong>+' + fmt(d.deltaAbs) + ' Kč</strong>';
+    }
+
+    // KPI values + sparklines
+    if (animated) countTo(document.getElementById('kpi-conv'), d.conv, 900);
+    else document.getElementById('kpi-conv').textContent = fmt(d.conv);
+    document.getElementById('kpi-open').textContent = d.open;
+    document.getElementById('kpi-click').textContent = d.click;
+    document.getElementById('spark-conv').innerHTML = buildSparkline(d.sparkConv, '#398FFF', 100, 26);
+    document.getElementById('spark-open').innerHTML = buildSparkline(d.sparkOpen, '#10B981', 100, 26);
+    document.getElementById('spark-click').innerHTML = buildSparkline(d.sparkClick, '#F59E0B', 100, 26);
+
+    // Funnel
+    document.getElementById('f-sent').textContent = fmt(d.sent);
+    document.getElementById('f-open').textContent = fmt(d.emailOpen);
+    document.getElementById('f-click').textContent = fmt(d.emailClick);
+    document.getElementById('f-visit').textContent = fmt(d.visits);
+
+    // Funnel step rates (positive framing)
+    document.getElementById('step1').textContent = '+' + d.stepOpen + ' %';
+    document.getElementById('step2').textContent = '+' + d.stepClick + ' %';
+    document.getElementById('step3').textContent = '+' + d.stepBook + ' %';
+
+    // Breakdown
+    document.getElementById('b-reac').textContent = d.reac;
+    document.getElementById('b-last').textContent = d.last;
+    document.getElementById('b-acc').textContent = d.acc;
+    document.getElementById('break-total').textContent = d.breakTotal;
+    const total = d.reac + d.last + d.acc;
+    const bars = document.querySelectorAll('.break-bar');
+    bars[0].style.width = (d.reac / total * 100) + '%';
+    bars[1].style.width = (d.last / total * 100) + '%';
+    bars[2].style.width = (d.acc / total * 100) + '%';
+
+    // Organic
+    document.getElementById('organic-text').textContent = d.organicTxt;
+    document.getElementById('organic-right').textContent = d.organicRight;
+
+    // Flows
+    renderFlows(d);
+    document.getElementById('flows-meta').textContent = d.flows.length + ' aktivních · % z odeslaných v rámci flow';
+
+    // Barbers
+    renderBarbers(d);
+
+    // Hero chart
+    const chartWrap = document.getElementById('hero-chart-wrap');
+    chartWrap.style.opacity = '0';
+    setTimeout(() => {
+      const { svg, pts, W, H } = buildChartSVG(d);
+      chartWrap.innerHTML = svg + '<div class="chart-tooltip" id="chart-tooltip"></div>';
+      chartWrap.style.opacity = '1';
+      attachChartHover(d, pts, W, H);
+    }, 140);
+  }
+
+  // ═══════ CHART HOVER ═══════
+  function attachChartHover(data, pts, W, H) {
+    const wrap = document.getElementById('hero-chart-wrap');
+    const svg = wrap.querySelector('svg');
+    const overlay = svg.querySelector('.chart-overlay');
+    const crosshair = svg.querySelector('#crosshair');
+    const crosshairGroup = svg.querySelector('#crosshair-group');
+    const dot = svg.querySelector('#hover-dot');
+    const dotGroup = svg.querySelector('#dot-group');
+    const tip = document.getElementById('chart-tooltip');
+    if (!overlay || !crosshair || !dot || !tip || !crosshairGroup || !dotGroup) return;
+
+    function nearestIdx(svgX) {
+      let lo = 0, hi = pts.length - 1;
+      while (hi - lo > 1) {
+        const mid = (lo + hi) >> 1;
+        if (pts[mid].x < svgX) lo = mid; else hi = mid;
+      }
+      return (svgX - pts[lo].x) < (pts[hi].x - svgX) ? lo : hi;
+    }
+
+    function moveTo(clientX, clientY) {
+      const rect = svg.getBoundingClientRect();
+      const svgX = ((clientX - rect.left) / rect.width) * W;
+      const i = nearestIdx(svgX);
+      const p = pts[i];
+      const d0 = data.daily[i];
+      // Translate the groups via CSS transform — smooth transition via CSS
+      crosshairGroup.style.transform = `translate(${p.x}px, 0)`;
+      dotGroup.style.transform = `translate(${p.x}px, ${p.y}px)`;
+      crosshair.classList.add('active');
+      dot.classList.add('active');
+      const cssX = (p.x / W) * rect.width;
+      const cssY = (p.y / H) * rect.height;
+      tip.innerHTML =
+        `<div class="tt-date">${formatTooltipDate(d0.date, data.granularity)}</div>` +
+        `<div class="tt-val">${fmt(d0.value)} Kč</div>`;
+      tip.style.left = cssX + 'px';
+      tip.style.top = cssY + 'px';
+      tip.classList.add('active');
+    }
+
+    function hide() {
+      crosshair.classList.remove('active');
+      dot.classList.remove('active');
+      tip.classList.remove('active');
+    }
+
+    svg.addEventListener('mousemove', e => moveTo(e.clientX, e.clientY));
+    svg.addEventListener('mouseleave', hide);
+    svg.addEventListener('touchmove', e => {
+      if (e.touches && e.touches[0]) {
+        moveTo(e.touches[0].clientX, e.touches[0].clientY);
+        e.preventDefault();
+      }
+    }, { passive: false });
+    svg.addEventListener('touchend', hide);
+  }
+
+  // ═══════ INIT ═══════
+  window.addEventListener('load', () => applyRange('30', true));
+
+  // ═══════ TAB INDICATOR SLIDE ═══════
+  (function initTabIndicator() {
+    const indicator = document.getElementById('tab-indicator');
+    const tabs = document.querySelectorAll('.tab');
+    if (!indicator || !tabs.length) return;
+    function moveIndicator() {
+      const active = document.querySelector('.tab.active');
+      if (!active) return;
+      indicator.style.width = active.offsetWidth + 'px';
+      indicator.style.transform = `translateX(${active.offsetLeft}px)`;
+    }
+    // Position after first paint so offsetLeft/Width are reliable
+    requestAnimationFrame(() => requestAnimationFrame(moveIndicator));
+    window.addEventListener('load', moveIndicator);
+    window.addEventListener('resize', moveIndicator);
+    tabs.forEach(tab => {
+      tab.addEventListener('click', (e) => {
+        e.preventDefault();
+        tabs.forEach(t => { t.classList.remove('active'); t.removeAttribute('aria-current'); });
+        tab.classList.add('active');
+        tab.setAttribute('aria-current', 'page');
+        moveIndicator();
+      });
+    });
+  })();
+
+  // ═══════ STICKY HEADER INTENSIFIES ON SCROLL ═══════
+  (function initHeaderScroll() {
+    const header = document.querySelector('.app-header');
+    if (!header) return;
+    let ticking = false;
+    function update() {
+      header.classList.toggle('scrolled', window.scrollY > 4);
+      ticking = false;
+    }
+    window.addEventListener('scroll', () => {
+      if (!ticking) { requestAnimationFrame(update); ticking = true; }
+    }, { passive: true });
+    update();
+  })();
+
+  // ═══════ KPI CURSOR GRADIENT ═══════
+  (function initKpiCursor() {
+    document.querySelectorAll('.kpi').forEach(kpi => {
+      let pending = false;
+      let lastEvent = null;
+      kpi.addEventListener('mousemove', (e) => {
+        lastEvent = e;
+        if (pending) return;
+        pending = true;
+        requestAnimationFrame(() => {
+          pending = false;
+          if (!lastEvent) return;
+          const rect = kpi.getBoundingClientRect();
+          kpi.style.setProperty('--mx', (lastEvent.clientX - rect.left) + 'px');
+          kpi.style.setProperty('--my', (lastEvent.clientY - rect.top) + 'px');
+        });
+      });
+    });
+  })();
+
+  // ═══════ RANGE PICKER ═══════
+  const MONTHS_CS_LONG = ['leden','únor','březen','duben','květen','červen','červenec','srpen','září','říjen','listopad','prosinec'];
+  const MONTHS_CS_ABBR = ['led','úno','bře','dub','kvě','čvn','čvc','srp','zář','říj','lis','pro'];
+  const DOW_CS_SHORT = ['po','út','st','čt','pá','so','ne'];
+  const PRESET_LABELS = { '7':'Posledních 7 dní', '30':'Posledních 30 dní', '90':'Posledních 90 dní', '365':'Od začátku roku' };
+  const TODAY = (() => { const d = new Date(); d.setHours(0,0,0,0); return d; })();
+
+  // State: applied (what's showing on dashboard) vs pending (in popover while editing)
+  let applied = { preset: '30', start: null, end: null };
+  let pending = { preset: '30', start: null, end: null, pickStage: 'start' }; // pickStage: 'start' | 'end'
+  let calMonth = new Date(TODAY.getFullYear(), TODAY.getMonth() - 1, 1); // left panel month
+
+  function sameDay(a, b) { return a && b && a.getFullYear()===b.getFullYear() && a.getMonth()===b.getMonth() && a.getDate()===b.getDate(); }
+  function addDays(d, n) { const r = new Date(d); r.setDate(r.getDate()+n); return r; }
+  // Format a Date as YYYY-MM-DD in LOCAL timezone. Using toISOString() would
+  // convert to UTC — in CET (UTC+1) / CEST (UTC+2), local midnight falls on
+  // the previous UTC day, so toISOString().slice(0,10) returns the wrong date.
+  function toIsoLocal(d) {
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return `${y}-${m}-${day}`;
+  }
+  function daysBetween(a, b) { return Math.round((b - a) / 86400000); }
+  function presetToDates(p) {
+    if (p === '7') return { start: addDays(TODAY, -6), end: TODAY };
+    if (p === '30') return { start: addDays(TODAY, -29), end: TODAY };
+    if (p === '90') return { start: addDays(TODAY, -89), end: TODAY };
+    if (p === '365') return { start: new Date(TODAY.getFullYear(), 0, 1), end: TODAY };
+    return null;
+  }
+  function fmtDay(d) {
+    const sameYear = d.getFullYear() === TODAY.getFullYear();
+    return sameYear ? `${d.getDate()}. ${MONTHS_CS_ABBR[d.getMonth()]}` : `${d.getDate()}. ${MONTHS_CS_ABBR[d.getMonth()]} ${d.getFullYear()}`;
+  }
+  function fmtRange(s, e) {
+    if (!s || !e) return '';
+    if (sameDay(s, e)) return fmtDay(s);
+    const sameYear = s.getFullYear() === e.getFullYear();
+    const sameMonth = sameYear && s.getMonth() === e.getMonth();
+    if (sameMonth) return `${s.getDate()}.–${e.getDate()}. ${MONTHS_CS_ABBR[e.getMonth()]} ${e.getFullYear()}`;
+    if (sameYear) return `${s.getDate()}. ${MONTHS_CS_ABBR[s.getMonth()]} – ${e.getDate()}. ${MONTHS_CS_ABBR[e.getMonth()]} ${e.getFullYear()}`;
+    return `${fmtDay(s)} – ${fmtDay(e)}`;
+  }
+
+  function updateTriggerLabel() {
+    const label = document.getElementById('range-label');
+    if (applied.preset && applied.preset !== 'custom') {
+      label.textContent = PRESET_LABELS[applied.preset] || applied.preset;
+    } else if (applied.start && applied.end) {
+      label.textContent = fmtRange(applied.start, applied.end);
+    }
+  }
+
+  function openPicker() {
+    // Seed pending from applied
+    pending = { preset: applied.preset, start: applied.start, end: applied.end, pickStage: 'start' };
+    if ((!pending.start || !pending.end) && pending.preset !== 'custom') {
+      const r = presetToDates(pending.preset || '30');
+      if (r) { pending.start = r.start; pending.end = r.end; }
+    }
+    // Show end month in right panel, prev month on left
+    const anchor = pending.end || TODAY;
+    calMonth = new Date(anchor.getFullYear(), anchor.getMonth() - 1, 1);
+    // Clamp: don't show future months on right
+    const rightMonth = new Date(calMonth.getFullYear(), calMonth.getMonth() + 1, 1);
+    if (rightMonth > new Date(TODAY.getFullYear(), TODAY.getMonth() + 1, 0)) {
+      // right month is in the future — step back
+      calMonth = new Date(TODAY.getFullYear(), TODAY.getMonth() - 1, 1);
+    }
+    document.getElementById('range-popover').classList.add('open');
+    document.getElementById('range-trigger').setAttribute('aria-expanded', 'true');
+    renderCalendar();
+    renderPresets();
+  }
+  function closePicker() {
+    document.getElementById('range-popover').classList.remove('open');
+    document.getElementById('range-trigger').setAttribute('aria-expanded', 'false');
+  }
+  function renderPresets() {
+    document.querySelectorAll('#rp-presets .rp-preset').forEach(b => {
+      b.classList.toggle('active', b.dataset.preset === (pending.preset || 'custom'));
+    });
+    // Apply is only enabled with a complete range
+    const apply = document.getElementById('rp-apply');
+    if (apply) apply.disabled = !(pending.start && pending.end);
+    // Footer meta shows what's currently picked (or hint to continue)
+    const meta = document.getElementById('rp-footer-meta');
+    if (meta) {
+      if (pending.pickStage === 'end' && pending.start) {
+        meta.textContent = 'Vyberte koncové datum';
+      } else if (pending.start && pending.end) {
+        meta.textContent = fmtRange(pending.start, pending.end);
+      } else {
+        meta.textContent = 'Časy v Europe/Prague';
+      }
+    }
+  }
+  function renderCalendar(hoverDate) {
+    const right = new Date(calMonth.getFullYear(), calMonth.getMonth() + 1, 1);
+    const maxMonth = new Date(TODAY.getFullYear(), TODAY.getMonth(), 1);
+    const nextDisabled = right >= maxMonth;
+    const html = `
+      <div class="rp-cal-nav">
+        <button class="rp-cal-prev" id="rp-cal-prev" aria-label="Předchozí měsíc">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <div class="rp-cal-months">
+          <span>${MONTHS_CS_LONG[calMonth.getMonth()]} ${calMonth.getFullYear()}</span>
+          <span>${MONTHS_CS_LONG[right.getMonth()]} ${right.getFullYear()}</span>
+        </div>
+        <button class="rp-cal-next" id="rp-cal-next" ${nextDisabled ? 'disabled' : ''} aria-label="Další měsíc">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+      <div class="rp-cal-grid">
+        ${renderMonth(calMonth, hoverDate)}
+        ${renderMonth(right, hoverDate)}
+      </div>
+    `;
+    document.getElementById('rp-calendar').innerHTML = html;
+  }
+  function renderMonth(firstOfMonth, hoverDate) {
+    const year = firstOfMonth.getFullYear();
+    const month = firstOfMonth.getMonth();
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    let firstDow = firstOfMonth.getDay() - 1;
+    if (firstDow < 0) firstDow = 6; // Sunday → 6
+    let cells = '';
+    DOW_CS_SHORT.forEach(d => cells += `<span class="rp-cal-dow">${d}</span>`);
+    for (let i = 0; i < firstDow; i++) cells += `<span class="rp-cal-blank"></span>`;
+    // Determine visible range: hover-preview takes precedence while picking end
+    let rStart = pending.start, rEnd = pending.end;
+    if (pending.pickStage === 'end' && pending.start && hoverDate) {
+      if (hoverDate < pending.start) { rStart = hoverDate; rEnd = pending.start; }
+      else { rStart = pending.start; rEnd = hoverDate; }
+    }
+    const isPreview = pending.pickStage === 'end' && hoverDate;
+    for (let d = 1; d <= daysInMonth; d++) {
+      const date = new Date(year, month, d);
+      const isDisabled = date > TODAY;
+      const classes = ['rp-cal-day'];
+      if (sameDay(date, TODAY)) classes.push('today');
+      const isStart = sameDay(date, rStart);
+      const isEnd = sameDay(date, rEnd);
+      if (isStart) classes.push('selected','start');
+      if (isEnd) classes.push('selected','end');
+      if (rStart && rEnd && date > rStart && date < rEnd && !isStart && !isEnd) {
+        classes.push(isPreview ? 'in-range-preview' : 'in-range');
+      }
+      cells += `<button class="${classes.join(' ')}" data-date="${toIsoLocal(date)}" ${isDisabled ? 'disabled' : ''}>${d}</button>`;
+    }
+    return `<div class="rp-cal-month">${cells}</div>`;
+  }
+
+  // Event delegation on popover
+  document.getElementById('range-trigger').addEventListener('click', () => {
+    const pop = document.getElementById('range-popover');
+    if (pop.classList.contains('open')) closePicker(); else openPicker();
+  });
+  // Use mousedown (not click): calendar click handler mutates DOM, which
+  // detaches the event target. By click-bubble time, picker.contains(target)
+  // returns false for detached nodes — closing the popover mid-pick.
+  // Mousedown fires before any DOM mutation, so containment check is valid.
+  document.addEventListener('mousedown', e => {
+    const picker = document.getElementById('range-picker');
+    if (!picker.contains(e.target)) closePicker();
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closePicker();
+  });
+
+  document.getElementById('rp-presets').addEventListener('click', e => {
+    const btn = e.target.closest('.rp-preset');
+    if (!btn) return;
+    const p = btn.dataset.preset;
+    if (p === 'custom') {
+      pending.preset = 'custom';
+      pending.pickStage = 'start';
+      pending.start = null; pending.end = null;
+    } else {
+      pending.preset = p;
+      const r = presetToDates(p);
+      pending.start = r.start; pending.end = r.end;
+      pending.pickStage = 'start';
+      calMonth = new Date(r.end.getFullYear(), r.end.getMonth() - 1, 1);
+      const maxMonth = new Date(TODAY.getFullYear(), TODAY.getMonth(), 1);
+      if (new Date(calMonth.getFullYear(), calMonth.getMonth() + 1, 1) > maxMonth) {
+        calMonth = new Date(TODAY.getFullYear(), TODAY.getMonth() - 1, 1);
+      }
+    }
+    renderPresets();
+    renderCalendar();
+  });
+
+  document.getElementById('rp-calendar').addEventListener('click', e => {
+    if (e.target.closest('#rp-cal-prev')) {
+      calMonth = new Date(calMonth.getFullYear(), calMonth.getMonth() - 1, 1);
+      renderCalendar();
+      return;
+    }
+    if (e.target.closest('#rp-cal-next') && !e.target.closest('#rp-cal-next').disabled) {
+      calMonth = new Date(calMonth.getFullYear(), calMonth.getMonth() + 1, 1);
+      renderCalendar();
+      return;
+    }
+    const day = e.target.closest('.rp-cal-day');
+    if (!day || day.disabled) return;
+    const d = new Date(day.dataset.date + 'T00:00:00');
+    if (pending.pickStage === 'start') {
+      pending.start = d;
+      pending.end = null;
+      pending.pickStage = 'end';
+      pending.preset = 'custom';
+    } else {
+      if (d < pending.start) { pending.end = pending.start; pending.start = d; }
+      else { pending.end = d; }
+      pending.pickStage = 'start';
+      pending.preset = 'custom';
+    }
+    renderPresets();
+    renderCalendar();
+  });
+
+  // Update only classes on existing day buttons — do NOT re-render the
+  // calendar innerHTML during hover. Rebuilding the DOM on every mouseover
+  // detaches the element under the cursor, causing mousedown/mouseup to
+  // land on different targets → click fires on the wrong cell or none.
+  function updateHoverPreview(hoverDate) {
+    let rStart = pending.start, rEnd = pending.end;
+    const isPreview = pending.pickStage === 'end' && pending.start && hoverDate;
+    if (isPreview) {
+      if (hoverDate < pending.start) { rStart = hoverDate; rEnd = pending.start; }
+      else { rStart = pending.start; rEnd = hoverDate; }
+    }
+    const cells = document.querySelectorAll('#rp-calendar .rp-cal-day');
+    cells.forEach(cell => {
+      cell.classList.remove('selected', 'start', 'end', 'in-range', 'in-range-preview');
+      if (cell.disabled) return;
+      const d = new Date(cell.dataset.date + 'T00:00:00');
+      const isStart = sameDay(d, rStart);
+      const isEnd = sameDay(d, rEnd);
+      if (isStart) cell.classList.add('selected', 'start');
+      if (isEnd) cell.classList.add('selected', 'end');
+      if (rStart && rEnd && d > rStart && d < rEnd && !isStart && !isEnd) {
+        cell.classList.add(isPreview ? 'in-range-preview' : 'in-range');
+      }
+    });
+  }
+
+  let hoverRaf = 0;
+  document.getElementById('rp-calendar').addEventListener('mouseover', e => {
+    if (pending.pickStage !== 'end') return;
+    const day = e.target.closest('.rp-cal-day');
+    if (!day || day.disabled) return;
+    const iso = day.dataset.date;
+    // rAF-throttle so fast mouse motion doesn't stack work
+    if (hoverRaf) cancelAnimationFrame(hoverRaf);
+    hoverRaf = requestAnimationFrame(() => {
+      updateHoverPreview(new Date(iso + 'T00:00:00'));
+    });
+  });
+  document.getElementById('rp-calendar').addEventListener('mouseleave', () => {
+    if (hoverRaf) { cancelAnimationFrame(hoverRaf); hoverRaf = 0; }
+    if (pending.pickStage === 'end') updateHoverPreview(null);
+  });
+
+  document.getElementById('rp-cancel').addEventListener('click', closePicker);
+  document.getElementById('rp-apply').addEventListener('click', () => {
+    if (!pending.start || !pending.end) return;
+    applied = { preset: pending.preset, start: pending.start, end: pending.end };
+    updateTriggerLabel();
+    if (applied.preset && applied.preset !== 'custom') {
+      applyRange(applied.preset, true);
+    } else {
+      applyRange('custom', true);
+    }
+    closePicker();
+  });
+
+  // ═══════ THEME ═══════
+  const root = document.documentElement;
+  const themeBtn = document.getElementById('theme-toggle');
+  const sun = document.getElementById('icon-sun');
+  const moon = document.getElementById('icon-moon');
+  function applyTheme(t) {
+    root.dataset.theme = t;
+    sun.style.display = t === 'dark' ? 'none' : 'block';
+    moon.style.display = t === 'dark' ? 'block' : 'none';
+  }
+  applyTheme(localStorage.getItem('bw-theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
+  themeBtn.addEventListener('click', () => {
+    const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+    localStorage.setItem('bw-theme', next);
+    applyTheme(next);
+  });
+
+  // ═══════ USER MENU ═══════
+  const userBtn = document.getElementById('user-btn');
+  const userMenu = document.getElementById('user-menu');
+  userBtn.addEventListener('click', e => { e.stopPropagation(); userMenu.classList.toggle('open'); });
+  document.addEventListener('click', e => { if (!userMenu.contains(e.target)) userMenu.classList.remove('open'); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') userMenu.classList.remove('open'); });
+
+  // ═══════ ⌘K ═══════
+  document.addEventListener('keydown', e => {
+    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+      e.preventDefault();
+      const btn = document.getElementById('cmdk-btn');
+      if (!btn) return;
+      btn.style.boxShadow = '0 0 0 3px rgba(57,143,255,.25)';
+      btn.style.borderColor = 'var(--ascent-500)';
+      setTimeout(() => { btn.style.boxShadow = ''; btn.style.borderColor = ''; }, 500);
+    }
+  });
+</script>
+
+</body>
+</html>
